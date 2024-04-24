@@ -1,0 +1,402 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_APPICON             ICON    DISCARDABLE     "res\\Tinelix IRC.ico"
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Tinelix IRC.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 241, 156
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Tinelix IRC"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_APPICON,IDC_STATIC,5,6,21,20
+    LTEXT           "Tinelix IRC Client 0.2.0-b002 for Win32s",IDC_STATIC,35,
+                    6,156,8,SS_NOPREFIX
+    LTEXT           "Copyright © 2023 Dmitry Tretyakov (Tinelix)",IDC_STATIC,
+                    35,17,170,10
+    DEFPUSHBUTTON   "OK",IDOK,190,137,46,14,WS_GROUP
+    LTEXT           "This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.",
+                    IDC_LICENSE,35,36,201,36
+    LTEXT           "Tinelix IRC Client is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+                    IDC_LICENSE2,35,74,201,36
+    EDITTEXT        IDC_SRC_CODE_ADDR,93,115,137,12,ES_AUTOHSCROLL | 
+                    ES_READONLY,WS_EX_TRANSPARENT
+    LTEXT           "Source code:",IDC_SRC_CODE,35,117,53,10
+END
+
+IDD_TABTHREAD DIALOG DISCARDABLE  0, 0, 266, 147
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_CHAT_INPUT,4,4,258,121,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_READONLY | WS_VSCROLL
+    EDITTEXT        IDC_CHAT_OUTPUT,4,129,214,14,WS_DISABLED
+    PUSHBUTTON      "Send",IDC_CHAT_SEND_MSG,221,129,41,14,WS_DISABLED
+END
+
+IDD_TABCHAT DIALOG DISCARDABLE  0, 0, 266, 147
+STYLE WS_CHILD | WS_DISABLED | WS_BORDER
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_CHAT_INPUT,4,4,184,121,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_READONLY | WS_VSCROLL
+    EDITTEXT        IDC_CHAT_OUTPUT,4,129,214,14
+    PUSHBUTTON      "Send",IDC_CHAT_SEND_MSG,221,129,41,14
+    LISTBOX         IDC_CHAT_MEMBERS,190,4,72,121,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_MAINDIALOG DIALOG DISCARDABLE  0, 0, 274, 166
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Dialog"
+MENU IDR_MAINMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tab1",IDC_MAINDLG_TABS,"SysTabControl32",0x0,2,2,270,
+                    162
+END
+
+IDD_CONNMANDIALOG DIALOG DISCARDABLE  0, 0, 199, 153
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connection Manager"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,92,134,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,144,134,50,14
+    PUSHBUTTON      "Create...",IDC_CREATE_PROFILE,11,110,58,14
+    PUSHBUTTON      "Remove",IDC_REMOVE_PROFILE,71,110,58,14
+    PUSHBUTTON      "Edit",IDC_EDIT_PROFILE,131,110,58,14
+    GROUPBOX        "Profiles",IDC_PROFILES_GROUP,5,5,189,125
+    LISTBOX         IDC_PROFILE_LIST,12,17,176,90,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_TEXTDIALOG DIALOG DISCARDABLE  0, 0, 183, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter the text..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,74,36,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,128,36,50,14
+    LTEXT           "Enter the text...",IDC_EDITTEXT,5,5,173,9
+    EDITTEXT        IDC_EDITTEXTAREA,5,16,173,13,ES_AUTOHSCROLL
+END
+
+IDD_CONNECTION_PROGRESS DIALOG DISCARDABLE  0, 0, 189, 38
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Please wait..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",WS_BORDER,7,
+                    20,175,11
+    LTEXT           "Connecting with [server]...",IDC_STATUS,7,7,175,10
+END
+
+IDD_STATSDIALOG DIALOG DISCARDABLE  0, 0, 147, 149
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Statistics"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,92,130,50,14
+    GROUPBOX        "Packets",IDC_PACKETS_GROUP,5,5,137,45
+    LTEXT           "Sent:",IDC_PACKETS_SENT_LABEL,13,16,50,8
+    RTEXT           "N/A",IDC_PACKETS_SENT_VALUE,76,16,58,8
+    LTEXT           "Read:",IDC_PACKETS_READ_LABEL,13,26,50,8
+    RTEXT           "N/A",IDC_PACKETS_READ_VALUE,76,26,58,8
+    LTEXT           "Sent:",IDC_BYTES_SENT_LABEL,13,64,50,8
+    RTEXT           "N/A",IDC_BYTES_SENT_VALUE,76,64,58,8
+    LTEXT           "Received:",IDC_READ_BYTES_LABEL,13,74,50,8
+    RTEXT           "N/A",IDC_BYTES_READ_VALUE,76,74,58,8
+    LTEXT           "Total:",IDC_TOTAL_BYTES_LABEL2,13,84,50,8
+    RTEXT           "N/A",IDC_TOTAL_BYTES_VALUE,76,84,58,8
+    GROUPBOX        "Data",IDC_DATA_GROUP,5,53,137,44
+    LTEXT           "Total:",IDC_TOTAL_PACKETS_LABEL,13,36,50,8
+    RTEXT           "N/A",IDC_TOTAL_PACKETS_VALUE,76,36,58,8
+    GROUPBOX        "Connection",IDC_CONNECTION_GROUP,5,101,137,25
+    LTEXT           "Quality:",IDC_CONNQUALITY_LABEL,13,112,38,8
+    CONTROL         "Progress1",IDC_PING_STRENGTH,"msctls_progress32",
+                    WS_BORDER,55,111,50,9
+    RTEXT           "0%",IDC_CONNQUALITY_VALUE,109,112,25,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 236
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 151
+    END
+
+    IDD_TABTHREAD, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 262
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 143
+    END
+
+    IDD_TABCHAT, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 262
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 143
+    END
+
+    IDD_MAINDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 272
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 164
+    END
+
+    IDD_CONNMANDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 194
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_TEXTDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 178
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 50
+    END
+
+    IDD_CONNECTION_PROGRESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 182
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 31
+    END
+
+    IDD_STATSDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 142
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 144
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,2,0,2
+ PRODUCTVERSION 0,2,0,2
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x23L
+#else
+ FILEFLAGS 0x22L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080004e4"
+        BEGIN
+            VALUE "Comments", "Tinelix IRC Client compatible version with Win32s, Windows 95/98, Windows NT and 64-bit (AMD64) Windows editions.\0"
+            VALUE "CompanyName", "Tinelix\0"
+            VALUE "FileDescription", "Tinelix IRC\0"
+            VALUE "FileVersion", "0.2.0-b002\0"
+            VALUE "InternalName", "Tinelix IRC for Win32s\0"
+            VALUE "LegalCopyright", "Copyright © 2023 Dmitry Tretyakov (aka. tretdm). Licensed under GPLv3.\0"
+            VALUE "OriginalFilename", "tlx_irc.exe\0"
+            VALUE "ProductName", "Tinelix IRC for Win32s\0"
+            VALUE "ProductVersion", "0.2.0-b002\0"
+            VALUE "SpecialBuild", "Source code: https://github.com/tinelix/irc-client-win32s\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x800, 1252
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Connect...",                  ID_FILE_CONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "Quit",                        ID_FILE_QUIT
+    END
+    POPUP "Connection"
+    BEGIN
+        MENUITEM "Statistics...",               ID_CONNECTION_STATISTICS
+    END
+    POPUP "Channel", GRAYED
+    BEGIN
+        MENUITEM "Join...",                     ID_CHANNEL_JOIN
+        MENUITEM "Leave",                       ID_CHANNEL_LEAVE
+    END
+    POPUP "Help"
+    BEGIN
+        MENUITEM "About...",                    ID_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About..."
+    IDS_CONNECTION_FAILED_1 "Connection to server failed."
+    IDS_TABS_THREAD         "Thread"
+    IDS_APP_NAME            "Tinelix IRC Client (Win32s)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\Tinelix IRC.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

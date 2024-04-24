@@ -1,0 +1,24 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+    defaultConfig {
+        applicationId "dev.tinelix.irc.android.legacy"
+        minSdkVersion 5 // Android 2.0 Eclair
+        targetSdkVersion 21
+        versionCode 22
+        versionName '0.4.0_beta_20220506'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+        }
+    }
+    productFlavors {
+    }
+}
