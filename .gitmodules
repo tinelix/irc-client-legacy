@@ -1,0 +1,3 @@
+[submodule "windows/win32s/libs/WSAWrapper"]
+	path = windows/win32s/libs/WSAWrapper
+	url = https://github.com/tinelix/WSAWrapper
