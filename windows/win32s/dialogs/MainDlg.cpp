@@ -1,6 +1,6 @@
 //  MainDlg.cpp : implementation file
 //
-//  Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)
+//  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)
 //  
 //	This file is part of Tinelix IRC Client.
 //
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU General Public License along with this
 //  program. If not, see https://www.gnu.org/licenses/.
 //
-//  Source code: https://github.com/tinelix/irc-client-win32s
+//  Source code: https://github.com/tinelix/irc-client-legacy/tree/main/windows/win32s
 
 #include "stdafx.h"
 #include <winsock.h>
@@ -130,32 +130,8 @@ BOOL CMainDlg::OnInitDialog()
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
-	char app_path[640];
-	sprintf(app_path, app->GetAppPath());
-
-	// Loading WSAWrapper library. 
-	// Available in https://github.com/tinelix/WSAWrapper (LGPLv2.1+)
-	char wsawrap_path[640];
-	sprintf(wsawrap_path, "%s\\wsawrap.dll", app_path);
-	char ircpars_path[640];
-	sprintf(ircpars_path, "%s\\ircpars.dll", app_path);
-	wsaWrap = LoadLibrary(wsawrap_path);
 	conn_server = "";
 
-	if(!wsaWrap) {
-		MessageBox("wsawrap.dll loading error", "Error", MB_OK|MB_ICONSTOP);
-		EnableWindow(FALSE);
-		return FALSE;
-	}
-
-	ircParser = LoadLibrary(ircpars_path);
-	if(!ircParser) {
-		MessageBox("ircpars.dll loading error", "Error", MB_OK|MB_ICONSTOP);
-		EnableWindow(FALSE);
-		return FALSE;
-	}
-
-	ImportDllFunctions();
 	(EnableDebug)(TRUE);
 
 	CMenu* pSysMenu = GetSystemMenu(FALSE);
@@ -324,7 +300,10 @@ void CMainDlg::PrepareConnect(int result) {
 	}
 }
 
-void CMainDlg::ImportDllFunctions() {
+void CMainDlg::ImportDllFunctions(HINSTANCE _wsaWrap, HINSTANCE _ircParser) {
+	wsaWrap = _wsaWrap;
+	ircParser = _ircParser;
+
 	// Running EnableDebugging function (#14) in WSAWrapper DLL
 	EnableDebug = (EnableDebugging)GetProcAddress(wsaWrap, MAKEINTRESOURCE(14));
 	// Running EnableAsyncMessages function (#15) in WSAWrapper DLL

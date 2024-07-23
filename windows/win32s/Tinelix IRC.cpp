@@ -54,7 +54,24 @@ CIRCApplication::CIRCApplication()
 CIRCApplication theApp;
 
 /////////////////////////////////////////////////////////////////////////////
-// CIRCApplication initialization
+//  CIRCApplication initialization
+//
+//  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)
+//  
+//	This file is part of Tinelix IRC Client.
+//
+//  Tinelix IRC Client is free software: you can redistribute it and/or modify it under 
+//  the terms of the GNU General Public License as published by the Free Software Foundation, 
+//  either version 3 of the License, or (at your option) any later version.
+//  Tinelix IRC Client is distributed in the hope that it will be useful, but WITHOUT ANY 
+//  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+//  PARTICULAR PURPOSE.
+//  See the GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License along with this
+//  program. If not, see https://www.gnu.org/licenses/.
+//
+//  Source code: https://github.com/tinelix/irc-client-legacy/tree/main/windows/win32s
 
 BOOL CIRCApplication::InitInstance()
 {
@@ -72,6 +89,33 @@ BOOL CIRCApplication::InitInstance()
 	int nResponse = 0;
 	CMainDlg dlg;
 	m_pMainWnd = &dlg;
+
+	char app_path[640];
+	sprintf(app_path, GetAppPath());
+
+	// Loading WSAWrapper library. 
+	// Available in https://github.com/tinelix/WSAWrapper (LGPLv2.1+)
+	char wsawrap_path[640];
+	sprintf(wsawrap_path, "%s\\wsawrap.dll", app_path);
+	char ircpars_path[640];
+	sprintf(ircpars_path, "%s\\ircpars.dll", app_path);
+
+	wsaWrap = LoadLibrary(wsawrap_path);
+	parser = LoadLibrary(ircpars_path);
+
+	if(!wsaWrap) {
+		MessageBox(NULL, "wsawrap.dll loading error", "Error", MB_OK|MB_ICONSTOP);
+		return FALSE;
+	}
+
+	if(!parser) {
+		MessageBox(NULL, "ircpars.dll loading error", "Error", MB_OK|MB_ICONSTOP);
+		return FALSE;
+	}
+
+	dlg.ImportDllFunctions(wsaWrap, parser);
+
+
 	nResponse = dlg.DoModal();
 
 	if (nResponse == IDOK)

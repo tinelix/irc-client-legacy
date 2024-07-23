@@ -32,9 +32,9 @@ NULL=nul
 ################################################################################
 # Begin Project
 # PROP Target_Last_Scanned "Tinelix IRC - Win32 Debug"
+MTL=mktyplib.exe
 CPP=cl.exe
 RSC=rc.exe
-MTL=mktyplib.exe
 
 !IF  "$(CFG)" == "Tinelix IRC - Win32 Release"
 
@@ -55,16 +55,16 @@ ALL : "$(OUTDIR)\tlx_irc.exe"
 
 CLEAN : 
 	-@erase ".\Release\tlx_irc.exe"
-	-@erase ".\Release\ConnManDlg.obj"
+	-@erase ".\Release\MainDlg.obj"
 	-@erase ".\Release\Tinelix IRC.pch"
+	-@erase ".\Release\ProgressDlg.obj"
+	-@erase ".\Release\StatisticsDlg.obj"
+	-@erase ".\Release\ConnManDlg.obj"
+	-@erase ".\Release\StdAfx.obj"
 	-@erase ".\Release\Tinelix IRC.obj"
 	-@erase ".\Release\TextBoxDlg.obj"
-	-@erase ".\Release\ProgressDlg.obj"
-	-@erase ".\Release\AboutDlg.obj"
 	-@erase ".\Release\AppThreadTab.obj"
-	-@erase ".\Release\StatisticsDlg.obj"
-	-@erase ".\Release\StdAfx.obj"
-	-@erase ".\Release\MainDlg.obj"
+	-@erase ".\Release\AboutDlg.obj"
 	-@erase ".\Release\Tinelix IRC.res"
 
 "$(OUTDIR)" :
@@ -94,15 +94,15 @@ LINK32=link.exe
 LINK32_FLAGS=/nologo /subsystem:windows /incremental:no\
  /pdb:"$(OUTDIR)/tlx_irc.pdb" /machine:I386 /out:"$(OUTDIR)/tlx_irc.exe" 
 LINK32_OBJS= \
+	"$(INTDIR)/MainDlg.obj" \
+	"$(INTDIR)/ProgressDlg.obj" \
+	"$(INTDIR)/StatisticsDlg.obj" \
 	"$(INTDIR)/ConnManDlg.obj" \
+	"$(INTDIR)/StdAfx.obj" \
 	"$(INTDIR)/Tinelix IRC.obj" \
 	"$(INTDIR)/TextBoxDlg.obj" \
-	"$(INTDIR)/ProgressDlg.obj" \
-	"$(INTDIR)/AboutDlg.obj" \
 	"$(INTDIR)/AppThreadTab.obj" \
-	"$(INTDIR)/StatisticsDlg.obj" \
-	"$(INTDIR)/StdAfx.obj" \
-	"$(INTDIR)/MainDlg.obj" \
+	"$(INTDIR)/AboutDlg.obj" \
 	"$(INTDIR)/Tinelix IRC.res"
 
 "$(OUTDIR)\tlx_irc.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
@@ -132,15 +132,15 @@ CLEAN :
 	-@erase ".\Debug\Tinelix IRC.pch"
 	-@erase ".\Debug\vc40.idb"
 	-@erase ".\Debug\tlx_irc.exe"
-	-@erase ".\Debug\Tinelix IRC.obj"
-	-@erase ".\Debug\TextBoxDlg.obj"
 	-@erase ".\Debug\AboutDlg.obj"
-	-@erase ".\Debug\AppThreadTab.obj"
-	-@erase ".\Debug\ProgressDlg.obj"
-	-@erase ".\Debug\ConnManDlg.obj"
 	-@erase ".\Debug\MainDlg.obj"
-	-@erase ".\Debug\StatisticsDlg.obj"
 	-@erase ".\Debug\StdAfx.obj"
+	-@erase ".\Debug\ProgressDlg.obj"
+	-@erase ".\Debug\Tinelix IRC.obj"
+	-@erase ".\Debug\StatisticsDlg.obj"
+	-@erase ".\Debug\TextBoxDlg.obj"
+	-@erase ".\Debug\AppThreadTab.obj"
+	-@erase ".\Debug\ConnManDlg.obj"
 	-@erase ".\Debug\Tinelix IRC.res"
 	-@erase ".\Debug\tlx_irc.ilk"
 	-@erase ".\Debug\tlx_irc.pdb"
@@ -173,15 +173,15 @@ LINK32=link.exe
 LINK32_FLAGS=/nologo /subsystem:windows /incremental:yes\
  /pdb:"$(OUTDIR)/tlx_irc.pdb" /debug /machine:I386 /out:"$(OUTDIR)/tlx_irc.exe" 
 LINK32_OBJS= \
-	"$(INTDIR)/Tinelix IRC.obj" \
-	"$(INTDIR)/TextBoxDlg.obj" \
 	"$(INTDIR)/AboutDlg.obj" \
-	"$(INTDIR)/AppThreadTab.obj" \
-	"$(INTDIR)/ProgressDlg.obj" \
-	"$(INTDIR)/ConnManDlg.obj" \
 	"$(INTDIR)/MainDlg.obj" \
-	"$(INTDIR)/StatisticsDlg.obj" \
 	"$(INTDIR)/StdAfx.obj" \
+	"$(INTDIR)/ProgressDlg.obj" \
+	"$(INTDIR)/Tinelix IRC.obj" \
+	"$(INTDIR)/StatisticsDlg.obj" \
+	"$(INTDIR)/TextBoxDlg.obj" \
+	"$(INTDIR)/AppThreadTab.obj" \
+	"$(INTDIR)/ConnManDlg.obj" \
 	"$(INTDIR)/Tinelix IRC.res"
 
 "$(OUTDIR)\tlx_irc.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)

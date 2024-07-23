@@ -1,6 +1,6 @@
 //  Tinelix IRC.h : main header file for the Tinelix IRC application
 //
-//  Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)
+//  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)
 //  
 //	This file is part of Tinelix IRC Client.
 //
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU General Public License along with this
 //  program. If not, see https://www.gnu.org/licenses/.
 //
-//  Source code: https://github.com/tinelix/irc-client-win32s
+//  Source code: https://github.com/tinelix/irc-client-legacy/tree/main/windows/win32s
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
@@ -34,6 +34,8 @@ public:
 	CIRCApplication();
 	BOOL CheckIsWin32s();
 	char* GetAppPath();
+	HINSTANCE wsaWrap;
+	HINSTANCE parser;
 
 // Overrides
 	// ClassWizard generated virtual function overrides

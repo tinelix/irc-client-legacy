@@ -1,6 +1,6 @@
 //  AboutDlg.cpp : implementation file
 //
-//  Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)
+//  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)
 //  
 //	This file is part of Tinelix IRC Client.
 //
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU General Public License along with this
 //  program. If not, see https://www.gnu.org/licenses/.
 //
-//  Source code: https://github.com/tinelix/irc-client-win32s
+//  Source code: https://github.com/tinelix/irc-client-legacy/tree/main/windows/win32s
 
 
 #include "stdafx.h"
@@ -72,7 +72,7 @@ BOOL CAboutDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	
-	src_code_repo = CString("https://github.com/tinelix/irc-client-win32s");
+	src_code_repo = CString("https://github.com/tinelix/irc-client-legacy/tree/main/windows/win32s");
 	CEdit* source_code_addr = (CEdit*)GetDlgItem(IDC_SRC_CODE_ADDR);
 	source_code_addr->SetWindowText(src_code_repo);
 	

@@ -1,6 +1,6 @@
 //  MainDlg.h : header file
 //
-//  Copyright © 2023 Dmitry Tretyakov (aka. Tinelix)
+//  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)
 //  
 //	This file is part of Tinelix IRC Client.
 //
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU General Public License along with this
 //  program. If not, see https://www.gnu.org/licenses/.
 //
-//  Source code: https://github.com/tinelix/irc-client-win32s
+//  Source code: https://github.com/tinelix/irc-client-legacy/tree/main/windows/win32s
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainDlg dialog
@@ -31,6 +31,8 @@ public:
 	void SendIRCMessage(CWnd* parent);
 
 	CMainDlg(CWnd* pParent = NULL);	// standard constructor
+
+	void ImportDllFunctions(HINSTANCE _wsaWrap, HINSTANCE _ircParser);
 
 // Dialog Data
 	//{{AFX_DATA(CMainDlg)
@@ -54,7 +56,6 @@ protected:
 	void CreateTabs();
 	void PrepareConnect(LPSTR address, int port);
 	void PrepareConnect(int result);
-	void ImportDllFunctions();
 	void IdentificateConnection();
 	void SendPing(CString ping_hexcode);
 	CString ParseMessage(char* irc_packet);
