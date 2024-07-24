@@ -73,9 +73,81 @@ BOOL CAboutDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 	
 	src_code_repo = CString("https://github.com/tinelix/irc-client-legacy/tree/main/windows/win32s");
-	CEdit* source_code_addr = (CEdit*)GetDlgItem(IDC_SRC_CODE_ADDR);
+	CEdit* source_code_addr = (CEdit*)GetDlgItem(IDC_SOURCE_ADDRESS);
 	source_code_addr->SetWindowText(src_code_repo);
+
+	GetSystemInfo();
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CAboutDlg::GetSystemInfo() {
+	char winverStr[48];
+	char win32sStr[32];
+	char ramFree[48];
+
+	CIRCApplication *app = (CIRCApplication*)AfxGetApp();
+	OSVERSIONINFO winverInfo;
+	MEMORYSTATUS memStatus;
+
+	ZeroMemory(&winverInfo, sizeof(OSVERSIONINFO));
+	winverInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+	BOOL result = GetVersionEx(&winverInfo);
+
+	if(result) {
+		if(app->CheckIsWin32s()) {
+			sprintf(
+				winverStr, "Windows 3.1/3.11" 
+			);
+
+			sprintf(
+				win32sStr, "Win32s %d.%d", 
+				winverInfo.dwMajorVersion, winverInfo.dwMinorVersion
+			);
+		} else if(winverInfo.dwPlatformId == VER_PLATFORM_WIN32_NT) {
+			sprintf(
+				winverStr, "Windows NT %d.%d", 
+				winverInfo.dwMajorVersion, winverInfo.dwMinorVersion
+			);
+
+			sprintf(win32sStr, "Win32");
+		} else {
+			sprintf(
+				winverStr, "Windows %d.%d", 
+				winverInfo.dwMajorVersion, winverInfo.dwMinorVersion
+			);
+
+			sprintf(win32sStr, "Win32 compatible");
+		}
+
+		GetDlgItem(IDC_WINVER_LABEL)->SetWindowText(winverStr);
+
+		GetDlgItem(IDC_WIN32S_LABEL)->ShowWindow(SW_NORMAL);
+		GetDlgItem(IDC_WIN32S_LABEL)->SetWindowText(win32sStr);
+	}
+
+	ZeroMemory(&memStatus, sizeof(MEMORYSTATUS));
+	memStatus.dwLength = sizeof(MEMORYSTATUS);
+
+	GlobalMemoryStatus(&memStatus);
+
+	if(memStatus.dwAvailPhys >= 1024 * 1024 * 1024)
+		sprintf(
+			ramFree, "%.2f GB RAM free", 
+			(float)memStatus.dwAvailPhys / 1024 / 1024 / 1024
+		);
+	else if(memStatus.dwAvailPhys >= 1024 * 1024)
+		sprintf(
+			ramFree, "%.2f MB RAM free", 
+			(float)memStatus.dwAvailPhys / 1024 / 1024
+		);
+	else
+		sprintf(
+			ramFree, "%.2f KB RAM free", 
+			(float)memStatus.dwAvailPhys / 1024
+		);
+
+	GetDlgItem(IDC_FREE_RAM_MEM)->SetWindowText(ramFree);
 }

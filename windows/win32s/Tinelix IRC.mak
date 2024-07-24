@@ -32,9 +32,9 @@ NULL=nul
 ################################################################################
 # Begin Project
 # PROP Target_Last_Scanned "Tinelix IRC - Win32 Debug"
-MTL=mktyplib.exe
 CPP=cl.exe
 RSC=rc.exe
+MTL=mktyplib.exe
 
 !IF  "$(CFG)" == "Tinelix IRC - Win32 Release"
 
@@ -295,35 +295,17 @@ DEP_RSC_TINELI=\
 ################################################################################
 # Begin Source File
 
-SOURCE=.\dialogs\AboutDlg.cpp
-DEP_CPP_ABOUT=\
-	".\tabs\..\Tinelix IRC.h"\
-	".\dialogs\AboutDlg.h"\
-	
-NODEP_CPP_ABOUT=\
-	".\dialogs\stdafx.h"\
-	
-
-"$(INTDIR)\AboutDlg.obj" : $(SOURCE) $(DEP_CPP_ABOUT) "$(INTDIR)"\
- "$(INTDIR)\Tinelix IRC.pch"
-   $(CPP) $(CPP_PROJ) $(SOURCE)
-
-
-# End Source File
-################################################################################
-# Begin Source File
-
 SOURCE=.\dialogs\MainDlg.cpp
 DEP_CPP_MAIND=\
 	{$(INCLUDE)}"\sys\TYPES.H"\
 	{$(INCLUDE)}"\sys\TIMEB.H"\
 	".\tabs\..\Tinelix IRC.h"\
 	".\dialogs\..\tabs\AppThreadTab.h"\
-	".\dialogs\AboutDlg.h"\
 	".\tabs\..\dialogs\MainDlg.h"\
 	".\dialogs\ConnManDlg.h"\
 	".\dialogs\ProgressDlg.h"\
 	".\dialogs\StatisticsDlg.h"\
+	".\dialogs\AboutDlg.h"\
 	
 NODEP_CPP_MAIND=\
 	".\dialogs\stdafx.h"\
@@ -358,18 +340,8 @@ NODEP_CPP_APPTH=\
 # Begin Source File
 
 SOURCE=.\dialogs\ConnManDlg.cpp
-DEP_CPP_CONNM=\
-	".\tabs\..\Tinelix IRC.h"\
-	".\tabs\..\dialogs\MainDlg.h"\
-	".\dialogs\ConnManDlg.h"\
-	".\dialogs\TextBoxDlg.h"\
-	
-NODEP_CPP_CONNM=\
-	".\dialogs\stdafx.h"\
-	
 
-"$(INTDIR)\ConnManDlg.obj" : $(SOURCE) $(DEP_CPP_CONNM) "$(INTDIR)"\
- "$(INTDIR)\Tinelix IRC.pch"
+"$(INTDIR)\ConnManDlg.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Tinelix IRC.pch"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
@@ -396,16 +368,8 @@ NODEP_CPP_PROGR=\
 # Begin Source File
 
 SOURCE=.\dialogs\StatisticsDlg.cpp
-DEP_CPP_STATI=\
-	".\tabs\..\Tinelix IRC.h"\
-	".\tabs\..\dialogs\MainDlg.h"\
-	".\dialogs\StatisticsDlg.h"\
-	
-NODEP_CPP_STATI=\
-	".\dialogs\stdafx.h"\
-	
 
-"$(INTDIR)\StatisticsDlg.obj" : $(SOURCE) $(DEP_CPP_STATI) "$(INTDIR)"\
+"$(INTDIR)\StatisticsDlg.obj" : $(SOURCE) "$(INTDIR)"\
  "$(INTDIR)\Tinelix IRC.pch"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
@@ -415,15 +379,25 @@ NODEP_CPP_STATI=\
 # Begin Source File
 
 SOURCE=.\dialogs\TextBoxDlg.cpp
-DEP_CPP_TEXTB=\
+
+"$(INTDIR)\TextBoxDlg.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Tinelix IRC.pch"
+   $(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+# End Source File
+################################################################################
+# Begin Source File
+
+SOURCE=.\dialogs\AboutDlg.cpp
+DEP_CPP_ABOUT=\
 	".\tabs\..\Tinelix IRC.h"\
-	".\dialogs\TextBoxDlg.h"\
+	".\dialogs\AboutDlg.h"\
 	
-NODEP_CPP_TEXTB=\
+NODEP_CPP_ABOUT=\
 	".\dialogs\stdafx.h"\
 	
 
-"$(INTDIR)\TextBoxDlg.obj" : $(SOURCE) $(DEP_CPP_TEXTB) "$(INTDIR)"\
+"$(INTDIR)\AboutDlg.obj" : $(SOURCE) $(DEP_CPP_ABOUT) "$(INTDIR)"\
  "$(INTDIR)\Tinelix IRC.pch"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 

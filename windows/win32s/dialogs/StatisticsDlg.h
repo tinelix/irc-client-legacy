@@ -1,3 +1,5 @@
+/*    PortTool v2.2     StatisticsDlg.h          */
+
 //  StatisticsDlg.h : header file
 //
 //  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)

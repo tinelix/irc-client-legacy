@@ -1,3 +1,5 @@
+/*    PortTool v2.2     MainDlg.cpp          */
+
 //  MainDlg.cpp : implementation file
 //
 //  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)
@@ -24,11 +26,11 @@
 #include <sys/timeb.h>
 #include "..\Tinelix IRC.h"
 #include "..\tabs\AppThreadTab.h"
-#include "AboutDlg.h"
 #include "MainDlg.h"
 #include "ConnManDlg.h"
 #include "ProgressDlg.h"
 #include "StatisticsDlg.h"
+#include "AboutDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -189,8 +191,8 @@ void CMainDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
 	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
 	{
-		CAboutDlg aboutDlg;
-		aboutDlg.DoModal();
+		CAboutDlg dlg;
+		dlg.DoModal();
 	} else {
 		CDialog::OnSysCommand(nID, lParam);
 	}
@@ -237,8 +239,8 @@ BOOL CMainDlg::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName,
 
 void CMainDlg::OnMenuHelpAbout() 
 {
-	CAboutDlg aboutDlg;
-	aboutDlg.DoModal();
+	CAboutDlg dlg;
+	dlg.DoModal();
 }
 
 BOOL CMainDlg::DestroyWindow() 
@@ -306,16 +308,22 @@ void CMainDlg::ImportDllFunctions(HINSTANCE _wsaWrap, HINSTANCE _ircParser) {
 
 	// Running EnableDebugging function (#14) in WSAWrapper DLL
 	EnableDebug = (EnableDebugging)GetProcAddress(wsaWrap, MAKEINTRESOURCE(14));
+	
 	// Running EnableAsyncMessages function (#15) in WSAWrapper DLL
 	EnableAsyncMsgs = (EnableAsyncMessages)GetProcAddress(wsaWrap, MAKEINTRESOURCE(15));
+	
 	// Running GetWSAError function (#16) in WSAWrapper DLL
 	GetWSAErrorFunc = (GetWSAError)GetProcAddress(wsaWrap, MAKEINTRESOURCE(16));
+	
 	// Running CreateAsyncConnection function (#18) in WSAWrapper DLL
 	WrapCreateConn = (CreateAsyncConnection)GetProcAddress(wsaWrap, MAKEINTRESOURCE(18));
+	
 	// Running SendData function (#19) in WSAWrapper DLL
 	SendOutBuff = (SendSocketData)GetProcAddress(wsaWrap, MAKEINTRESOURCE(19));
+	
 	// Running GetInputBuffer function (#20) in WSAWrapper DLL
 	GetInBuff = (GetInputBuffer)GetProcAddress(wsaWrap, MAKEINTRESOURCE(20));
+	
 	// Running CloseConnection function (#21) in WSAWrapper DLL
 	WrapCloseConn = (CloseConnection)GetProcAddress(wsaWrap, MAKEINTRESOURCE(22));
 
@@ -444,15 +452,41 @@ void CMainDlg::OnSize(UINT nType, int cx, int cy)
 	GetWindowRect(&rect);
 
 	CTabCtrl* tabCtrl = (CTabCtrl*)GetDlgItem(IDC_MAINDLG_TABS);
+
+	OSVERSIONINFO winverInfo;
+
+	ZeroMemory(&winverInfo, sizeof(OSVERSIONINFO));
+	winverInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+	BOOL result = GetVersionEx(&winverInfo);
+
 	if(tabCtrl != NULL) {
-		if(isWin3x) {
-			tabCtrl->MoveWindow(4, 3, rect.Width() - 16, rect.Height() - 54);
-			thread_tab->MoveWindow(6, 26, rect.Width() - 20, rect.Height() - 80);
-		} else {
-			tabCtrl->MoveWindow(4, 3, rect.Width() - 24, rect.Height() - 66);
-			thread_tab->MoveWindow(6, 26, rect.Width() - 28, rect.Height() - 92);
+		if(result) {
+			if(winverInfo.dwMajorVersion == 5 && winverInfo.dwMinorVersion == 1) {
+				tabCtrl->MoveWindow(
+					4, 3, rect.Width() - 16, rect.Height() - 62
+				);
+				thread_tab->MoveWindow(
+					6, 26, rect.Width() - 20, rect.Height() - 88
+				);
+			} else if(winverInfo.dwMajorVersion >= 6) {
+				tabCtrl->MoveWindow(
+					4, 3, rect.Width() - 24, rect.Height() - 66
+				);
+				thread_tab->MoveWindow(
+					6, 26, rect.Width() - 28, rect.Height() - 92
+				);
+			} else {
+				tabCtrl->MoveWindow(
+					4, 3, rect.Width() - 16, rect.Height() - 54
+				);
+				thread_tab->MoveWindow(
+					6, 26, rect.Width() - 20, rect.Height() - 80
+				);
+			}
 		}
 	}
+	
 
 	if(isWin3x) {  
 		// Setting window title in Win3.x / WinNT3.x 

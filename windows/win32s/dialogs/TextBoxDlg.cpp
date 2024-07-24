@@ -1,3 +1,5 @@
+/*    PortTool v2.2     TextBoxDlg.cpp          */
+
 //  TextBoxDlg.cpp : implementation file
 //
 //  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)

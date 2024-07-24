@@ -1,3 +1,5 @@
+/*    PortTool v2.2     ConnManDlg.h          */
+
 //  ConnManDlg.h : header file
 //
 //  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)

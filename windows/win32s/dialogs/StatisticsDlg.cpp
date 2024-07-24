@@ -1,3 +1,5 @@
+/*    PortTool v2.2     StatisticsDlg.cpp          */
+
 //  StatisticsDlg.cpp : implementation file
 //
 //  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)

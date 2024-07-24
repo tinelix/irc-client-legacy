@@ -1,3 +1,5 @@
+/*    PortTool v2.2     AboutDlg.h          */
+
 //  AboutDlg.h : header file
 //
 //  Copyright © 2023, 2024 Dmitry Tretyakov (aka. Tinelix)
@@ -28,8 +30,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(CAboutDlg)
-	enum { IDD = IDD_ABOUTBOX };
-		// NOTE: the ClassWizard will add data members here
+	enum { IDD = IDD_ABOUTDIALOG };
 	//}}AFX_DATA
 
 
@@ -44,10 +45,10 @@ public:
 
 // Implementation
 protected:
-
 	// Generated message map functions
 	//{{AFX_MSG(CAboutDlg)
 	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+	void GetSystemInfo();
 };

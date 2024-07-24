@@ -19,6 +19,7 @@
 #define IDD_TEXTDIALOG                  137
 #define IDD_CONNECTION_PROGRESS         138
 #define IDD_STATSDIALOG                 139
+#define IDD_ABOUTDIALOG                 143
 #define IDC_CHAT_INPUT                  1004
 #define IDC_CHAT_OUTPUT                 1005
 #define IDC_CHAT_SEND_MSG               1006
@@ -56,6 +57,17 @@
 #define IDC_LICENSE2                    1044
 #define IDC_SRC_CODE_ADDR               1045
 #define IDC_SRC_CODE                    1046
+#define IDC_SOURCE_ADDRESS              1047
+#define IDC_APPTITLE                    1048
+#define IDC_COPYRIGHT                   1049
+#define IDC_LICENSE_NOTIFY1             1050
+#define IDC_LICENSE_NOTIFY2             1051
+#define IDC_SOURCE_LABEL                1052
+#define IDC_SOURCE_LABEL2               1053
+#define IDC_WINVER_LABEL                1054
+#define IDC_SYSTEMINFO_GROUP            1055
+#define IDC_WIN32S_LABEL                1056
+#define IDC_FREE_RAM_MEM                1057
 #define ID_FILE_CONNECT                 32771
 #define ID_FILE_QUIT                    32773
 #define ID_ABOUT                        32774
@@ -67,9 +79,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        140
+#define _APS_NEXT_RESOURCE_VALUE        144
 #define _APS_NEXT_COMMAND_VALUE         32778
-#define _APS_NEXT_CONTROL_VALUE         1047
+#define _APS_NEXT_CONTROL_VALUE         1056
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
