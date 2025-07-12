@@ -17,7 +17,7 @@
 
 #include <windows.h>
 #include <stdio.h>
-#include "IRCParser.h"
+#include "../include/ircpars.h"
 
 BOOL is_win32s;
 int MAX_WORDS_COUNT = 512;

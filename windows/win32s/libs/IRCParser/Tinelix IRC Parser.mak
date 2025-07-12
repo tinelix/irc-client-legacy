@@ -36,9 +36,9 @@ NULL=nul
 ################################################################################
 # Begin Project
 # PROP Target_Last_Scanned "Tinelix IRC Parser - Win32 Debug"
-MTL=mktyplib.exe
 CPP=cl.exe
 RSC=rc.exe
+MTL=mktyplib.exe
 
 !IF  "$(CFG)" == "Tinelix IRC Parser - Win32 Release"
 
@@ -49,34 +49,39 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release"
+# PROP Output_Dir "out/obj"
+# PROP Intermediate_Dir "out/interm"
 # PROP Target_Dir ""
-OUTDIR=.\Release
-INTDIR=.\Release
+OUTDIR=.\out/obj
+INTDIR=.\out/interm
 
 ALL : "$(OUTDIR)\ircpars.dll"
 
 CLEAN : 
-	-@erase ".\Release\ircpars.dll"
-	-@erase ".\Release\IRCParser.obj"
-	-@erase ".\Release\ircpars.lib"
-	-@erase ".\Release\ircpars.exp"
+	-@erase ".\out\bin\ircpars.dll"
+	-@erase ".\out\interm\ircpars.obj"
+	-@erase ".\out\interm\ircpars.res"
+	-@erase ".\out\obj\ircpars.lib"
+	-@erase ".\out\obj\ircpars.exp"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
+
+"$(INTDIR)" :
+    if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
 # ADD CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
 CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS"\
  /Fp"$(INTDIR)/Tinelix IRC Parser.pch" /YX /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\Release/
+CPP_OBJS=.\out/interm/
 CPP_SBRS=
 # ADD BASE MTL /nologo /D "NDEBUG" /win32
 # ADD MTL /nologo /D "NDEBUG" /win32
 MTL_PROJ=/nologo /D "NDEBUG" /win32 
 # ADD BASE RSC /l 0x419 /d "NDEBUG"
 # ADD RSC /l 0x419 /d "NDEBUG"
+RSC_PROJ=/l 0x419 /fo"$(INTDIR)/ircpars.res" /d "NDEBUG" 
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -84,16 +89,17 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/Tinelix IRC Parser.bsc"
 BSC32_SBRS=
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"Release/ircpars.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"out/bin/ircpars.dll"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/ircpars.pdb" /machine:I386 /def:".\IRCParser.def"\
- /out:"$(OUTDIR)/ircpars.dll" /implib:"$(OUTDIR)/ircpars.lib" 
+ /pdb:"$(OUTDIR)/ircpars.pdb" /machine:I386 /def:".\src\ircpars.def"\
+ /out:"out/bin/ircpars.dll" /implib:"$(OUTDIR)/ircpars.lib" 
 DEF_FILE= \
-	".\IRCParser.def"
+	".\src\ircpars.def"
 LINK32_OBJS= \
-	"$(INTDIR)/IRCParser.obj"
+	"$(INTDIR)/ircpars.obj" \
+	"$(INTDIR)/ircpars.res"
 
 "$(OUTDIR)\ircpars.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -109,38 +115,43 @@ LINK32_OBJS= \
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Tinelix_"
-# PROP Intermediate_Dir "Tinelix_"
+# PROP Output_Dir "out/obj"
+# PROP Intermediate_Dir "out/interm"
 # PROP Target_Dir ""
-OUTDIR=.\Tinelix_
-INTDIR=.\Tinelix_
+OUTDIR=.\out/obj
+INTDIR=.\out/interm
 
 ALL : "$(OUTDIR)\ircpars.dll"
 
 CLEAN : 
-	-@erase ".\Tinelix_\vc40.pdb"
-	-@erase ".\Tinelix_\vc40.idb"
-	-@erase ".\Debug\ircpars.dll"
-	-@erase ".\Tinelix_\IRCParser.obj"
-	-@erase ".\Debug\ircpars.ilk"
-	-@erase ".\Tinelix_\ircpars.lib"
-	-@erase ".\Tinelix_\ircpars.exp"
-	-@erase ".\Tinelix_\ircpars.pdb"
+	-@erase ".\out\bin\ircpars.dll"
+	-@erase ".\out\interm\ircpars.obj"
+	-@erase ".\out\interm\ircpars.res"
+	-@erase ".\out\bin\ircpars.ilk"
+	-@erase ".\out\obj\ircpars.lib"
+	-@erase ".\out\obj\ircpars.exp"
+	-@erase ".\out\obj\ircpars.pdb"
+	-@erase ".\out\interm\vc40.pdb"
+	-@erase ".\out\interm\vc40.idb"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
+
+"$(INTDIR)" :
+    if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
 # ADD CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
 CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS"\
  /Fp"$(INTDIR)/Tinelix IRC Parser.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\Tinelix_/
+CPP_OBJS=.\out/interm/
 CPP_SBRS=
 # ADD BASE MTL /nologo /D "_DEBUG" /win32
 # ADD MTL /nologo /D "_DEBUG" /win32
 MTL_PROJ=/nologo /D "_DEBUG" /win32 
 # ADD BASE RSC /l 0x419 /d "_DEBUG"
 # ADD RSC /l 0x419 /d "_DEBUG"
+RSC_PROJ=/l 0x419 /fo"$(INTDIR)/ircpars.res" /d "_DEBUG" 
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -148,16 +159,17 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/Tinelix IRC Parser.bsc"
 BSC32_SBRS=
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"Debug/ircpars.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"out/bin/ircpars.dll"
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes\
- /pdb:"$(OUTDIR)/ircpars.pdb" /debug /machine:I386 /def:".\IRCParser.def"\
- /out:"Debug/ircpars.dll" /implib:"$(OUTDIR)/ircpars.lib" 
+ /pdb:"$(OUTDIR)/ircpars.pdb" /debug /machine:I386 /def:".\src\ircpars.def"\
+ /out:"out/bin/ircpars.dll" /implib:"$(OUTDIR)/ircpars.lib" 
 DEF_FILE= \
-	".\IRCParser.def"
+	".\src\ircpars.def"
 LINK32_OBJS= \
-	"$(INTDIR)/IRCParser.obj"
+	"$(INTDIR)/ircpars.obj" \
+	"$(INTDIR)/ircpars.res"
 
 "$(OUTDIR)\ircpars.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -199,11 +211,37 @@ LINK32_OBJS= \
 ################################################################################
 # Begin Source File
 
-SOURCE=.\IRCParser.h
+SOURCE=.\src\ircpars.cpp
+DEP_CPP_IRCPA=\
+	".\include\ircpars.h"\
+	
+
+"$(INTDIR)\ircpars.obj" : $(SOURCE) $(DEP_CPP_IRCPA) "$(INTDIR)"
+   $(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+# End Source File
+################################################################################
+# Begin Source File
+
+SOURCE=.\res\ircpars.rc
+NODEP_RSC_IRCPAR=\
+	".\res\resource.h"\
+	
 
 !IF  "$(CFG)" == "Tinelix IRC Parser - Win32 Release"
 
+
+"$(INTDIR)\ircpars.res" : $(SOURCE) "$(INTDIR)"
+   $(RSC) /l 0x419 /fo"$(INTDIR)/ircpars.res" /i "res" /d "NDEBUG" $(SOURCE)
+
+
 !ELSEIF  "$(CFG)" == "Tinelix IRC Parser - Win32 Debug"
+
+
+"$(INTDIR)\ircpars.res" : $(SOURCE) "$(INTDIR)"
+   $(RSC) /l 0x419 /fo"$(INTDIR)/ircpars.res" /i "res" /d "_DEBUG" $(SOURCE)
+
 
 !ENDIF 
 
@@ -211,19 +249,7 @@ SOURCE=.\IRCParser.h
 ################################################################################
 # Begin Source File
 
-SOURCE=.\IRCParser.cpp
-DEP_CPP_IRCPA=\
-	".\IRCParser.h"\
-	
-
-"$(INTDIR)\IRCParser.obj" : $(SOURCE) $(DEP_CPP_IRCPA) "$(INTDIR)"
-
-
-# End Source File
-################################################################################
-# Begin Source File
-
-SOURCE=.\IRCParser.def
+SOURCE=.\src\ircpars.def
 
 !IF  "$(CFG)" == "Tinelix IRC Parser - Win32 Release"
 
