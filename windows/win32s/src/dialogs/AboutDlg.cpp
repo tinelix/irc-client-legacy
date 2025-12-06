@@ -18,9 +18,9 @@
 //  Source code: https://github.com/tinelix/irc-client-legacy/tree/main/windows/win32s
 
 
-#include "stdafx.h"
-#include "..\Tinelix IRC.h"
-#include "AboutDlg.h"
+#include <stdafx.h>
+#include <TinelixIRC.h>
+#include <dialogs/AboutDlg.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

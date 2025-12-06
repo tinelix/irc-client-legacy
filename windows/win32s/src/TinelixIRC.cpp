@@ -19,7 +19,7 @@
 
 #include "stdafx.h"
 #include "afxdisp.h"
-#include "Tinelix IRC.h"
+#include "TinelixIRC.h"
 #include "dialogs\MainDlg.h"
 
 #ifdef _DEBUG
@@ -104,12 +104,12 @@ BOOL CIRCApplication::InitInstance()
 	parser = LoadLibrary(ircpars_path);
 
 	if(!wsaWrap) {
-		MessageBox(NULL, "wsawrap.dll loading error", "Error", MB_OK|MB_ICONSTOP);
+		MessageBox(NULL, "WSAWrapper library (wsawrap.dll) unavailable or cannot be found. Application terminated.", "Error", MB_OK|MB_ICONSTOP);
 		return FALSE;
 	}
 
 	if(!parser) {
-		MessageBox(NULL, "ircpars.dll loading error", "Error", MB_OK|MB_ICONSTOP);
+		MessageBox(NULL, "IRC Parser library (ircpars.dll) unavailable or cannot be found. Application terminated.", "Error", MB_OK|MB_ICONSTOP);
 		return FALSE;
 	}
 

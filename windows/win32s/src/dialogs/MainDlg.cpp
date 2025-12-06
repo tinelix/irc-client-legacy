@@ -24,13 +24,13 @@
 #include <time.h>
 #include <sys/types.h>
 #include <sys/timeb.h>
-#include "..\Tinelix IRC.h"
-#include "..\tabs\AppThreadTab.h"
-#include "MainDlg.h"
-#include "ConnManDlg.h"
-#include "ProgressDlg.h"
-#include "StatisticsDlg.h"
-#include "AboutDlg.h"
+#include <TinelixIRC.h>
+#include <tabs/AppThreadTab.h>
+#include <dialogs/MainDlg.h>
+#include <dialogs/ConnManDlg.h>
+#include <dialogs/ProgressDlg.h>
+#include <dialogs/StatisticsDlg.h>
+#include <dialogs/AboutDlg.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -148,7 +148,7 @@ BOOL CMainDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);	
 	SetIcon(m_hIcon, FALSE);
 
-	app_name = "Tinelix IRC (Win32s)"; // LoadString is buggy...
+	app_name = "Tinelix IRC Client (Win32s)"; // LoadString is buggy...
 	SetWindowText(app_name);
 	progressDlg.Create(CProgressDlg::IDD, this);
 	statisticsDlg.Create(CStatisticsDlg::IDD, this);
