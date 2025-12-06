@@ -28,7 +28,7 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_APPICON             ICON    DISCARDABLE     "res\\TinelixIRC.ico"
+IDR_APPICON             ICON    DISCARDABLE     "TinelixIRC.ico"
 #endif    // Neutral resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -414,7 +414,7 @@ END
 LANGUAGE 9, 1
 #pragma code_page(1252)
 #endif
-#include "res\TinelixIRC.rc2"  // non-Microsoft Visual C++ edited resources
+#include "TinelixIRC.rc2"  // non-Microsoft Visual C++ edited resources
 #include "afxres.rc"         // Standard components
 #endif
 /////////////////////////////////////////////////////////////////////////////
