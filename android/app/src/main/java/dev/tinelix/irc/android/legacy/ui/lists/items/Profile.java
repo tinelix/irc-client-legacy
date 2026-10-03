@@ -1,4 +1,4 @@
-package dev.tinelix.irc.android.legacy;
+package dev.tinelix.irc.android.legacy.ui.lists.items;
 
 public class Profile {
 

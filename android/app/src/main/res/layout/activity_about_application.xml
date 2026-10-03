@@ -5,35 +5,6 @@
     android:orientation="vertical"
     android:id="@+id/activity_ll">
 
-    <LinearLayout
-        android:id="@+id/app_title_bar"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/title_v11_transparent">
-
-        <ImageView
-            android:id="@+id/app_icon_view"
-            android:layout_width="26dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/full_application_icon" />
-
-        <TextView
-            android:id="@+id/activity_title_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="@string/about_application_str"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
