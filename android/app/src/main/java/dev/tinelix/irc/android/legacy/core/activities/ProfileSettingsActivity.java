@@ -7,7 +7,7 @@ import dev.tinelix.irc.android.legacy.core.activities.base.BaseActivity;
 
 public class ProfileSettingsActivity extends BaseActivity
 {
-    public String profileName;
+    public String mProfileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

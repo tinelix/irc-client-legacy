@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Referenced from http://www.unrealircd.org/docs/User_modes !-->
+    <string-array name="user_mode_letters" translatable="false">
+        <item>B</item>
+        <item>d</item>
+        <item>D</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>i</item>
+        <item>o</item>
+        <item>p</item>
+        <item>q</item>
+        <item>r</item>
+        <item>R</item>
+        <item>S</item>
+        <item>s</item>
+        <item>T</item>
+        <item>t</item>
+        <item>W</item>
+        <item>w</item>
+        <item>x</item>
+        <item>Z</item>
+        <item>z</item>
+    </string-array>
+
+    <string-array name="user_mode_badges">
+        <item>BOT</item>                <!-- +B mode !-->
+        <item>DM\'S CLOSED</item>       <!-- +D, +R, +Z mode if there is a difference !-->
+        <item>MUTED</item>              <!-- +d mode !-->
+        <item>INVISIBLE</item>          <!-- +i mode !-->
+        <item>SERVER OPERATOR</item>    <!-- +o mode !-->
+        <item>REGISTERED</item>         <!-- +r mode !-->
+        <item>SERVICE</item>            <!-- +S mode !-->
+        <item>SECURED</item>            <!-- +z mode !-->
+    </string-array>
+</resources>

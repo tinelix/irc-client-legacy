@@ -10,13 +10,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/create_item_fragm2"
-            android:name="dev.tinelix.irc.android.legacy.CreateItemFragm"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            tools:layout="@layout/layout_create_item" />
-
         <ListView
             android:id="@+id/profiles_list"
             android:layout_width="match_parent"

@@ -142,5 +142,6 @@
     <orderEntry type="library" exported="" name="Gradle: com.android.support:support-v4-24.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.nostra13.universalimageloader:universal-image-loader:1.9.5@jar" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.android.support:appcompat-v7-24.0.0" level="project" />
+    <orderEntry type="module" module-name="irc-supp" exported="" />
   </component>
 </module>

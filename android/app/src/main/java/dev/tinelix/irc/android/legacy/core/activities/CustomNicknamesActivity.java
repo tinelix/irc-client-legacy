@@ -12,16 +12,17 @@ import dev.tinelix.irc.android.legacy.core.activities.base.BaseActivity;
 
 public class CustomNicknamesActivity extends BaseActivity {
 
-    String[] nicknamesArray;
-    String nicknamesString;
-    String profileName;
+    String[] mNicknamesArray;
+    String mNicknamesString;
+    String mProfileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences profilePrefs = getApplicationContext().getSharedPreferences(profileName, 0);
+        SharedPreferences profilePrefs =
+                getApplicationContext().getSharedPreferences(mProfileName, 0);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             if(getActionBar() != null) {
@@ -34,12 +35,12 @@ public class CustomNicknamesActivity extends BaseActivity {
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
-            profileName = extras == null ? null : extras.getString("profile_name");
+            mProfileName = extras == null ? null : extras.getString("profile_name");
         } else {
-            profileName = (String) savedInstanceState.getSerializable("profile_name");
+            mProfileName = (String) savedInstanceState.getSerializable("profile_name");
         }
 
-        nicknamesArray = profilePrefs.getString("nicknames", "").split(", ");
+        mNicknamesArray = profilePrefs.getString("nicknames", "").split(", ");
     }
 
     @Override
@@ -60,7 +61,7 @@ public class CustomNicknamesActivity extends BaseActivity {
 
         } else if (id == R.id.clear_nicknames_item) {
             Context context = getApplicationContext();
-            SharedPreferences prefs = context.getSharedPreferences(profileName, 0);
+            SharedPreferences prefs = context.getSharedPreferences(mProfileName, 0);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("nicknames", "");
             editor.commit();

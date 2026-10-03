@@ -1,6 +1,6 @@
-package dev.tinelix.irc.android.legacy.ui.lists.items;
+package dev.tinelix.irc.android.support.enitites;
 
-public class IRCMessage {
+public class ChatMessage {
     public LazyEntity author;
     public String text;
     public long timestamp;

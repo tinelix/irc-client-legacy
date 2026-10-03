@@ -1,1 +1,1 @@
-include ':app', ':irc-supp'
+include ':app', ':irc-support'

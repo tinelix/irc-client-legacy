@@ -9,14 +9,16 @@ import java.io.File;
 
 public class IRCApplication extends Application {
 
-    String prefsDir;
+    String mPrefsDir;
 
     @Override
     public void onCreate() {
-        String package_name = getApplicationContext().getPackageName();
-        prefsDir = getFilesDir().getPath() + "/shared_prefs";
+        super.onCreate();
 
-        File prefs_directory = new File(prefsDir);
+        String package_name = getApplicationContext().getPackageName();
+        mPrefsDir = getFilesDir().getPath() + "/shared_prefs";
+
+        File prefs_directory = new File(mPrefsDir);
         File[] prefs_files = prefs_directory.listFiles();
         SharedPreferences global_prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = global_prefs.edit();
@@ -25,19 +27,17 @@ public class IRCApplication extends Application {
         if(prefs_files != null) {
             String file_extension;
             Context context = getApplicationContext();
-
         }
 
-        if(!global_prefs.contains("theme")) {
+        if(!global_prefs.contains("uiTheme")) {
             editor.putString("theme", "Dark");
         }
-        if(!global_prefs.contains("language")) {
-            editor.putString("language", "OS dependent");
+        if(!global_prefs.contains("uiLanguage")) {
+            editor.putString("language", "System");
         }
-        if(!global_prefs.contains("show_msg_timestamps")) {
-            editor.putBoolean("show_msg_timestamps", false);
+        if(!global_prefs.contains("showMsgTimestamps")) {
+            editor.putBoolean("showMsgTimestamps", false);
         }
         editor.commit();
-        super.onCreate();
     }
 }
