@@ -16,7 +16,7 @@
         android:label="@string/short_app_name"
         android:supportsRtl="true"
         android:theme="@style/IRCClient"
-        android:name=".IRCClientApp"
+        android:name=".IRCApplication"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
         android:installLocation="auto"

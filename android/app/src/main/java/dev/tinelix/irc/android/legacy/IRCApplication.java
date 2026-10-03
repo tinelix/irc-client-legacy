@@ -6,10 +6,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
-public class IRCClientApp extends Application {
+public class IRCApplication extends Application {
 
     String prefsDir;
 
