@@ -1,24 +1,94 @@
 apply plugin: 'com.android.application'
 
+def getGitHubCommit = {
+    try {
+        def hashOutput = new ByteArrayOutputStream()
+        def changeOutput = new ByteArrayOutputStream()
+        def gitVersionName
+        exec {
+            commandLine 'git', 'rev-list', '--max-count=1', 'HEAD'
+            standardOutput = hashOutput
+        }
+        exec {
+            commandLine 'git', 'diff-index', '--shortstat', 'HEAD'
+            standardOutput = changeOutput
+        }
+        gitVersionName = hashOutput.toString().trim().substring(0, 7);
+        if (!changeOutput.toString().trim().empty) {
+            def pattern = Pattern.compile("\\d+")
+            def matcher = pattern.matcher(changeOutput.toString().trim())
+            if (matcher.find()) {
+                gitVersionName += "-" + matcher.group()
+            }
+        }
+        return gitVersionName
+    } catch (ignored) {
+        return "UNKNOWN"
+    }
+}
+
+def getBuildDate() {
+    def date = new Date()
+    return date.getTime()
+}
+
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 29
+    //noinspection GradleDependency
+    buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "dev.tinelix.irc.android.legacy"
-        minSdkVersion 5 // Android 2.0 Eclair
-        targetSdkVersion 21
+        //noinspection MinSdkTooLow
+        minSdkVersion 7
+        //noinspection OldTargetApi
+        targetSdkVersion 29
         versionCode 22
-        versionName '0.4.0_beta_20220506'
+        versionName '0.5.0-beta'
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "GITHUB_COMMIT", "\"${getGitHubCommit()}\""
+            buildConfigField "String", "SOURCE_CODE", "\"https://github.com/tinelix/irc-legacy\""
+            buildConfigField "String", "BUILD_DATE", "${getBuildDate()}L"
         }
         debug {
-            debuggable true
+            buildConfigField "String", "GITHUB_COMMIT", "\"${getGitHubCommit()}\""
+            buildConfigField "String", "SOURCE_CODE", "\"https://github.com/tinelix/irc-legacy\""
+            buildConfigField "long", "BUILD_DATE", "${getBuildDate()}L"
         }
     }
     productFlavors {
+        prereleaseConfig {
+            if (file('.signing/app-debug.prop').exists()) {
+                signingConfig signingConfigs.debug
+            }
+            resConfigs "en", "ru", "uk"
+        }
+        releaseConfig {
+            if (file('.signing/app-release.prop').exists()) {
+                signingConfig signingConfigs.release
+            }
+            resConfigs "en", "ru", "uk"
+        }
+    }
+
+    dependencies {
+        //noinspection GradleCompatible
+        compile 'com.android.support:recyclerview-v7:24.0.0'
+        //noinspection GradleDependency,GradleCompatible
+        compile 'com.android.support:multidex:1.0.3'
+        //noinspection GradleDependency,GradleCompatible
+        compile 'com.android.support:support-v4:24.0.0'
+        //noinspection GradleDependency,GradleCompatible
+        compile 'com.android.support:appcompat-v7:24.0.0'
+        //noinspection GradleCompatible,GradleDependency
+        compile 'com.android.support:preference-v7:24.0.0'
+        //noinspection GradleCompatible,GradleDependency
+        compile 'com.android.support:design:24.0.0'
+
+        compile 'com.seppius.plurals:android-i18n-plurals:1.1'
+        compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+        compile 'ch.acra:acra:4.6.0'
+        compile 'org.apmem.tools:layouts:1.8'
     }
 }

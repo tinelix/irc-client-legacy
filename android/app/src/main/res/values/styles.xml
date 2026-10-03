@@ -98,7 +98,7 @@
     </style>
 
     <style name="IRCClient.CheckBoxPreference">
-        <item name="android:layout">@layout/checkbox_prefw</item>
+        <item name="android:layout">@layout/pref_checkbox_widget</item>
     </style>
 
 

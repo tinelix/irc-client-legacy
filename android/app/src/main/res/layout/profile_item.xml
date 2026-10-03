@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:onClick="selectProfile"
     android:baselineAligned="false">
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -30,11 +28,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginRight="8dp"
-                android:autoText="false"
                 android:singleLine="true"
                 android:text="Profile Item"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/state_indicator"
@@ -46,7 +45,8 @@
                 android:textColor="@color/white"
                 android:textSize="10sp"
                 android:textStyle="bold"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:ignore="SmallSp" />
         </LinearLayout>
 
         <TextView
@@ -58,7 +58,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:singleLine="true"
-            android:text="Server" />
+            android:text="Server"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,30 +67,22 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/edit_btn"
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:background="@color/title_v11_full_transparent"
-            android:contentDescription="TODO"
-            android:src="@drawable/ic_menu_edit"
-            android:visibility="visible" />
-
-        <ImageButton
-            android:id="@+id/delete_btn"
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:background="@color/title_v11_full_transparent"
-            android:src="@drawable/ic_menu_delete"
-            android:visibility="visible" />
-
-        <ImageButton
             android:id="@+id/connect_btn"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:background="@color/title_v11_full_transparent"
-            android:contentDescription="TODO"
             android:src="@drawable/ic_menu_send"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/menu_btn"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:background="@color/title_v11_full_transparent"
+            android:src="@drawable/ic_menu_moreoverflow_normal_holo_dark"
+            android:visibility="visible"
+            tools:ignore="ContentDescription" />
     </LinearLayout>
 
 </LinearLayout>
