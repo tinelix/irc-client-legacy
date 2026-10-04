@@ -2,6 +2,8 @@ package dev.tinelix.irc.android.support.wrappers;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.security.SecureRandom;
@@ -94,7 +96,16 @@ public class IRCSocketWrapper {
     }
 
     private void createSocketBuffer() {
-
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream())
+            );
+            writer = new BufferedWriter(
+                    new OutputStreamWriter(socket.getOutputStream())
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void sendCommand(IRCCommand cmd) {

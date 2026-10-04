@@ -6,16 +6,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.SortedMap;
+
 import dev.tinelix.irc.android.legacy.R;
 import dev.tinelix.irc.android.legacy.core.activities.base.BaseActivity;
 
 public class MainActivity extends BaseActivity {
+
+    private SortedMap<String, Charset> charsets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.app_name);
         setContentView(R.layout.activity_main);
+
+        charsets = Charset.availableCharsets();
     }
 
     private void showAboutApplication() {
