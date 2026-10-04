@@ -1,3 +1,4 @@
+modules/irc-support/build
 build/
 .gradle/
 .idea/
