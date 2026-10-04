@@ -79,7 +79,8 @@
     <string name="connected_state">ПОДКЛЮЧЕНО</string>
     <string name="website_button">Сайт</string>
     <string name="need_to_restart">Необходима перезагрузка приложения</string>
-    <string name="empty_profiles_list"><b>Список пуст</b>\n\nВы можете создать свой профиль для подключения к IRC-серверам.</string>
+    <string name="empty_profiles_list_title">Здесь пока ничего нет</string>
+    <string name="empty_profiles_list_description">Для того, чтобы начать общение, вы можете создать свой профиль.</string>
     <string name="application_category">Приложение</string>
     <string name="debug_log_item">Отладочный журнал</string>
     <string name="save_log_btn">Сохранить журнал</string>

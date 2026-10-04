@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="12dp"
+    android:paddingStart="12dp"
+    android:paddingRight="12dp"
+    android:paddingEnd="12dp"
+    android:layout_marginTop="2dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/server_text"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_textarea"
+            android:hint="@string/server"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/port_numb"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/dialog_textarea"
+            android:hint="@string/port"
+            android:inputType="number"
+            android:maxLength="5"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/encoding_spinner"
+        style="@style/IRCClient.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/dialog_spinner"
+        android:entries="@array/encoding_array" />
+
+    <CheckBox
+        android:id="@+id/force_ssl_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:button="@drawable/checkbox"
+        android:text="@string/only_ssl" />
+
+    <CheckBox
+        android:id="@+id/hide_ip_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:button="@drawable/checkbox"
+        android:text="@string/hide_ip_label" />
+
+
+</LinearLayout>

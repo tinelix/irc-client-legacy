@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -23,7 +24,15 @@ public class MainActivity extends BaseActivity {
         setTitle(R.string.app_name);
         setContentView(R.layout.activity_main);
 
-        charsets = Charset.availableCharsets();
+        installLayout();
+    }
+
+    private void installLayout() {
+        TextView placeholderTitle = findViewById(R.id.placeholder_title);
+        TextView placeholderDesc = findViewById(R.id.placeholder_description);
+
+        placeholderTitle.setText(getResources().getString(R.string.empty_profiles_list_title));
+        placeholderDesc.setText(getResources().getString(R.string.empty_profiles_list_description));
     }
 
     private void showAboutApplication() {
@@ -36,7 +45,7 @@ public class MainActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
+        inflater.inflate(R.menu.main, menu);
         return true;
     }
 
