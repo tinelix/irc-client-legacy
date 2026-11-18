@@ -15,11 +15,11 @@
 
         <TextView
             android:id="@+id/font_size_label"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
             android:layout_weight="1"
-            android:text="@string/font_size_label" />
+            android:text="@string/pref_font_size" />
 
         <TextView
             android:id="@+id/value_label"
@@ -45,8 +45,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="@string/preview_label" />
+        android:layout_marginBottom="6dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,12 +63,9 @@
             android:id="@+id/preview_text"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:background="@color/gray"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:padding="6dp"
-            android:text="@string/sample_preview_text"
             android:textColor="@color/white"
             android:typeface="monospace" />
     </LinearLayout>

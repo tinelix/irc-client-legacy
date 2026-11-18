@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="home_pages">
+        <item>Профили</item>
+        <item>Контакты</item>
+    </string-array>
+
     <string-array name="profile_actions">
         <item>Подключиться</item>
         <item>Изменить</item>
@@ -12,9 +17,35 @@
         <item>NickServ</item>
     </string-array>
 
+    <string-array name="encoding_array">
+        <!--<item>Определять автоматически</item>!-->
+        <item>Юникод (UTF-8)</item>
+        <item>Юникод (UTF-16, прямой порядок)</item>
+        <item>Юникод (UTF-16, обратный порядок)</item>
+        <item>Латиница (DOS)</item>
+        <item>Латиница (Windows)</item>
+        <item>Кириллица (DOS)</item>
+        <item>Кириллица (Windows)</item>
+        <item>Кириллица (KOI8-R)</item>
+        <item>Кириллица (KOI8-U)</item>
+    </string-array>
+
     <string-array name="themes">
         <item>Темная</item>
         <item>Светлая</item>
+    </string-array>
+
+    <string-array name="channel_tabs">
+        <item>Сервер</item>
+        <item>Каналы</item>
+        <item>Чат</item>
+    </string-array>
+
+    <string-array name="ping_intervals">
+        <item>Раз в 10 секунд</item>
+        <item>Раз в 30 секунд</item>
+        <item>Раз в 60 секунд</item>
+        <item>Раз в 90 секунд</item>
     </string-array>
 
 </resources>

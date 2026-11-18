@@ -6,11 +6,18 @@
     android:id="@+id/activity_layout">
 
     <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tab_strip"
         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp" />
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
+
+    <dev.tinelix.irc.android.legacy.ui.views.WriteTextPanel
+        android:id="@+id/write_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

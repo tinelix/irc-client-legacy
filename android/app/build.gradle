@@ -43,16 +43,19 @@ android {
         //noinspection OldTargetApi
         targetSdkVersion 29
         versionCode 22
-        versionName '0.5.0-beta'
+        versionName '0.5.0-alpha'
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
             buildConfigField "String", "GITHUB_COMMIT", "\"${getGitHubCommit()}\""
+            buildConfigField "String", "APP_WEBSITE", "\"http://web1.tinelix.ru\""
             buildConfigField "String", "SOURCE_CODE", "\"https://github.com/tinelix/irc-legacy\""
             buildConfigField "String", "BUILD_DATE", "${getBuildDate()}L"
         }
         debug {
             buildConfigField "String", "GITHUB_COMMIT", "\"${getGitHubCommit()}\""
+            buildConfigField "String", "APP_WEBSITE", "\"http://web1.tinelix.ru\""
             buildConfigField "String", "SOURCE_CODE", "\"https://github.com/tinelix/irc-legacy\""
             buildConfigField "long", "BUILD_DATE", "${getBuildDate()}L"
         }
@@ -92,5 +95,6 @@ android {
         compile 'org.apmem.tools:layouts:1.8'
 
         compile project(':modules:irc-support')
+        compile project(':modules:holo-ux')
     }
 }

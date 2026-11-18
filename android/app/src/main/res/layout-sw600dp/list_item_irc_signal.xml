@@ -7,32 +7,26 @@
     android:background="@drawable/holo4ux_highlight"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@android:id/text1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="6dp"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:typeface="monospace" />
-
     <LinearLayout
+        android:id="@+id/signal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
             android:id="@+id/info_layout"
-            android:layout_width="match_parent"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
+            android:layout_gravity="top"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="4dp"
-            android:gravity="right|end"
-            android:orientation="horizontal"
+            android:layout_marginRight="4dp"
+            android:orientation="vertical"
             tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:id="@+id/badges_layout"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
@@ -40,7 +34,7 @@
 
                 <dev.tinelix.holoexperience.library.widget.HoloCompatTextView
                     android:id="@+id/category_badge"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="17dp"
                     android:background="@drawable/badge_shape_white_mini"
                     android:text="CATEGORY"
@@ -55,18 +49,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:singleLine="true"
                 android:text="Author" />
 
             <TextView
                 android:id="@+id/timestamp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|end"
                 android:text="12:31"
                 tools:ignore="RtlHardcoded" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@android:id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="16sp"
+            android:typeface="monospace" />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/divider"
@@ -74,4 +80,4 @@
         android:layout_height="1dp"
         android:background="@color/holo_gray_twilight" />
 
-    </LinearLayout>
+</LinearLayout>

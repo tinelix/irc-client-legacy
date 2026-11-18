@@ -12,7 +12,7 @@
         android:layout_height="1dp"
         android:background="@color/holo_gray_twilight" />
 
-    <dev.tinelix.irc.android.legacy.ui.views.ExactLinearLayout
+    <LinearLayout
         android:id="@+id/write_text_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,20 +31,21 @@
             android:hint="@string/message_text_hint"
             android:inputType="textLongMessage"
             android:maxLines="3"
-            android:paddingBottom="8dp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingBottom="12dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingTop="8dp"/>
+            android:paddingTop="12dp"/>
 
         <ImageButton
             android:id="@+id/send_message_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
             android:src="@drawable/ic_action_send" />
 
-    </dev.tinelix.irc.android.legacy.ui.views.ExactLinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

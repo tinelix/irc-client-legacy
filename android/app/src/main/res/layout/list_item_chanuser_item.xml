@@ -1,26 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="6dp"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp"
-    android:paddingTop="8dp">
+    android:background="@drawable/holo4ux_highlight"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
 
-    <dev.tinelix.holoexperience.library.widget.HoloCompatTextView
-        android:id="@android:id/title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CATEGORY"
-        android:textColor="@color/holo_blue_light"
-        android:textStyle="bold"
-        app:textAllCaps="true" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="4dp">
+
+        <TextView
+            android:id="@android:id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="16dip"
+            android:requiresFadingEdge="horizontal"
+            android:singleLine="true"
+            android:text="User"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
+            tools:ignore="UnusedAttribute" />
+
+        <TextView
+            android:id="@android:id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:text="Status" />
+
+        <LinearLayout
+            android:id="@+id/badges_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <dev.tinelix.holoexperience.library.widget.HoloCompatTextView
+                android:id="@+id/privileges_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/badge_shape_white_mini"
+                android:text="PRIVILEGES"
+                android:textColor="?android:attr/textColorPrimaryInverse"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:textAllCaps="true" />
+
+            <dev.tinelix.holoexperience.library.widget.HoloCompatTextView
+                android:id="@+id/status_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:background="@drawable/badge_shape_white_mini"
+                android:text="STATUS"
+                android:textColor="?android:attr/textColorPrimaryInverse"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:textAllCaps="true" />
+        </LinearLayout>
+    </LinearLayout>
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="2dp"
-        android:background="@color/holo_blue_light" />
+        android:background="@color/holo_gray_twilight" />
+
 </LinearLayout>

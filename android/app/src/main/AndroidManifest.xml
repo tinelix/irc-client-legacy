@@ -2,11 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="dev.tinelix.irc.android.legacy">
 
+    <permission
+        android:name="dev.tinelix.irc.android.legacy.permission.IRC_FOREGROUND"
+        android:protectionLevel="normal" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="dev.tinelix.irc.android.legacy.permission.IRC_FOREGROUND" />
+    <uses-permission android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
 
     <uses-sdk tools:overrideLibrary="com.seppius.i18n.plurals" />
 
@@ -28,26 +38,57 @@
                 android:name=".core.activities.MainActivity"
                 android:label="@string/short_app_name"
                 android:exported="true"
-                android:configChanges="locale|orientation">
+                android:configChanges="locale|orientation|screenSize|screenLayout|keyboard|uiMode"
+                android:launchMode="singleTop">
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN" />
-
                     <category android:name="android.intent.category.LAUNCHER" />
                 </intent-filter>
-            </activity>
-        
-        <activity android:name=".core.activities.CustomNicknamesActivity"
-            android:label="@string/nicknames_manager_title">
         </activity>
-        
-        <activity android:name=".core.activities.AboutApplicationActivity"
-            android:label="@string/about_application_str">
+
+        <activity android:name=".core.activities.ChatActivity"
+            android:label="@string/short_app_name"
+            android:exported="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|keyboard|uiMode">
         </activity>
-        
-        <activity android:name=".core.activities.MainSettingsActivity"
-            android:label="@string/settings_title"
+
+        <activity android:name=".core.activities.ChannelMembersActivity"
+            android:label="@string/channel_members_item"
+            android:exported="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|keyboard|uiMode">
+        </activity>
+
+        <activity android:name=".core.activities.SettingsActivity"
+            android:label="@string/profile_settings_title"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|mcc|mnc|uiMode">
         </activity>
-        
+
+        <activity android:name=".core.activities.NicknamesManagerActivity"
+            android:label="@string/nicknames_manager_title">
+        </activity>
+
+        <activity android:name=".core.activities.AboutApplicationActivity"
+            android:label="@string/about_app">
+        </activity>
+
+        <activity
+            android:name="dev.tinelix.holoexperience.library.test.HoloCompatTestActivity"
+            android:label="HoloCompatTestActivity" />
+
+        <service
+            android:enabled="true"
+            android:name=".core.services.ChatClientService"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:permission="dev.tinelix.irc.android.legacy.permission.IRC_FOREGROUND" />
+
+        <receiver
+            android:name=".core.receivers.IRCBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="dev.tinelix.irc.android.legacy.IRC_DATA_RECEIVE" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

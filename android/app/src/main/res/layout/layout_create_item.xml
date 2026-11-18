@@ -3,32 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
-
-    <Button
-        android:id="@+id/create_item_button"
-        style="@android:style/Widget.Holo.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    android:layout_height="50dp"
+    android:background="@drawable/holo4ux_highlight">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/add_circle_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu_btn_add"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp" />
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_holo4ux_dark_action_circle_add" />
 
-    <TextView
+    <dev.tinelix.holoexperience.library.widget.HoloCompatTextView
         android:id="@+id/add_item_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="52dp"
-        android:text="@string/create_profile_item"
-        android:textAllCaps="true"
+        android:layout_marginStart="52dp"
+        android:text="@string/new_profile"
         android:textColor="@color/holo_blue_light"
         android:textStyle="bold"
+        app:textAllCaps="true"
         tools:ignore="UnusedAttribute" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="@color/gray_v2" />
 </FrameLayout>

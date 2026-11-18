@@ -1,2 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string-array name="known_servers_list">
+        <!-- List of known IRC servers !-->
+
+        <!-- Format:
+             [Server name]|
+             [TLS required: 'tls' or 'no-tls']|
+             [Input text encoding]|[Output text encoding]|
+             [Location or 'Multi-server']|
+             [Multi-server countries in ISO-3166-1 alpha-3]
+        !-->
+
+        <item>
+            Tinelix IRC|
+            irc.tinelix.ru|
+            non-tls|6667|
+            windows-1251|windows-1251|
+            RUS Moscow
+        </item>
+        <item>
+            Paravozek|
+            irc.insib54.ru|
+            non-tls|6667|
+            windows-1251|windows-1251|
+            RUS Novosibirsk
+        </item>
+        <item>
+            RetroNode|
+            irc.retronode.org|
+            non-tls|6667|
+            utf-8|utf-8|
+            Multi-server|SPA,USA,JPN,FRA,DEU,BGR
+        </item>
+    </string-array>
+</resources>

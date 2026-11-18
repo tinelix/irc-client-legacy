@@ -1,23 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="12dp">
 
-    <EditText
-        android:id="@+id/edittext"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/server_domain_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/hint_server_domain_edit"
+            android:inputType="textPersonName"
+            android:maxLength="192"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/server_port_edit"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:ems="10"
+            android:gravity="right"
+            android:hint="@string/hint_server_port_edit"
+            android:inputType="number"
+            android:maxLength="5"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/access_by_password_cb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Доступен с паролем"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/server_password_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:ems="10"
-        android:hint="@string/profile_name"
-        android:inputType="textPersonName"
-        android:maxLength="192" />
+        android:hint="@string/pref_password"
+        android:inputType="textPassword"
+        android:maxLength="192"
+        android:singleLine="true"
+        android:visibility="gone" />
 
 </LinearLayout>

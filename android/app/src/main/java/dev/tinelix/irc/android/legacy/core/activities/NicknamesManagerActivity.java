@@ -4,43 +4,45 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import dev.tinelix.irc.android.legacy.R;
 import dev.tinelix.irc.android.legacy.core.activities.base.BaseActivity;
+import dev.tinelix.irc.android.legacy.core.fragments.IRCProfileSettingsFragment;
+import dev.tinelix.irc.android.legacy.core.fragments.NicknamesManagerFragment;
+import dev.tinelix.irc.android.legacy.databases.UsersCacheDatabase;
+import dev.tinelix.irc.android.legacy.utils.IRCProfileManager;
+import dev.tinelix.irc.android.support.models.ServerProfile;
 
-public class CustomNicknamesActivity extends BaseActivity {
+public class NicknamesManagerActivity extends BaseActivity {
 
     String[] mNicknamesArray;
-    String mNicknamesString;
     String mProfileName;
+    private Bundle mArguments;
+    private NicknamesManagerFragment mFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_default);
 
-        SharedPreferences profilePrefs =
-                getApplicationContext().getSharedPreferences(mProfileName, 0);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if(getActionBar() != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                    getActionBar().setHomeButtonEnabled(true);
-                }
-                getActionBar().setTitle(getResources().getString(R.string.nicknames_manager_title));
-            }
-        }
-
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            mProfileName = extras == null ? null : extras.getString("profile_name");
+        if(getIntent().getExtras() != null) {
+            mArguments = getIntent().getExtras();
         } else {
-            mProfileName = (String) savedInstanceState.getSerializable("profile_name");
+            finish();
+            return;
         }
 
-        mNicknamesArray = profilePrefs.getString("nicknames", "").split(", ");
+        installFragment();
+        installLayouts();
     }
 
     @Override
@@ -49,29 +51,73 @@ public class CustomNicknamesActivity extends BaseActivity {
         return true;
     }
 
+    private void installFragment() {
+        if(mArguments == null || !mArguments.containsKey("fragment"))
+            return;
+
+        String tag = mArguments.getString("fragment");
+
+        switch (tag) {
+            case "nicknames_manager":
+                mFragment = new NicknamesManagerFragment();
+                break;
+        }
+
+        if(mFragment == null)
+            return;
+
+        mFragment.setArguments(mArguments);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.fragment_container, mFragment, tag);
+        ft.commit();
+    }
+
+    public void setPlaceholderVisibillity(boolean value) {
+        findViewById(R.id.layout_placeholder).setVisibility(value ? View.VISIBLE : View.GONE);
+        findViewById(R.id.fragment_container).setVisibility(value ? View.GONE : View.VISIBLE);
+    }
+
+    private void installLayouts() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        TextView placeholderTitle = findViewById(R.id.placeholder_title);
+        TextView placeholderDesc = findViewById(R.id.placeholder_description);
+        Button placeholderButton = findViewById(R.id.placeholder_button);
+
+        placeholderTitle.setText(getResources().getString(R.string.empty_placeholder_title));
+        placeholderDesc.setText(getResources().getString(R.string.empty_nicknames_list_description));
+        placeholderButton.setText(getResources().getString(R.string.add_nickname_item));
+        placeholderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IRCProfileManager.showCreateNicknameDialog(NicknamesManagerActivity.this, mProfileName);
+            }
+        });
+    }
+
+    public void updateData() {
+        ArrayList<ServerProfile.Nickname> nicknames = UsersCacheDatabase.getNicknameList();
+        mFragment.setNicknamesArray(nicknames);
+        setPlaceholderVisibillity(nicknames.size() == 0);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if(id == R.id.add_nickname_item) {
-
-        } else if (id == R.id.clear_nicknames_item) {
+        if (id == R.id.clear_nicknames_item) {
             Context context = getApplicationContext();
             SharedPreferences prefs = context.getSharedPreferences(mProfileName, 0);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("nicknames", "");
             editor.commit();
             return true;
+        } else if(id == android.R.id.home) {
+            onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onCreatingNicknames(String value) {
-
     }
 }

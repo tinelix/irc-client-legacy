@@ -1,6 +1,190 @@
 package dev.tinelix.irc.android.legacy.databases;
 
-import dev.tinelix.irc.android.legacy.databases.base.CacheDatabase;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
-public class ChannelsCacheDatabase extends CacheDatabase {
+import java.util.ArrayList;
+
+import dev.tinelix.irc.android.legacy.databases.base.CacheDatabase;
+import dev.tinelix.irc.android.support.models.IRCServer;
+import dev.tinelix.irc.android.support.models.ServerProfile;
+
+public class UsersCacheDatabase extends CacheDatabase {
+
+    private static boolean mIsInitialized;
+    private static CacheOpenHelper mHelper;
+    private static SQLiteDatabase mDatabase;
+    private static String prefix = "users";
+
+    public static class CacheOpenHelper extends SQLiteOpenHelper {
+
+        public CacheOpenHelper(Context ctx, String db_name) {
+            super(ctx, db_name, null, 1);
+        }
+
+        public CacheOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+            super(context, name, factory, version);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase database) {
+            CacheDatabaseTables.createUserTables(database);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase database, int oldVer, int newVer) {
+            if (oldVer == 1 && newVer >= oldVer) {
+                // TODO: Add database auto-upgrade to new versions
+                return;
+            }
+            onCreate(database);
+        }
+
+        @Override // android.database.sqlite.SQLiteOpenHelper
+        public SQLiteDatabase getWritableDatabase() {
+            while (true) {
+                try {
+                    SQLiteDatabase db = super.getWritableDatabase();
+                    db.setLockingEnabled(false);
+                    return db;
+                } catch (Exception ex) {
+                    try {
+                        Thread.sleep(100L);
+                    } catch (Exception ignored) {
+                    }
+                }
+            }
+        }
+
+        @Override // android.database.sqlite.SQLiteOpenHelper
+        public SQLiteDatabase getReadableDatabase() {
+            while (true) {
+                try {
+                    SQLiteDatabase db = super.getReadableDatabase();
+                    db.setLockingEnabled(false);
+                    return db;
+                } catch (Exception ex) {
+                    try {
+                        Thread.sleep(100L);
+                    } catch (Exception ignored) {
+                    }
+                }
+            }
+        }
+    }
+
+    public static boolean isInitialized() {
+        return mIsInitialized;
+    }
+
+    public static void initDatabase(Context ctx, String profileId) {
+        if(mIsInitialized || (mHelper != null && mDatabase != null && mDatabase.isOpen())) {
+            mIsInitialized = true;
+            return;
+        }
+
+        mHelper = new CacheOpenHelper(ctx, getCurrentDatabaseName(prefix, profileId));
+        mDatabase = mHelper.getWritableDatabase();
+        mIsInitialized = true;
+    }
+
+    public static boolean ifExist(String nickname) {
+        boolean result = false;
+
+        if(!mIsInitialized)
+            return true;
+
+        try {
+            String table_name = "nicknames";
+
+            Cursor cursor = mDatabase.query(table_name, new String[]{"count(*)"},
+                    "`nickname`=?",
+                    new String[]{
+                            nickname,
+                    }, null, null, null
+            );
+
+            int count = 0;
+
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                count = cursor.getInt(0);
+            }
+            result = count > 0;
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static ArrayList<ServerProfile.Nickname> getNicknameList() {
+        ArrayList<ServerProfile.Nickname> nicknames = new ArrayList<>();
+        Cursor cursor = null;
+
+        try {
+            cursor = mDatabase.query(
+                    "nicknames", null, null,
+                    null, null, null, null
+            );
+
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    ContentValues values = new ContentValues();
+                    DatabaseUtils.cursorRowToContentValues(cursor, values);
+                    ServerProfile.Nickname nickname = new ServerProfile.Nickname(
+                        values.getAsString("nickname"), values.getAsBoolean("is_primary")
+                    );
+                    nicknames.add(nickname);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        if(cursor != null)
+            cursor.close();
+
+        return nicknames;
+    }
+
+    public static void putNickname(ServerProfile.Nickname nickname) {
+
+        if (ifExist(nickname.nickname))
+            return;
+
+        ContentValues values = new ContentValues();
+        values.put("nickname", nickname.nickname);
+        values.put("is_primary", nickname.isPrimary);
+
+        mDatabase.insert(
+                "nicknames", null, values
+        );
+    }
+
+    public static void deleteNickname(ServerProfile.Nickname nickname) {
+
+        if(!ifExist(nickname.nickname))
+            return;
+
+        mDatabase.delete(
+                "nicknames", "nickname = ?",
+                new String[] {nickname.nickname}
+        );
+    }
+
+    public static void freeDatabase() {
+        if(mDatabase != null && mDatabase.isOpen() && mIsInitialized) {
+            mDatabase.close();
+            mDatabase = null;
+            mHelper.close();
+            mHelper = null;
+            mIsInitialized = false;
+        }
+    }
 }

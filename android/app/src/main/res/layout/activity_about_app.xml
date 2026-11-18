@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyleft © 2022, 2026 Dmitry Tretyakov (aka. Tinelix)
+  ~
+  ~ This file is part of Tinelix IRC Client for Android.
+  ~
+  ~ Tinelix IRC Client is free software: you can redistribute it and/or modify it under
+  ~ the terms of the GNU General Public License as published by the Free Software Foundation,
+  ~ either version 3 of the License, or (at your option) any later version.
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along with this
+  ~ program. If not, see https://www.gnu.org/licenses/.
+  ~
+  ~ Source code: https://github.com/tinelix/irc-client-legacy
+  -->
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -49,7 +68,8 @@
                 android:text="LEGACY"
                 android:id="@+id/app_flag_text"
                 android:layout_marginLeft="6dp"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                tools:ignore="RtlHardcoded" />
         </LinearLayout>
 
         <TextView
@@ -86,7 +106,7 @@
                 android:id="@+id/repo_button"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
-                android:text="@string/repo_button"
+                android:text="@string/source_code_button"
                 android:textSize="16sp" />
 
             <Button

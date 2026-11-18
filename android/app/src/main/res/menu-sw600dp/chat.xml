@@ -4,11 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/channel_members_item"
+        android:icon="@drawable/ic_holo4ux_dark_social_group"
+        android:title="@string/channel_members_item"
+        android:checkable="true"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource,UnusedAttribute" />
+
+    <item
         android:id="@+id/add_item"
         android:icon="@drawable/ic_action_circle_add"
         android:title="@string/add_menu_item"
-        android:showAsAction="ifRoom"
-        tools:ignore="AppCompatResource,UnusedAttribute">
+        android:showAsAction="always"
+        tools:ignore="AlwaysShowAction,AppCompatResource,UnusedAttribute">
         <menu>
             <item
                 android:id="@+id/add_connection_item"

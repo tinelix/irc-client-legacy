@@ -8,15 +8,28 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@android:id/text1"
+        android:id="@android:id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="6dp"
+        android:text="#channel"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18sp"
+        tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="2dp"
         android:text="TextView"
-        android:textSize="16sp"
-        android:typeface="monospace" /><LinearLayout
+        tools:ignore="UnusedAttribute" />
+
+    <LinearLayout
             android:id="@+id/info_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,32 +50,36 @@
                 android:orientation="horizontal">
 
                 <dev.tinelix.holoexperience.library.widget.HoloCompatTextView
-                    android:id="@+id/category_badge"
+                    android:id="@+id/category_badge2"
                     android:layout_width="wrap_content"
                     android:layout_height="17dp"
                     android:background="@drawable/badge_shape_white_mini"
-                    android:text="CATEGORY"
+                    android:text="MODE 1"
+                    android:textColor="?android:attr/textColorPrimaryInverse"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:textAllCaps="true" />
+
+                <dev.tinelix.holoexperience.library.widget.HoloCompatTextView
+                    android:id="@+id/category_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:layout_marginLeft="4dp"
+                    android:background="@drawable/badge_shape_white_mini"
+                    android:text="MODE 2"
                     android:textColor="?android:attr/textColorPrimaryInverse"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:textAllCaps="true" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="Author" />
-
-            <TextView
-                android:id="@+id/timestamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|end"
-                android:text="12:31"
-                tools:ignore="RtlHardcoded" />
+        <TextView
+            android:id="@+id/members_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|end"
+            android:text="40 members"
+            tools:ignore="RtlHardcoded" />
 
         </LinearLayout>
 

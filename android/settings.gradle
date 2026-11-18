@@ -1,1 +1,1 @@
-include ':app', ':modules:irc-support'
+include ':app', ':modules:irc-support', ':modules:holo-ux', ':modules:geomapper'

@@ -1,11 +1,8 @@
 package dev.tinelix.irc.android.legacy.core.activities;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +18,10 @@ public class AboutApplicationActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_application);
+        setContentView(R.layout.activity_about_app);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Button repoButton = findViewById(R.id.repo_button);
         Button websiteButton = findViewById(R.id.website_button);
 
@@ -50,7 +50,7 @@ public class AboutApplicationActivity extends BaseActivity {
                 getResources().getString(
                         R.string.version_str,
                         BuildConfig.VERSION_NAME,
-                        Global.formatTimestamp(this, BuildConfig.BUILD_DATE)
+                        Global.formatTimestamp(this, BuildConfig.BUILD_DATE, "yyyy-MM-dd")
                 )
         );
     }

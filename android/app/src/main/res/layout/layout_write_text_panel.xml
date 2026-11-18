@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/holo_gray_dark"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/holo_gray_twilight" />
+
+    <LinearLayout
+        android:id="@+id/write_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:measureWithLargestChild="false"
+        tools:ignore="UnusedAttribute">
+
+        <dev.tinelix.irc.android.legacy.ui.views.AutoMaskedEditText
+            android:id="@+id/message_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:completionThreshold="1"
+            android:ems="10"
+            android:hint="@string/message_text_hint"
+            android:inputType="textLongMessage"
+            android:maxLines="3"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingBottom="12dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="12dp" />
+
+        <ImageButton
+            android:id="@+id/send_message_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:src="@drawable/ic_action_send" />
+
+    </LinearLayout>
 
 </LinearLayout>

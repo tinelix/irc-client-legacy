@@ -1,92 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Tinelix IRC Client</string>
+    <string name="app_name" translatable="false">Tinelix IRC</string>
     <string name="short_app_name" translatable="false">Tinelix IRC</string>
-    <string name="profile_name_label">Profile name:</string>
+
+    <!-- Activity titles !-->
+    <string name="about_app">About</string>
+    <string name="nicknames_manager_title">Nicknames Manager</string>
+    <string name="profile_settings_title">Profile settings</string>
+
+    <!-- Top 'Create' buttons !-->
+    <string name="new_profile">New profile</string>
+    <string name="add_nickname_item">Add nickname</string>
+
+    <!-- 'About' activity !-->
+    <string name="default_quit_msg" translatable="false">Tinelix IRC Client ver. %s for Android (%s)</string>
+    <string name="version_str">Version %1$s (%2$s)</string>
+    <string name="license_info">This is free software with open source, distributed under the terms of the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License 3.0 (read license)</a>.\n\n<b>WITHOUT ANY WARRANTY, NOT EVEN FOR MERCHANTABILITY.</b></string>
+    <string name="copyright_str" translatable="false">Copyright © 2022, 2026 Dmitry Tretyakov (aka. Tinelix)</string>
+    <string name="source_code_button">Source Code</string>
+    <string name="website_button">Website</string>
+
+    <!-- Dialog buttons !-->
     <string name="ok_button" translatable="false">OK</string>
     <string name="open_button">Open</string>
     <string name="cancel_button">Cancel</string>
-    <string name="enter_the_pfn_title">Create Profile</string>
-    <string name="your_nickname">Nickname</string>
-    <string name="prof_name">Profile name</string>
-    <string name="profile_main_category">Main</string>
-    <string name="auth_method">Auth. method</string>
-    <string name="add_nickname_item">Add nickname</string>
-    <string name="create_profile_item">Create Profile</string>
-    <string name="nicknames">Nicknames</string>
-    <string name="nicknames_manager_title">Nicknames Manager</string>
-    <string name="add" translatable="false">add</string>
-    <string name="clear_nicknames_btn">Clear</string>
-    <string name="password_label">Password</string>
-    <string name="realname">Real name</string>
-    <string name="server">Server</string>
-    <string name="server_settings">Server Settings</string>
-    <string name="identification">Identification</string>
-    <string name="hostname">Hostname</string>
-    <string name="port">Port</string>
-    <string name="only_ssl">Only SSL/TLS</string>
+
     <string name="connection_lost_msg">Connection lost.</string>
-    <string name="connection_timeout_msg">Connection time is exceeded. Try again later.</string>
-    <string name="no_connection_msg">Could not connect to the server.</string>
+    <string name="no_internet_msg">
+        "It is not possible to establish a connection to this server because there is no Internet connection."
+    </string>
+    <string name="connection_timeout_msg">Connection timeout is exceeded. Try again later.</string>
+    <string name="connection_reset_msg">"Connection refused. Try again later."</string>
+    <string name="no_connection_msg">Could not connect to the server. Try again later.</string>
     <string name="encoding">Encoding:</string>
     <string name="deleted_profile">Profile deleted</string>
     <string name="quit_session_title">Quit session</string>
     <string name="quit_session_msg">Disconnect from server?</string>
-    <string name="about_application_str">About</string>
-    <string name="version_str">Version %1$s (%2$s)</string>
-    <string name="license_info">This is free software with open source, distributed under the terms of the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License 3.0 (read license)</a>.\n\n<b>WITHOUT ANY WARRANTY, NOT EVEN FOR MERCHANTABILITY.</b></string>
-    <string name="repo_button">Repository</string>
-    <string name="copyright_str" translatable="false">Copyright © 2022 Dmitry Tretyakov (aka. Tinelix)</string>
     <string name="message_text_hint">Message</string>
+
+    <!-- Badges !-->
+    <string name="online_badge">Online</string>
+
+    <!-- App menu !-->
+    <string name="clear_nicknames_item">Clear</string>
     <string name="statistics_item">Statistics</string>
-    <string name="sended_label">Sent:</string>
-    <string name="received_label">Received:</string>
-    <string name="total_label">Total:</string>
-    <string name="bytes_stats">%1$s bytes</string>
-    <string name="kbytes_stats">%1$s kB</string>
-    <string name="mbytes_stats">%1$s MB</string>
-    <string name="gbytes_stats">%1$s GB</string>
-    <string name="session_stats">Session</string>
+    <string name="add_menu_item">Add</string>
+    <string name="add_connection_item">Connection</string>
+    <string name="add_channel_item">Channel</string>
     <string name="disconnect_item">Disconnect</string>
-    <string name="hide_ip_label">Hide IP address</string>
-    <string name="mention_notification_title">%1$s mentioned you</string>
-    <string name="empty_message_sending_attempt">You cannot send empty message.</string>
-    <string name="menu_button">Menu</string>
-    <string name="connection_progress">Connecting to %1$s…</string>
-    <string name="quit_message">Quiting message</string>
-    <string name="quit_message_label">Quiting message:</string>
-    <string name="default_quit_msg" translatable="false">Tinelix IRC Client ver. %s for Android (%s)</string>
-    <string name="interface_category">User Interface</string>
-    <string name="interface_language_item">Language</string>
-    <string name="interface_theme_item">Theme</string>
-    <string name="thread_category">Thread</string>
-    <string name="font_size_item">Font size</string>
-    <string name="font_size_label">Font size:</string>
-    <string name="preview_label">Preview:</string>
-    <string name="changing_font_label">Changing font size</string>
-    <string name="sample_preview_text" translatable="false">tinelix: Hello everyone (11:00:12)\nshortn: hello (11:00:13)\nlong_nick: hi\nsuper_long_nick: Hello, Dmitry! (11:00:13)\ntinelix: How are you? (11:00:16)</string>
-    <string name="settings_title">Settings</string>
-    <string name="value_in_px">%1$d px</string>
-    <string name="connected_state">CONNECTED</string>
-    <string name="website_button">Website</string>
-    <string name="need_to_restart">Application needs to be restarted</string>
-    <string name="empty_profiles_list_title">There\'s nothing here yet</string>
+
+    <!-- Channel menu !-->
+    <string name="channel_members_item">Channel members</string>
+
+    <!-- Placeholders !-->
+    <string name="empty_placeholder_title">There\'s nothing here yet</string>
     <string name="empty_profiles_list_description">You can create your own profile to start a conversation.</string>
-    <string name="application_category">Application</string>
-    <string name="saved_log">Debug log saved to Device Memory/%1$s</string>
-    <string name="saved_messages_history">Saving to Device Memory/%1$s</string>
-    <string name="allow_permisssion_in_storage_title">Permissions required</string>
-    <string name="allow_permisssion_in_storage">To save data to the Device Memory, application needs special permissions.\n\nOpen the \"About application\" system settings section?</string>
-    <string name="save_msg_history_item">Save messages history</string>
-    <string name="device_memory_restricted">Device Memory is not available</string>
-    <string name="forgot_nicknames">You forgot to enter the first nickname in Profile Settings.</string>
-    <string name="first_end_session">First end the running connection by pressing the Back button.</string>
-    <string name="text_field_wrong_characters">This text field must not contain special characters!</string>
-    <string name="show_messages_timestamps_item">Show timestamps in messages</string>
-    <string name="channels_tab_item">Channels</string>
-    <string name="restart_required">Changes will take effect only after restarting the app.</string>
+    <string name="empty_nicknames_list_description">To ensure you can be identified, you need to create your first nickname.</string>
+    <string name="under_construction_title">Under construction</string>
+    <string name="under_construction_description">
+        "Unfortunately, this functionality is not available in the current version. We promise to add it in future updates."
+    </string>
+
+    <!-- Event timestamps !-->
     <string name="today_at">today at</string>
     <string name="yesterday_at">yesterday at</string>
     <string name="date_at">at</string>
 
+    <!-- Statistics dialog !-->
+    <string name="stats_sent_bytes">Sent</string>
+    <string name="stats_received_bytes">Received</string>
+    <string name="stats_total_bytes">Total</string>
+
+    <!-- Profile settings !-->
+    <string name="profile_main_category">General</string>
+    <string name="pref_server_category">Server</string>
+    <string name="authorization_category">Authorization</string>
+
+    <string name="profile_name">Profile name</string>
+    <string name="pref_realname">Real name</string>
+    <string name="pref_nicknames">Nicknames management</string>
+    <string name="pref_nicknames_summary">Create or delete primary and alternative nicknames for identification</string>
+    <string name="your_nickname">Nickname</string>
+    <string name="pref_server_address">Server address</string>
+    <string name="hint_server_domain_edit">Domain</string>
+    <string name="hint_server_port_edit">Port</string>
+    <string name="password_access_checkbox">Password access</string>
+    <string name="pref_ping_interval">Ping interval</string>
+    <string name="pref_hostname">Device name</string>
+    <string name="pref_only_ssl_title">Secure connection</string>
+    <string name="pref_only_ssl_summary">Establish a TLS connection with a remote server when needed</string>
+    <string name="pref_hide_ip_title">Hide IP address</string>
+    <string name="pref_hide_ip_summary">Your IP address will remain visible only to server admins. It may not work with all servers.</string>
+    <string name="pref_text_encoding">Text encoding</string>
+    <string name="pref_login_method">Login method</string>
+    <string name="pref_password">Password</string>
+    <string name="pref_quit_message">Quiting message</string>
+    <string name="add_nickname_first">Please create your first nickname first and try again.</string>
+
+    <!-- UI settings !-->
+    <string name="pref_font_size">Font size</string>
+
+    <!-- Profile default name !-->
+    <string name="profile_default_name">Profile #%s</string>
+
+    <!-- MOTD or channel topic view !-->
+    <string name="pinned_message_title">Pinned message</string>
+    <string name="channel_topic_title">Channel topic</string>
+
+    <!-- Profile/server menu !-->
+    <string name="profile_menu_edit">Edit</string>
+    <string name="profile_menu_delete">Delete</string>
+
+    <!-- Notification channels !-->
+    <string name="notif_channels_default">Default notifications</string>
+    <string name="notif_channels_service">Service notifications</string>
+    <string name="notif_channels_chanmsg">Channel messages</string>
+    <string name="notif_channels_privmsg">Private messages</string>
+
+    <!-- Notification summaries !-->
+    <string name="notif_connection_summary_none">"No active connections"</string>
+
+    <string name="notif_connection_summary">"Connected with %1$s"</string>
+    <string name="notif_connection_summary_with_ping">"Connected with %1$s (%2$d ms)"</string>
+
+    <string name="notif_connection_summary_two">
+        "Connected with %1$s and %2$s"
+    </string>
+
+    <string name="notif_connection_summary_two_with_ping">
+        "Connected with %1$s (%2$d ms) and %3$s (%4$d ms)"
+    </string>
+
+    <string name="notif_connection_summary_many">"Connected with %1$s, %2$s and %3$d servers"</string>
+    <string name="notif_connection_summary_many_with_ping">
+        "Connected with %1$s (%2$d ms), %3$s (%4$d ms) and %5$d servers"
+    </string>
+
+    <!-- Progress dialog statuses !-->
+    <string name="progress_profile_initializing">Initializing…</string>
+    <string name="progress_profile_establishing">Establishing connection…</string>
+    <string name="progress_profile_nick_is_busy">Current nickname %s is busy. Selecting the next nickname…</string>
 </resources>

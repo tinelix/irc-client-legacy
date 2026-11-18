@@ -1,104 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="main_menu_array">
-        <item>Начать общение</item>
-        <item>Настройки</item>
-        <item>О приложении</item>
-        <item>Выход</item>
-    </string-array>
-    <string name="connection_manager_title">Менеджер подключений</string>
-    <string name="connection_manager_add_item">Добавить</string>
-    <string name="connection_manager_connect_item">Подключиться</string>
-    <string name="connection_manager_change_item">Изменить</string>
-    <string name="connection_manager_delete_item">Удалить</string>
-    <string name="profile_name_label">Имя профиля:</string>
-    <string name="open_button">Открыть</string>
-    <string name="cancel_button">Отмена</string>
-    <string name="enter_the_pfn_title">Ввод имени профиля</string>
-    <string name="enter_the_nick_title">Ввод никнейма</string>
-    <string name="enter_the_password_title">Ввод пароля</string>
-    <string name="enter_the_realname_title">Ввод настоящего имени</string>
-    <string name="enter_the_hostname_title">Ввод имени хоста</string>
-    <string name="prof_name">Имя профиля</string>
-    <string name="your_nickname">Никнейм</string>
-    <string name="profile_main_category">Общие</string>
-    <string name="auth_method">Метод аутентификации</string>
-    <string name="add_nickname_item">Добавить никнейм</string>
-    <string name="create_profile_item">Создать профиль</string>
+    <!-- Profile settings !-->
     <string name="nicknames_manager_title">Менеджер никнеймов</string>
-    <string name="nicknames">Никнеймы</string>
-    <string name="clear_nicknames_btn">Очистить</string>
-    <string name="password_label">Пароль</string>
-    <string name="realname">Настоящее имя</string>
-    <string name="hostname">Имя хоста</string>
-    <string name="server">Сервер</string>
-    <string name="server_settings">Настройки сервера</string>
-    <string name="identification">Идентификация</string>
-    <string name="port">Порт</string>
-    <string name="only_ssl">Только SSL/TLS</string>
-    <string name="connection_lost_msg">Соединение потеряно.</string>
-    <string name="connection_timeout_msg">Время подключения превышено. Повторите позже.</string>
-    <string name="no_connection_msg">Не удалось подключиться к серверу.</string>
-    <string name="encoding">Кодировка:</string>
-    <string name="deleted_profile">Профиль удален</string>
-    <string name="quit_session_title">Выход из сеанса</string>
-    <string name="quit_session_msg">Отсоединиться от сервера?</string>
-    <string name="about_application_str">О приложении</string>
+    <string name="profile_settings_title">Настройки профиля</string>
+    <string name="about_app">О приложении</string>
+
+    <!-- Top 'Create' buttons !-->
+    <string name="new_profile">Создать профиль</string>
+    <string name="add_nickname_item">Добавить никнейм</string>
+
+    <!-- 'About' activity !-->
     <string name="version_str">Версия %1$s (%2$s)</string>
-    <string name="license_info">Это свободное программное обеспечение с открытым исходным кодом, распространяемое в соответствии с условиями <a href="https://www.gnu.org/licenses/gpl-3.0.ru.html">GNU General Public License 3.0 (прочитать лицензию)</a>.\n\n<b>БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, ВКЛЮЧАЯ КОММЕРЧЕСКУЮ ЦЕННОСТЬ.</b></string>
-    <string name="repo_button">Репозиторий</string>
-    <string name="message_text_hint">Сообщение</string>
-    <string name="statistics_item">Статистика</string>
-    <string name="sended_label">Отправлено:</string>
-    <string name="received_label">Получено:</string>
-    <string name="total_label">Итого:</string>
-    <string name="bytes_stats">%1$s байт</string>
-    <string name="kbytes_stats">%1$s кБ</string>
-    <string name="mbytes_stats">%1$s МБ</string>
-    <string name="gbytes_stats">%1$s ГБ</string>
-    <string name="session_stats">Сеанс</string>
-    <string name="disconnect_item">Отсоединиться</string>
-    <string name="hide_ip_label">Скрывать IP-адрес</string>
-    <string name="mention_notification_title">%1$s упомянул(a) вас</string>
-    <string name="empty_message_sending_attempt">Вы не можете отправить пустое сообщение.</string>
-    <string name="menu_button">Меню</string>
-    <string name="connection_progress">Соединение к %1$s...</string>
-    <string name="quit_message">Сообщение о выходе</string>
-    <string name="quit_message_label">Сообщение о выходе:</string>
-    <string name="enter_the_quiting_message">Ввод сообщения о выходе</string>
-    <string name="interface_category">Интерфейс</string>
-    <string name="interface_language_item">Язык (Language)</string>
-    <string name="interface_theme_item">Тема оформления</string>
-    <string name="thread_category">Поток</string>
-    <string name="font_size_item">Размер шрифта</string>
-    <string name="font_size_label">Размер шрифта:</string>
-    <string name="changing_font_label">Изменение размера шрифта</string>
-    <string name="preview_label">Предпросмотр:</string>
-    <string name="settings_title">Настройки</string>
-    <string name="value_in_px">%1$d пикс.</string>
-    <string name="connected_state">ПОДКЛЮЧЕНО</string>
+    <string name="license_info">Это свободное программное обеспечение. Вы можете его изменять и распространять в соответствии с условиями лицензии <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License 3.0 (прочитать)</a>.\n\n<b>РАПРОСТРАНЯЕТСЯ БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, ВКЛЮЧАЯ КОММЕРЧЕСКУЮ ЦЕННОСТЬ ИЛИ ПРИГОДНОСТЬ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ.</b></string>
+    <string name="source_code_button">Исходный код</string>
     <string name="website_button">Сайт</string>
-    <string name="need_to_restart">Необходима перезагрузка приложения</string>
-    <string name="empty_profiles_list_title">Здесь пока ничего нет</string>
-    <string name="empty_profiles_list_description">Для того, чтобы начать общение, вы можете создать свой профиль.</string>
-    <string name="application_category">Приложение</string>
-    <string name="debug_log_item">Отладочный журнал</string>
-    <string name="save_log_btn">Сохранить журнал</string>
-    <string name="saved_log">Отладочный журнал сохранен в Память устройства/%1$s</string>
-    <string name="saved_messages_history">Сохраняется в Память устройства/%1$s</string>
-    <string name="allow_permisssion_in_storage_title">Требуются разрешения</string>
-    <string name="allow_permisssion_in_storage">Для сохранения данных в память устройства приложению нужны специальные разрешения.\n\nОткрыть раздел системных настроек \"О приложении\"?</string>
-    <string name="save_msg_history_item">Сохр. историю сообщений</string>
-    <string name="device_memory_restricted">Память устройства недоступна</string>
-    <string name="go_down_action">Вниз</string>
-    <string name="forgot_nicknames">Вы забыли указать первый никнейм в настройках профиля.</string>
-    <string name="first_end_session">Сначала завершите запущенное соединение нажатием кнопки \"Назад\".</string>
-    <string name="text_field_wrong_characters">Это текстовое поле не должно содержать специальные символы</string>
-    <string name="doesnt_work_in_cav">Пока не работает в текущей версии Android</string>
-    <string name="autoscroll_is_disabled">Автопрокрутка отключена. Включить можно с помощью кнопки \"Вниз\".</string>
-    <string name="show_messages_timestamps_item">Показывать время в сообщ.</string>
-    <string name="channels_tab_item">Каналы</string>
+
+    <!-- Dialogs !-->
+    <string name="open_button">Oткрыть</string>
+    <string name="cancel_button">Отмена</string>
+    <string name="quit_session_title">Завершить сессию</string>
+    <string name="quit_session_msg">Отключиться от сервера?</string>
+
+    <!-- Toasts !-->
+    <string name="deleted_profile">Профиль удален</string>
+    <string name="no_internet_msg">Невозможно установить соединение с этим сервером, так как отсутствует подключение к Интернету.</string>
+    <string name="connection_timeout_msg">Время ожидания сервера превышено. Повторите позже.</string>
+    <string name="no_connection_msg">Невозможно установить соединение с этим сервером. Повторите позже.</string>
+    <string name="connection_reset_msg">Соединение прервано. Повторите позже.</string>
+    <string name="add_nickname_first">Сначала добавьте свой первый никнейм и повторите попытку.</string>
+    <string name="connection_is_already_established">
+        "Соединение с этим сервером уже было установлено. Вы можете вернуться к нему кнопкой \"Назад\"."
+    </string>
+
+    <!-- EditText hints !-->
+    <string name="message_text_hint">Написать сообщение</string>
+
+    <!-- App menu !-->
+    <string name="clear_nicknames_item">Очистить</string>
+    <string name="statistics_item">Статистика</string>
+    <string name="add_menu_item">Добавить</string>
+    <string name="add_connection_item">Подключение</string>
+    <string name="add_channel_item">Канал</string>
+    <string name="disconnect_item">Отключиться</string>
+
+    <!-- Channel menu !-->
+    <string name="channel_members_item">Список участников</string>
+
+    <!-- Placeholders !-->
+    <string name="empty_placeholder_title">Здесь пока ничего нет</string>
+    <string name="empty_profiles_list_description">Чтобы начать общение, вы можете создать новый профиль.</string>
+    <string name="empty_nicknames_list_description">Чтобы вас могли идентифицировать, вам нужно создать свой первый никнейм.</string>
+    <string name="under_construction_title">Этот раздел находится в разработке</string>
+    <string name="under_construction_description">
+        "К сожалению, этот фукнционал в данной версии отсутствует. Обещаем его добавить в последующих обновлениях."
+    </string>
+    <string name="no_channel_members_title">Нет списка участников</string>
+    <string name="no_channel_members_description">
+        "В настоящее время список участников недоступен для этого канала. Попробуйте зайти позднее."
+    </string>
+
+    <!-- Badges !-->
+    <string name="online_badge">В сети</string>
+
+    <!-- Event timestamps !-->
     <string name="today_at">сегодня в</string>
     <string name="yesterday_at">вчера в</string>
     <string name="date_at">в</string>
+
+    <!-- Statistics dialog !-->
+    <string name="stats_sent_bytes">Отправлено</string>
+    <string name="stats_received_bytes">Получено</string>
+    <string name="stats_total_bytes">Всего</string>
+
+    <!-- Profile settings !-->
+    <string name="profile_main_category">Общие</string>
+    <string name="pref_server_category">Сервер</string>
+    <string name="authorization_category">Авторизация</string>
+
+    <string name="profile_name">Имя профиля</string>
+    <string name="pref_realname">Настоящее имя</string>
+    <string name="pref_nicknames">Управление никнеймами</string>
+    <string name="pref_nicknames_summary">Создание или удаление первичных и альтернативных никнеймов для идентификации</string>
+    <string name="your_nickname">Ваш никнейм</string>
+    <string name="pref_server_address">Адрес сервера</string>
+    <string name="hint_server_domain_edit">Домен</string>
+    <string name="hint_server_port_edit">Порт</string>
+    <string name="password_access_checkbox">Доступен с паролем</string>
+    <string name="pref_ping_interval">Частота измерения задержек</string>
+    <string name="pref_hostname">Имя устройства</string>
+    <string name="pref_only_ssl_title">Защищенное соединение</string>
+    <string name="pref_only_ssl_summary">Устанавливать TLS-соединение с удаленным сервером, когда это необходимо</string>
+    <string name="pref_hide_ip_title">Скрывать IP-адрес</string>
+    <string name="pref_hide_ip_summary">Ваш IP-адрес останется видимым только для администраторов сервера. Может работать не со всеми серверами.</string>
+    <string name="pref_text_encoding">Кодировка текста</string>
+    <string name="pref_login_method">Способ входа</string>
+    <string name="pref_password">Пароль</string>
+    <string name="pref_quit_message">Сообщение о выходе</string>
+
+    <!-- UI settings !-->
+    <string name="pref_font_size">Размер шрифта</string>
+
+    <!-- Profile default name !-->
+    <string name="profile_default_name">Профиль #%s</string>
+
+    <!-- MOTD or channel topic view !-->
+    <string name="pinned_message_title">Закрепленное сообщение</string>
+    <string name="channel_topic_title">Тема канала</string>
+
+    <!-- Profile/server menu !-->
+    <string name="profile_menu_edit">Изменить</string>
+    <string name="profile_menu_delete">Удалить</string>
+
+    <!-- Notification channels !-->
+    <string name="notif_channels_default">По умолчанию</string>
+    <string name="notif_channels_service">Служебные уведомления</string>
+    <string name="notif_channels_chanmsg">Сообщения из каналов</string>
+    <string name="notif_channels_privmsg">Личные сообщения</string>
+
+    <!-- Notification summaries !-->
+    <string name="notif_connection_summary_none">"Нет активных соединений"</string>
+
+    <string name="notif_connection_summary">"Подключено к %1$s"</string>
+    <string name="notif_connection_summary_with_ping">"Подключено к %1$s (%2$d мс)"</string>
+    <string name="notif_connection_summary_with_ping_2">"Подключено к %1$s (%2$.2f с)"</string>
+
+    <string name="notif_connection_summary_two">"Подключено к %1$s и %2$s"</string>
+    <string name="notif_connection_summary_two_with_ping">
+        "Подключено к %1$s (%2$d мс) и %3$s (%4$d мс)"
+    </string>
+    <string name="notif_connection_summary_two_with_ping_2">
+        "Подключено к %1$s (%2$.2f с) и %3$s (%4$.2f с)"
+    </string>
+
+    <string name="notif_connection_summary_many">"Подключено к %1$s, %2$s и %3$d серверам"</string>
+    <string name="notif_connection_summary_many_with_ping">
+        "Подключено к %1$s (%2$d мс), %3$s (%4$d мс) и %5$d серверам"
+    </string>
+    <string name="notif_connection_summary_many_with_ping_2">
+        "Подключено к %1$s (%2$.2f сек), %3$s (%4$.2f сек) и %5$d серверам"
+    </string>
+
+    <!-- Progress dialog statuses !-->
+    <string name="progress_profile_initializing">Инициализация…</string>
+    <string name="progress_profile_establishing">Установка соединения…</string>
+    <string name="progress_profile_nick_is_busy">Текущий никнейм %s занят. Подбор следующего никнейма…</string>
+
+    <string name="dialog_profile_nick_is_busy_title">Нет свободных никнеймов</string>
+    <string name="dialog_profile_nick_is_busy_description">
+        "Все остальные никнеймы, необходимые для входа на указанный сервер, уже заняты. Пожалуйста, освободите одну из них или введите другой никнейм."
+    </string>
 </resources>

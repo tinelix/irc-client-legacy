@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/add_item"
+        android:icon="@drawable/ic_action_circle_add"
+        android:title="@string/add_menu_item"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource,UnusedAttribute">
+        <menu>
+            <item
+                android:id="@+id/add_connection_item"
+                android:title="@string/add_connection_item" />
+            <!--<item
+                android:id="@+id/add_channel_item"
+                android:title="@string/add_channel_item"/>!-->
+        </menu>
+    </item>
+
+    <!--<item
         android:id="@+id/statistics_item"
-        android:title="@string/statistics_item" />
+        android:title="@string/statistics_item" />!-->
+    <item
+        android:id="@+id/channel_members_item"
+        android:icon="@drawable/ic_holo4ux_dark_social_group"
+        android:title="@string/channel_members_item"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/disconnect_item"
+        android:title="@string/disconnect_item" />
 </menu>
