@@ -155,7 +155,7 @@
         "Подключено к %1$s (%2$d мс), %3$s (%4$d мс) и %5$d серверам"
     </string>
     <string name="notif_connection_summary_many_with_ping_2">
-        "Подключено к %1$s (%2$.2f сек), %3$s (%4$.2f сек) и %5$d серверам"
+        "Подключено к %1$s (%2$.2f с), %3$s (%4$.2f с) и %5$d серверам"
     </string>
 
     <!-- Progress dialog statuses !-->

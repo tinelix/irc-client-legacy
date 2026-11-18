@@ -140,6 +140,7 @@
 
     <string name="notif_connection_summary">"Connected with %1$s"</string>
     <string name="notif_connection_summary_with_ping">"Connected with %1$s (%2$d ms)"</string>
+    <string name="notif_connection_summary_with_ping_2">"Connected with %1$s (%2$.2f s)"</string>
 
     <string name="notif_connection_summary_two">
         "Connected with %1$s and %2$s"
@@ -148,10 +149,16 @@
     <string name="notif_connection_summary_two_with_ping">
         "Connected with %1$s (%2$d ms) and %3$s (%4$d ms)"
     </string>
+    <string name="notif_connection_summary_two_with_ping_2">
+        "Connected with %1$s (%2$.2f s) and %3$s (%4$.2f s)"
+    </string>
 
     <string name="notif_connection_summary_many">"Connected with %1$s, %2$s and %3$d servers"</string>
     <string name="notif_connection_summary_many_with_ping">
         "Connected with %1$s (%2$d ms), %3$s (%4$d ms) and %5$d servers"
+    </string>
+    <string name="notif_connection_summary_many_with_ping_2">
+        "Connected with %1$s (%2$.2f s), %3$s (%4$.2f s) and %5$d servers"
     </string>
 
     <!-- Progress dialog statuses !-->
