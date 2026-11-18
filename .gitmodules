@@ -1,3 +1,6 @@
 [submodule "windows/win32s/libs/WSAWrapper"]
 	path = windows/win32s/libs/WSAWrapper
 	url = https://github.com/tinelix/WSAWrapper
+[submodule "android/modules/holo-ux"]
+	path = android/modules/holo-ux
+	url = http://github.com/tinelix/HoloUXLibrary

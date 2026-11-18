@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ircs_command_names" translatable="false">
+        <item>/help</item>
+        <item>/version</item>
+        <item>/ns id</item>
+        <item>/ns reg</item>
+        <item>/nick</item>
+        <item>/privmsg</item>
+        <item>/join</item>
+        <item>/part</item>
+        <item>/quit</item>
+    </string-array>
+
+    <string-array name="ircs_command_descriptions">
+        <item>(no description)</item>
+        <item>open the help system</item>
+        <item>current server SW version</item>
+        <item>login via NickServ</item>
+        <item>register via NickServ</item>
+        <item>change nickname</item>
+        <item>write a private message</item>
+        <item>join to the channel</item>
+        <item>leave the channel</item>
+        <item>disconnect from server</item>
+    </string-array>
+</resources>

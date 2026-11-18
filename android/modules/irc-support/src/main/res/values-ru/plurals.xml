@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="users_count">
+        <item quantity="one">%s пользователь</item>
+        <item quantity="few">%s пользователя</item>
+        <item quantity="many">%s пользователей</item>
+        <item quantity="other">%s пользователей</item>
+    </plurals>
+
+    <plurals name="members_count">
+        <item quantity="one">%s участник</item>
+        <item quantity="few">%s участника</item>
+        <item quantity="many">%s участников</item>
+        <item quantity="other">%s участников</item>
+    </plurals>
+
+    <plurals name="channels_count">
+        <item quantity="one">%s канал</item>
+        <item quantity="few">%s канала</item>
+        <item quantity="many">%s каналов</item>
+        <item quantity="other">%s каналов</item>
+    </plurals>
+
+    <plurals name="administrators_count">
+        <item quantity="one">%s администратор</item>
+        <item quantity="few">%s администратора</item>
+        <item quantity="many">%s администраторов</item>
+        <item quantity="other">%s администраторов</item>
+    </plurals>
+
+    <plurals name="new_users_count">
+        <item quantity="one">%s новый пользователь</item>
+        <item quantity="few">%s новых пользователя</item>
+        <item quantity="many">%s новых пользователей</item>
+        <item quantity="other">%s новых пользователей</item>
+    </plurals>
+</resources>

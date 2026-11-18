@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ircs_signal_notice_lookup_hostname">"Поиск имени хоста…"</string>
+    <string name="ircs_signal_notice_cant_resolve_hostname">
+        "Не удалось найти имя хоста. Вместо него будет использоваться ваш IP-адрес"
+    </string>
+    <string name="ircs_signal_welcome">"Добро пожаловать в IRC-сеть %1$s!\r\nВаша маска: %2$s"</string>
+    <string name="ircs_signal_server_created">"Последнее обновление сервера: %s</string>
+    <string name="ircs_signal_luser">
+"Статистика сервера:
+  %1$s онлайн
+  %2$s всего
+
+Статистика сети:
+  %3$s онлайн
+  %4$s всего
+  %5$s
+  %6$s
+  %7$s"
+    </string>
+
+    <string name="ircs_signal_host_changed">"Адрес хоста заменен на %1$s"</string>
+
+    <string name="ircs_signal_mode_added">"Включен режим:\r\n%1$s"</string>
+    <string name="ircs_signal_mode_added_many">"Включены режимы:\r\n%1$s"</string>
+    <string name="ircs_signal_mode_removed">"Выключен режим:\r\n%1$s"</string>
+    <string name="ircs_signal_mode_removed_many">"Выключены режимы:\r\n%1$s"</string>
+    <string name="ircs_signal_mode_added_and_remove_many">
+        "Включены режимы:\r\n%1$s\r\nОтключены режимы:\r\n%2$s"
+    </string>
+    <string name="ircs_signal_channel_members_count">"Сейчас в канале %1$s присутствуют %2$s"</string>
+    <string name="ircs_signal_channel_website">"Сайт: %s"</string>
+
+    <string name="ircs_signal_nickname_changed">"%1$s теперь становится %2$s"</string>
+
+    <string name="ircs_signal_member_join">"%1$s заходит на канал %2$s"</string>
+    <string name="ircs_signal_member_leave">"%1$s уходит из канала %2$s"</string>
+    <string name="ircs_signal_member_quit">"%1$s покидает сервер"</string>
+    <string name="ircs_signal_member_quit_client_error">"%1$s отключен(а) от сервера после сбоя клиента"</string>
+    <string name="ircs_signal_member_quit_with_reason">"%1$s покидает сервер с указанием причины:\r\n%2$s"</string>
+    <string name="ircs_signal_member_quit_ping_timeout">
+        "%1$s отключен(а) из-за потери связи с сервером в течении %2$d секунд"
+    </string>
+
+    <string name="ircs_signal_chanusers_grants">"%1$s дает %2$s следующие права:\r\n%3$s"</string>
+    <string name="ircs_signal_chanusers_grants_revoke">
+        "%1$s дает %2$s следующие права:\r\n%3$s\r\nи отзывает права:\r\n%4$s"</string>
+    <string name="ircs_signal_chanusers_revoke">"%1$s отзывает у %2$s следующие права:\r\n%3$s"</string>
+    <string name="ircs_signal_chanusers_banned">"%1$s заблокировал %2$s"</string>
+    <string name="ircs_signal_channels_modes">"Для канала %1$s предусмотрены права:\r\n%2$s"</string>
+
+    <string name="ircs_signal_error_nickname_in_use">
+        "На данный момент этот никнейм занят. Обсвободите его или выберите другой никнейм."
+    </string>
+</resources>

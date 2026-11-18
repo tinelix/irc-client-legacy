@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ircs_user_mode_badges">
+        <item>АДМИН IRC</item>          <!-- +o global mode !-->
+        <item>ВЛАДЕЛЕЦ</item>
+        <item>АДМИН</item>              <!-- +o mode !-->
+        <item>МОДЕРАТОР</item>          <!-- +h mode !-->
+        <item>СПИКЕР</item>             <!-- +v mode !-->
+        <item>БОТ</item>                <!-- +B mode !-->
+        <item>ОТОШЕЛ</item>
+        <item>ЗАКРЫТ ДЛЯ ЛС</item>      <!-- +D, +R, +Z mode if there is a difference !-->
+        <item>ЗАГЛУШЕН</item>           <!-- +d mode !-->
+        <item>НЕВИДИМКА</item>          <!-- +i mode !-->
+        <item>АВТОРИЗОВАН</item>        <!-- +r mode !-->
+        <item>СЛУЖБА</item>             <!-- +S mode !-->
+        <item>ЗАЩИЩЕН</item>            <!-- +z mode !-->
+    </string-array>
+
+    <string-array name="ircs_signal_types">
+        <item>ПРИВЕТСТВИЕ</item>
+        <item>КЛИЕНТ</item>
+        <item>СЕРВЕР</item>
+        <item>КАНАЛ</item>
+        <item>ВОЗМОЖНОСТИ</item>
+        <item>СТАТИСТИКА</item>
+        <item>ПОВЕСТКА ДНЯ</item>
+        <item>РЕЖИМЫ</item>
+        <item>ТЕМА</item>
+        <item>СООБЩЕНИЕ</item>
+        <item>СОБЫТИЕ</item>
+        <item>КОМАНДА</item>
+        <item>ОШИБКА</item>
+        <item>ВЫХОД</item>
+        <item>NICKSERV</item>
+        <item>CHANSERV</item>
+        <item>OPERSERV</item>
+    </string-array>
+
+    <string-array name="ircs_user_modes" formatted="false">
+        <item>"прием ЛС только от администраторов сервера (%c%c)"</item>
+        <item>"режим цензуры (%c%c)"</item>
+        <item>"режим невидимки (%c%c)"</item>
+        <item>"режим авторизованного пользователя (%c%c)"</item>
+        <item>"прием ЛС только от авторизованных пользователей (%c%c)"</item>
+        <item>"запрет CTCP-команд (%c%c)"</item>
+        <item>"получение новостей сервера (%c%c)"</item>
+        <item>"маскировка IP-адреса (%c%c)"</item>
+        <item>"режим администратора сервера (%c%c)"</item>
+        <item>"прием ЛС только от пользователей с защищенным соединением (%c%c)"</item>
+    </string-array>
+
+    <string-array name="ircs_channel_user_modes" formatted="false">
+        <item>"права спикера (%c%c)"</item>
+        <item>"права модератора (%c%c)"</item>
+        <item>"права администратора канала (%c%c)"</item>
+        <item>"заблокирован (%c%c)"</item>
+    </string-array>
+
+    <string-array name="ircs_channel_modes" formatted="false">
+        <item>"охраняемый канал (%c%c)"</item>
+        <item>"запрещены CTCP-команды (%c%c)"</item>
+        <item>"запрещены цветные сообщения (%c%c)"</item>
+        <item>"доступен только по приглашениям (%c%c)"</item>
+        <item>"тема защищена (%c%c)"</item>
+        <item>"без сообщений извне (%c%c)"</item>
+        <item>"защищен паролем (%c%c)"</item>
+        <item>"запрещено менять никнейм (%c%c)"</item>
+        <item>"кол-во участников ограничено (%c%c)"</item>
+        <item>"доступен только авторизованным пользователям (%c%c)"</item>
+        <item>"частный канал (%c%c)"</item>
+        <item>"секретный канал (%c%c)"</item>
+        <item>"доступен только пользователям с защищенным соединением (%c%c)"</item>
+    </string-array>
+</resources>

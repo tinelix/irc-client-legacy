@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Referenced from http://www.unrealircd.org/docs/User_modes !-->
+    <string-array name="ircs_user_mode_letters" translatable="false">
+        <item>B</item>
+        <item>d</item>
+        <item>D</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>i</item>
+        <item>o</item>
+        <item>p</item>
+        <item>q</item>
+        <item>r</item>
+        <item>R</item>
+        <item>S</item>
+        <item>s</item>
+        <item>T</item>
+        <item>t</item>
+        <item>W</item>
+        <item>w</item>
+        <item>x</item>
+        <item>Z</item>
+        <item>z</item>
+    </string-array>
+
+    <string-array name="ircs_user_mode_badges">
+        <item>IRC ADMIN</item>          <!-- +o global mode !-->
+        <item>OWNER</item>
+        <item>ADMIN</item>              <!-- +o mode !-->
+        <item>MODERATOR</item>          <!-- +h mode !-->
+        <item>SPEAKER</item>            <!-- +v mode !-->
+        <item>BOT</item>                <!-- +B mode !-->
+        <item>AWAY</item>
+        <item>DM\'S CLOSED</item>       <!-- +D, +R, +Z mode if there is a difference !-->
+        <item>MUTED</item>              <!-- +d mode !-->
+        <item>INVISIBLE</item>          <!-- +i mode !-->
+        <item>AUTHORIZED</item>         <!-- +r mode !-->
+        <item>SERVICE</item>            <!-- +S mode !-->
+        <item>SECURED</item>            <!-- +z mode !-->
+    </string-array>
+
+    <string-array name="ircs_signal_types">
+        <item>WELCOME</item>
+        <item>CLIENT</item>
+        <item>SERVER</item>
+        <item>CHANNEL</item>
+        <item>CAPABILITIES</item>
+        <item>STATISTICS</item>
+        <item>MOTD</item>
+        <item>MODES</item>
+        <item>TOPIC</item>
+        <item>MESSAGE</item>
+        <item>EVENT</item>
+        <item>COMMAND</item>
+        <item>ERROR</item>
+        <item>QUIT</item>
+        <item>NICKSERV</item>
+        <item>CHANSERV</item>
+        <item>OPERSERV</item>
+    </string-array>
+
+    <string-array name="ircs_user_modes" formatted="false">
+        <item>"receive PM from administrators only (%c%c)"</item>
+        <item>"censorship mode (%c%c)"</item>
+        <item>"invisible (%c%c)"</item>
+        <item>"authorized user (%c%c)"</item>
+        <item>"receive PM from authorized users only (%c%c)"</item>
+        <item>"no CTCP allowed (%c%c)"</item>
+        <item>"receive server news (%c%c)"</item>
+        <item>"cloak IP address (%c%c)"</item>
+        <item>"server operator (%c%c)"</item>
+        <item>"receive PM from secure user only (%c%c)"</item>
+    </string-array>
+
+    <string-array name="ircs_channel_user_modes" formatted="false">
+        <item>"speaker rights (%c%c)"</item>
+        <item>"channel moderator rights (%c%c)"</item>
+        <item>"channel admin rights (%c%c)"</item>
+        <item>"blocked (%c%c)"</item>
+    </string-array>
+
+    <string-array name="ircs_channel_modes" formatted="false">
+        <item>"moderated channel (%c%c)"</item>
+        <item>"no CTCP allowed (%c%c)"</item>
+        <item>"no colour messages allowed (%c%c)"</item>
+        <item>"invite-only (%c%c)"</item>
+        <item>"topic lock (%c%c)"</item>
+        <item>"no messages from outside (%c%c)"</item>
+        <item>"password-protected (%c%c)"</item>
+        <item>"nickname changes not allowed (%c%c)"</item>
+        <item>"member count is limited (%c%c)"</item>
+        <item>"registered users only (%c%c)"</item>
+        <item>"private channel (%c%c)"</item>
+        <item>"secret channel (%c%c)"</item>
+        <item>"secured users only (%c%c)"</item>
+    </string-array>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="signal_notice_lookup_hostname">"Looking up your hostname…"</string>
+    <string name="signal_notice_cant_resolve_hostname">
+        "Couldn't resolve your hostname; using your IP address instead"
+    </string>
+    <string name="signal_welcome">"Welcome to the %1$s IRC Network!\r\nYour usermask: %2$s"</string>
+    <string name="signal_server_created">"The server was last updated on %s</string>
+    <string name="signal_luser">
+"Server statistics:
+  %1$s online
+  %2$s total
+
+Network statistics:
+  %3$s online
+  %4$s total
+  %5$s
+  %6$s
+  %7$s"
+</string>
+
+    <string name="ircs_signal_mode_added">"Mode is ON: %1$s"</string>
+    <string name="ircs_signal_mode_added_many">"Modes is ON: %1$s"</string>
+    <string name="ircs_signal_mode_removed">"Mode is OFF: %1$s"</string>
+    <string name="ircs_signal_mode_removed_many">"Modes is OFF: %1$s"</string>
+    <string name="ircs_signal_mode_added_and_remove_many">
+        "Modes is ON:\r\n%1$s\r\nMode is OFF:\r\n%2$s"
+    </string>
+
+    <string name="ircs_signal_nickname_changed">"%1$s now becomes %2$s"</string>
+
+    <string name="ircs_signal_member_join">"%1$s joined to the %2$s channel"</string>
+    <string name="ircs_signal_member_leave">"%1$s leaved the %2$s channel"</string>
+    <string name="ircs_signal_member_quit">"%1$s leaved from the server"</string>
+    <string name="ircs_signal_member_quit_client_error">
+        "%1$s was disconnected from the server following a client error"
+    </string>
+    <string name="ircs_signal_member_quit_with_reason">"%1$s leaved the server with reason:\r\n%2$s"</string>
+    <string name="ircs_signal_member_quit_ping_timeout">
+        "%1$s has been disconnected due to a loss of connection with the server for %2$d seconds"
+    </string>
+
+    <string name="ircs_signal_channel_members_count">"There are currently %2$s members in the %1$s"</string>
+    <string name="ircs_signal_channel_website">"Website: %s"</string>
+
+    <string name="ircs_signal_chanusers_grants">
+        "%1$s grants %2$s\'s following rights:\r\n%3$s"
+    </string>
+    <string name="ircs_signal_chanusers_grants_revoke">
+        "%1$s grants %2$s\'s following rights:\r\n%3$s\r\n…and revokes:\r\n%4$s"
+    </string>
+    <string name="ircs_signal_chanusers_revoke">
+        "%1$s revokes %2$s\'s following rights:\r\n%3$s"
+    </string>
+    <string name="ircs_signal_chanusers_banned">"%1$s blocked %2$s"</string>
+    <string name="ircs_signal_channels_modes">"%1$s channel has permissions:\r\n%2$s"</string>
+</resources>

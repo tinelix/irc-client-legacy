@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ircs_command_descriptions">
+        <item>(без описания)</item>
+        <item>открыть справочную систему</item>
+        <item>узнать версию серверного ПО</item>
+        <item>войти в аккаунт через NickServ</item>
+        <item>зарегистр. через NickServ</item>
+        <item>сменить никнейм</item>
+        <item>написать личное сообщение</item>
+        <item>зайти на канал</item>
+        <item>уйти из канала</item>
+        <item>отключиться от сервера</item>
+    </string-array>
+</resources>

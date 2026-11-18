@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="users_count">
+        <item quantity="one">%s user</item>
+        <item quantity="many">%s users</item>
+    </plurals>
+
+    <plurals name="members_count">
+        <item quantity="one">%s member</item>
+        <item quantity="few">%s members</item>
+    </plurals>
+
+    <plurals name="channels_count">
+        <item quantity="one">%s channel</item>
+        <item quantity="few">%s channels</item>
+    </plurals>
+
+    <plurals name="administrators_count">
+        <item quantity="one">%s administrator</item>
+        <item quantity="few">%s administrators</item>
+    </plurals>
+
+    <plurals name="new_users_count">
+        <item quantity="one">%s new user</item>
+        <item quantity="few">%s new users</item>
+    </plurals>
+</resources>
