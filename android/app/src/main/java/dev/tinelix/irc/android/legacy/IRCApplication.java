@@ -64,6 +64,9 @@ public class IRCApplication extends Application {
         if(!globalPrefs.contains("showMsgTimestamps"))
             editor.putBoolean("showMsgTimestamps", true);
 
+        if(!globalPrefs.contains("firstStartupTimestamp"))
+            editor.putLong("firstStartupTimestamp", System.currentTimeMillis());
+
         editor.commit();
     }
 

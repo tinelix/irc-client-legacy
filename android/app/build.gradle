@@ -36,6 +36,38 @@ android {
     compileSdkVersion 29
     //noinspection GradleDependency
     buildToolsVersion "29.0.0"
+    signingConfigs {
+        if (file('.signing/app-release.prop').exists()) {
+            release {
+                Properties props = new Properties();
+                props.load(new FileInputStream(file(".signing/app-release.prop")))
+                storeFile file(props['RELEASE_STORE_FILE'])
+                storePassword props['RELEASE_STORE_PASSWORD']
+                keyAlias props['RELEASE_KEY_ALIAS']
+                keyPassword props['RELEASE_KEY_PASSWORD']
+            }
+        }
+        debug {
+            if (file('.signing/app-debug.prop').exists()) {
+                Properties props = new Properties();
+                props.load(new FileInputStream(file(".signing/app-debug.prop")))
+                storeFile file(props['RELEASE_STORE_FILE'])
+                storePassword props['RELEASE_STORE_PASSWORD']
+                keyAlias props['RELEASE_KEY_ALIAS']
+                keyPassword props['RELEASE_KEY_PASSWORD']
+            }
+        }
+        fdroid {
+            if (file('.signing/app-fdroid.prop').exists()) {
+                Properties props = new Properties();
+                props.load(new FileInputStream(file(".signing/app-fdroid.prop")))
+                storeFile file(props['RELEASE_STORE_FILE'])
+                storePassword props['RELEASE_STORE_PASSWORD']
+                keyAlias props['RELEASE_KEY_ALIAS']
+                keyPassword props['RELEASE_KEY_PASSWORD']
+            }
+        }
+    }
     defaultConfig {
         applicationId "dev.tinelix.irc.android.legacy"
         //noinspection MinSdkTooLow
@@ -45,6 +77,7 @@ android {
         versionCode 22
         versionName '0.5.0-alpha'
         vectorDrawables.useSupportLibrary = true
+        signingConfig signingConfigs.debug
     }
     buildTypes {
         release {

@@ -315,7 +315,6 @@ public class IRCSocketWrapper {
                 file.delete();
 
             mConnStatus = STATUS_DISCONNECTED;
-            mConnStartTime = 0;
 
             mPingStartTime = 0;
             mPingEstimated = 0;
@@ -336,8 +335,6 @@ public class IRCSocketWrapper {
                 file.delete();
 
             mConnStatus = STATUS_DISCONNECTED;
-
-            mConnStartTime = 0;
 
             mPingStartTime = 0;
             mPingEstimated = 0;

@@ -28,8 +28,10 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -82,6 +84,7 @@ public class ChatClientService extends Service implements SocketConnectionListen
 
         Bundle data = intent.getExtras();
         if(data != null) {
+
             String action = data.getString("action");
             String prefsName = data.getString("prefs_name");
 
@@ -174,7 +177,7 @@ public class ChatClientService extends Service implements SocketConnectionListen
                         summary = getResources().getString(
                                 R.string.notif_connection_summary_many_with_ping_2,
                                 server1.address, (float)ping1 / 1000,
-                                server2.address, (float)ping2 / 1000
+                                server2.address, (float)ping2 / 1000, mWrappers.size() - 2
                         );
                     else if (ping1 > 0 && ping2 > 0)
                         summary = getResources().getString(
@@ -512,6 +515,15 @@ public class ChatClientService extends Service implements SocketConnectionListen
     public void onDisconnect(IRCSocketWrapper wrapper, ServerProfile profile) {
         IRCSocketWrapper socketWrapper = getWrapper(profile);
         mWrappers.remove(socketWrapper);
+
+        SharedPreferences appPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if(!appPrefs.contains("totalConnectionUptime")) {
+            long totalUptime = appPrefs.getLong("totalConnectionUptime", 0);
+            SharedPreferences.Editor editor = appPrefs.edit();
+            editor.putLong("totalConnectionUptime", totalUptime + wrapper.getConnectionUptime());
+            editor.commit();
+        }
 
         Bundle data = new Bundle();
         IRCServer server = wrapper.getServerProfile().getServerParams();
