@@ -1,0 +1,4 @@
+RELEASE_STORE_FILE=.signing/tinelix-debug.jks
+RELEASE_STORE_PASSWORD=tinelix-debug
+RELEASE_KEY_ALIAS=tlx_irc
+RELEASE_KEY_PASSWORD=tinelix-debug
