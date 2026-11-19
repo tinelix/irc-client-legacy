@@ -25,6 +25,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import java.util.Random;
+
 import dev.tinelix.holoexperience.library.HoloCompatSupport;
 import dev.tinelix.irc.android.legacy.R;
 import dev.tinelix.irc.android.support.enitites.ChatMessage;
@@ -118,15 +120,31 @@ public class WriteTextPanel extends LinearLayout {
 
         final String[] lines = text.split("\n");
 
+        if(mProfile == null) return;
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 for(String line : lines) {
                     IRCBroadcastSignal signal = null;
-                    if (mDestination == null) {
-                        signal = line.equals("/quit") && mProfile != null ?
-                                    new IRCCommand(line + " " + mProfile.quitMessage) :
-                                    new IRCCommand(line);
+                    if(line.startsWith("/join")) {
+                        signal = new IRCCommand(line);
+                    } else if (mDestination == null) {
+                        Random random = new Random();
+
+                        int sequence = random.nextInt(32768);
+
+                        switch (line) {
+                            case "/ping":
+                                signal = new IRCCommand(line + " TLXIRC-CMD-" + sequence);
+                                break;
+                            case "/quit":
+                                signal = new IRCCommand(line + " " + mProfile.quitMessage);
+                                break;
+                            default:
+                                signal = new IRCCommand(line);
+                                break;
+                        }
                     } else if (mDestination instanceof ServerUser) {
                         signal = new ChatMessage(line, ((ServerUser) mDestination).userMask);
                     } else {

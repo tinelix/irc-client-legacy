@@ -259,7 +259,7 @@ public class ChatClientService extends Service implements SocketConnectionListen
                 public void run() {
                     onConnect(getWrapper(profile), profile);
                 }
-            });
+            }).start();
             return;
         }
 

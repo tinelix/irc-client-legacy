@@ -19,7 +19,9 @@ import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD
 import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_MOTD;
 import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_MOTD_BEGIN;
 import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_MOTD_END;
-import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_PONG;
+import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_RULES;
+import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_RULES_BEGIN;
+import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_RULES_END;
 import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_TOPIC;
 import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_TOPIC_CREATED;
 import static dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal.IN_CMD_WHO;
@@ -78,8 +80,7 @@ public class IRCOutputFilter {
 
             if(signal == null) continue;
 
-            boolean isValidTypes = signal.type != IN_CMD_PONG &&
-                                   signal.type != IN_PING &&
+            boolean isValidTypes = signal.type != IN_PING &&
                                    signal.type != IN_CMD_LUSER_ME &&
                                    signal.type != IN_CMD_WHO_END;
 
@@ -163,14 +164,19 @@ public class IRCOutputFilter {
                 case IN_CMD_MOTD_BEGIN:
                     mIncompleteSignal = new IRCBroadcastSignal(IN_CMD_MOTD, true);
                     return null;
+                case IN_CMD_RULES:
                 case IN_CMD_MOTD:
                     if(mIncompleteSignal == null) break;
                     mIncompleteSignal.merge(signal);
                     return null;
+                case IN_CMD_RULES_END:
                 case IN_CMD_MOTD_END:
                     if(mIncompleteSignal == null) break;
                     mIncompleteSignal.finish();
                     return mIncompleteSignal;
+                case IN_CMD_RULES_BEGIN:
+                    mIncompleteSignal = new IRCBroadcastSignal(IN_CMD_RULES, true);
+                    return null;
             }
         }
 

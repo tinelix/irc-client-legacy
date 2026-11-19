@@ -33,7 +33,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,6 +48,7 @@ import dev.tinelix.irc.android.legacy.ui.list.adapters.ChannelMembersAdapter;
 import dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal;
 import dev.tinelix.irc.android.support.enitites.IRCCommand;
 import dev.tinelix.irc.android.support.enitites.LazyEntity;
+import dev.tinelix.irc.android.support.enitites.ServerPong;
 import dev.tinelix.irc.android.support.enitites.ServerUser;
 import dev.tinelix.irc.android.support.models.IRCUsers;
 import dev.tinelix.irc.android.support.models.ServerChannel;
@@ -207,12 +207,15 @@ public class ChatPageFragment extends BaseFragment {
         if(mSignalsList == null || signals == null)
             return;
 
+        ChatClientService service = null;
+        if(getActivity() != null && getActivity() instanceof ChatActivity)
+             service = ((ChatActivity) getActivity()).getService();
+
         for(int i = 0; i < signals.size(); i++) {
             IRCBroadcastSignal signal = signals.get(i);
             signal.date = receivedDate;
-            signals.set(i, signal);
 
-            if(mDestination instanceof ServerChannel) {
+            if(mDestination != null && mDestination instanceof ServerChannel) {
                 if(signal.type == IRCBroadcastSignal.IN_CMD_TOPIC)
                     ((ServerChannel) mDestination).topic = signal.body;
 
@@ -223,9 +226,22 @@ public class ChatPageFragment extends BaseFragment {
                     if(getActivity() instanceof ChatActivity) {
                         if(signal.sender.startsWith(mCurrentNick))
                             ((ChatActivity) getActivity()).removeFragment(mDestination);
+
+                        return;
                     }
                 }
+            } else if(signal.type == IRCBroadcastSignal.IN_CMD_PONG &&
+                      signal instanceof ServerPong) {
+
+                if(service == null) return;
+
+                ServerPong ping = ((ServerPong) signal);
+
+                ping.value = service.getWrapper(mProfile).getCurrentPing();
+                ping.prevValue = service.getWrapper(mProfile).getPreviousPing();
             }
+
+            signals.set(i, signal);
         }
 
         mSignalsList.addAll(0, signals);

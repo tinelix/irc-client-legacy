@@ -24,6 +24,7 @@
         <item>ВОЗМОЖНОСТИ</item>
         <item>СТАТИСТИКА</item>
         <item>ПОВЕСТКА ДНЯ</item>
+        <item>ПРАВИЛА</item>
         <item>РЕЖИМЫ</item>
         <item>ТЕМА</item>
         <item>СООБЩЕНИЕ</item>
@@ -70,5 +71,13 @@
         <item>"частный канал (%c%c)"</item>
         <item>"секретный канал (%c%c)"</item>
         <item>"доступен только пользователям с защищенным соединением (%c%c)"</item>
+    </string-array>
+
+    <string-array name="ircs_connection_qualities">
+        <item>Отличное</item>
+        <item>Хорошее</item>
+        <item>Среднее</item>
+        <item>Нестабильное</item>
+        <item>Плохое</item>
     </string-array>
 </resources>

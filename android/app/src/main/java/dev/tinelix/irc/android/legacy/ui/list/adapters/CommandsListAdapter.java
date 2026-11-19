@@ -60,9 +60,14 @@ public class CommandsListAdapter extends ArrayAdapter<IRCCommand> {
         ArrayList<IRCCommand> commands = new ArrayList<>();
 
         IRCCommand helpCmd          = new IRCCommand("/help");
+        IRCCommand rulesCmd         = new IRCCommand("/rules");
+        IRCCommand timeCmd          = new IRCCommand("/time");
+        IRCCommand pingCmd          = new IRCCommand("/ping");
         IRCCommand versionCmd       = new IRCCommand("/version");
         IRCCommand nsIdentifyCmd    = new IRCCommand("/ns id");
         IRCCommand nsRegisterCmd    = new IRCCommand("/ns reg");
+        IRCCommand nsInfoCmd        = new IRCCommand("/ns info");
+        IRCCommand modeCmd          = new IRCCommand("/mode");
         IRCCommand nickCmd          = new IRCCommand("/nick");
         IRCCommand msgCmd           = new IRCCommand("/msg");
         IRCCommand joinCmd          = new IRCCommand("/join");
@@ -70,9 +75,14 @@ public class CommandsListAdapter extends ArrayAdapter<IRCCommand> {
         IRCCommand quitCmd          = new IRCCommand("/quit");
 
         IRCCommand.putCommandDescription(context, helpCmd);
+        IRCCommand.putCommandDescription(context, rulesCmd);
+        IRCCommand.putCommandDescription(context, pingCmd);
+        IRCCommand.putCommandDescription(context, timeCmd);
         IRCCommand.putCommandDescription(context, versionCmd);
         IRCCommand.putCommandDescription(context, nsIdentifyCmd);
         IRCCommand.putCommandDescription(context, nsRegisterCmd);
+        IRCCommand.putCommandDescription(context, nsInfoCmd);
+        IRCCommand.putCommandDescription(context, modeCmd);
         IRCCommand.putCommandDescription(context, nickCmd);
         IRCCommand.putCommandDescription(context, msgCmd);
         IRCCommand.putCommandDescription(context, joinCmd);
@@ -80,9 +90,14 @@ public class CommandsListAdapter extends ArrayAdapter<IRCCommand> {
         IRCCommand.putCommandDescription(context, quitCmd);
 
         commands.add(helpCmd);
+        commands.add(rulesCmd);
+        commands.add(pingCmd);
+        commands.add(timeCmd);
         commands.add(versionCmd);
         commands.add(nsIdentifyCmd);
         commands.add(nsRegisterCmd);
+        commands.add(nsInfoCmd);
+        commands.add(modeCmd);
         commands.add(nickCmd);
         commands.add(msgCmd);
         commands.add(joinCmd);
@@ -128,7 +143,8 @@ public class CommandsListAdapter extends ArrayAdapter<IRCCommand> {
         IRCCommand command = getItem(position);
 
         boolean isNickServ = command.type == IRCBroadcastSignal.OUT_SVC_NICKSERV_REGISTER ||
-                             command.type == IRCBroadcastSignal.OUT_SVC_NICKSERV_IDENTIFY;
+                             command.type == IRCBroadcastSignal.OUT_SVC_NICKSERV_IDENTIFY ||
+                             command.type == IRCBroadcastSignal.OUT_SVC_NICKSERV_INFO;
 
         cmdName.setText(isNickServ ? command.body : command.getName());
         cmdDesc.setText(command.description);
@@ -206,7 +222,8 @@ public class CommandsListAdapter extends ArrayAdapter<IRCCommand> {
 
                 boolean isNickServ =
                         type == IRCBroadcastSignal.OUT_SVC_NICKSERV_REGISTER ||
-                        type == IRCBroadcastSignal.OUT_SVC_NICKSERV_IDENTIFY;
+                        type == IRCBroadcastSignal.OUT_SVC_NICKSERV_IDENTIFY ||
+                        type == IRCBroadcastSignal.OUT_SVC_NICKSERV_INFO;
 
                 return isNickServ ? ((IRCCommand) resultValue).body : ((IRCCommand) resultValue).getName();
             }

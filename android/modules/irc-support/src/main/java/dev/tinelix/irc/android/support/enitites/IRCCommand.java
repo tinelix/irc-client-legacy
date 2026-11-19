@@ -46,6 +46,9 @@ public class IRCCommand extends IRCBroadcastSignal {
             case "/help":
                 mCmdNameInt = OUT_CMD_HELP;
                 break;
+            case "/time":
+                mCmdNameInt = OUT_CMD_TIME;
+                break;
             case "/user":
                 mCmdNameInt = OUT_CMD_USER;
                 break;
@@ -121,6 +124,7 @@ public class IRCCommand extends IRCBroadcastSignal {
                     switch (mArgs[0]) {
                         case "help":
                             mCmdNameInt = OUT_SVC_NICKSERV_HELP;
+                            break;
                         case "id":
                         case "identify":
                             mCmdNameInt = OUT_SVC_NICKSERV_IDENTIFY;
@@ -182,6 +186,12 @@ public class IRCCommand extends IRCBroadcastSignal {
                 case OUT_CMD_HELP:
                     builder.append("HELP");
                     break;
+                case OUT_CMD_TIME:
+                    builder.append("TIME");
+                    break;
+                case OUT_CMD_LICENSE:
+                    builder.append("LICENSE");
+                    break;
                 case OUT_CMD_USER:
                     builder.append("USER");
 
@@ -209,6 +219,11 @@ public class IRCCommand extends IRCBroadcastSignal {
                 case OUT_CMD_PING:
                     builder.append("PING");
 
+                    if(mArgs == null || mArgs.length == 0) {
+                        mInvalidSyntax = true;
+                        break;
+                    }
+
                     if (mArgs.length == 1) {
                         if (!mArgs[0].startsWith(":"))
                             builder.append(" :").append(mArgs[0]);
@@ -225,6 +240,9 @@ public class IRCCommand extends IRCBroadcastSignal {
                     break;
                 case OUT_CMD_MOTD:
                     builder.append("MOTD");
+                    break;
+                case OUT_CMD_RULES:
+                    builder.append("RULES");
                     break;
                 case OUT_CMD_JOIN:
                     builder.append("JOIN");
@@ -310,6 +328,10 @@ public class IRCCommand extends IRCBroadcastSignal {
                                 builder.append(" ").append(mArgs[i]);
                         }
                     }
+                    break;
+                default:
+                    builder.append(mRawContent);
+                    break;
             }
 
             builder.append("\r\n");
@@ -358,32 +380,47 @@ public class IRCCommand extends IRCBroadcastSignal {
             case OUT_CMD_HELP:
                 descriptionIndex = 1;
                 break;
-            case OUT_CMD_VERSION:
+            case OUT_CMD_RULES:
                 descriptionIndex = 2;
                 break;
-            case OUT_SVC_NICKSERV_IDENTIFY:
+            case OUT_CMD_PING:
                 descriptionIndex = 3;
                 break;
-            case OUT_SVC_NICKSERV_REGISTER:
+            case OUT_CMD_TIME:
                 descriptionIndex = 4;
                 break;
-            case OUT_CMD_NICK:
+            case OUT_CMD_VERSION:
                 descriptionIndex = 5;
                 break;
-            case OUT_CMD_PRIVMSG:
+            case OUT_SVC_NICKSERV_IDENTIFY:
                 descriptionIndex = 6;
                 break;
-            case OUT_CMD_JOIN:
+            case OUT_SVC_NICKSERV_REGISTER:
                 descriptionIndex = 7;
                 break;
-            case OUT_CMD_PART:
+            case OUT_SVC_NICKSERV_INFO:
                 descriptionIndex = 8;
                 break;
-            case OUT_CMD_QUIT:
+            case OUT_CMD_MODE:
                 descriptionIndex = 9;
                 break;
+            case OUT_CMD_NICK:
+                descriptionIndex = 10;
+                break;
+            case OUT_CMD_PRIVMSG:
+                descriptionIndex = 11;
+                break;
+            case OUT_CMD_JOIN:
+                descriptionIndex = 12;
+                break;
+            case OUT_CMD_PART:
+                descriptionIndex = 13;
+                break;
+            case OUT_CMD_QUIT:
+                descriptionIndex = 14;
+                break;
             default:
-                descriptionIndex = 0;
+                descriptionIndex = 15;
                 break;
         }
 
@@ -392,5 +429,9 @@ public class IRCCommand extends IRCBroadcastSignal {
 
     public String getName() {
         return mCmdName;
+    }
+
+    public boolean hasInvalidSyntax() {
+        return mInvalidSyntax;
     }
 }

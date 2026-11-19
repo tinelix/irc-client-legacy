@@ -14,10 +14,15 @@
 
     <string-array name="ircs_command_descriptions">
         <item>(no description)</item>
-        <item>open the help system</item>
+        <item>server help system</item>
+        <item>server rules</item>
+        <item>show current server time</item>
+        <item>measure connection latency</item>
         <item>current server SW version</item>
         <item>login via NickServ</item>
         <item>register via NickServ</item>
+        <item>get nick info via NickServ</item>
+        <item>manage user modes</item>
         <item>change nickname</item>
         <item>write a private message</item>
         <item>join to the channel</item>

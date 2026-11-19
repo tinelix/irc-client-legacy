@@ -52,4 +52,15 @@
     <string name="ircs_signal_error_nickname_in_use">
         "На данный момент этот никнейм занят. Обсвободите его или выберите другой никнейм."
     </string>
+
+    <string name="ircs_signal_ping">
+"Понг!
+Текущая задержка:     %1$4d мс
+Качество соединения:  %2$s"
+    </string>
+    <string name="ircs_signal_ping_2">
+"Понг!
+Текущая задержка:     %1$4.2f с
+Качество соединения:  %2$s"
+    </string>
 </resources>

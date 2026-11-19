@@ -258,8 +258,7 @@ public class IRCModes extends IRCBroadcastSignal {
         return mRemovedModes;
     }
 
-    @Override
-    public String getLocalizedBody(Context context) {
+    private String getLocalizedBody(Context context) {
 
         Resources res = context.getResources();
         String localizedBody = "";

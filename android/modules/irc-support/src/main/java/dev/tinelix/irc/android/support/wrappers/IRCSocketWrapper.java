@@ -73,6 +73,7 @@ public class IRCSocketWrapper {
     private long mConnStartTime;
     private long mPingStartTime;
     private long mPingEstimated;
+    private long mPrevPingEstimated;
 
     private Timer mPingBouncer;
 
@@ -318,6 +319,7 @@ public class IRCSocketWrapper {
 
             mPingStartTime = 0;
             mPingEstimated = 0;
+            mPrevPingEstimated = 0;
 
             mListener.onDisconnect(this, mProfile);
 
@@ -338,6 +340,7 @@ public class IRCSocketWrapper {
 
             mPingStartTime = 0;
             mPingEstimated = 0;
+            mPrevPingEstimated = 0;
 
             mListener.onDisconnect(this, mProfile);
         } catch (Exception e) {
@@ -366,7 +369,7 @@ public class IRCSocketWrapper {
 
     public void sendCommand(IRCCommand cmd, int encoding) {
 
-        if(hasError()) return;
+        if(hasError() || cmd.hasInvalidSyntax() || cmd.type == 0) return;
 
         try {
             if(cmd.type == IRCBroadcastSignal.OUT_CMD_NICK)
@@ -586,10 +589,11 @@ public class IRCSocketWrapper {
                         int sequence = random.nextInt(32768);
                         if(getConnectionStatus() == IRCSocketWrapper.STATUS_RUNNING) {
                             if(mPingEstimated >= 0) {
+                                mPrevPingEstimated = mPingEstimated;
                                 mPingEstimated = -1;
                                 sendCommand(
                                         new IRCCommand(
-                                                OUT_CMD_PING, String.format("TLXIRC-%s", sequence)
+                                                OUT_CMD_PING, String.format("TLXIRC-SW-%s", sequence)
                                         ),
                                         mProfile.getServerParams().inputEncoding
                                 );
@@ -603,5 +607,9 @@ public class IRCSocketWrapper {
 
     public long getCurrentPing() {
         return mPingEstimated;
+    }
+
+    public long getPreviousPing() {
+        return mPrevPingEstimated;
     }
 }

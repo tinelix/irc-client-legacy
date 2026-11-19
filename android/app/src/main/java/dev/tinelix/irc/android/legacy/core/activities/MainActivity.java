@@ -177,6 +177,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onConnect(ServerProfile profile, Bundle data) {
+
+        if(profile == null) {
+            mProgressDialog.dismiss();
+            return;
+        }
+
         if(mProgressDialog != null) {
 
             IRCSocketWrapper wrapper = getService().getWrapper(profile);
@@ -242,8 +248,7 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-        if(!mCreateNewTask)
-            finish();
+        if(!mCreateNewTask) finish();
 
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("prefsName", profile.name);

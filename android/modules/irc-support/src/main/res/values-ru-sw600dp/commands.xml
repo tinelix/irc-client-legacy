@@ -2,10 +2,15 @@
 <resources>
     <string-array name="ircs_command_descriptions">
         <item>(без описания)</item>
-        <item>открыть справочную систему</item>
-        <item>узнать версию серверного ПО</item>
+        <item>справочная система сервера</item>
+        <item>правила сервера</item>
+        <item>измерить задержку соединения</item>
+        <item>текущее время сервера</item>
+        <item>версия серверного ПО</item>
         <item>войти в аккаунт через NickServ</item>
         <item>зарегистрироваться через NickServ</item>
+        <item>о никнейме через NickServ</item>
+        <item>управлять режимами пользователя</item>
         <item>сменить никнейм</item>
         <item>написать личное сообщение</item>
         <item>зайти на канал</item>

@@ -54,4 +54,15 @@ Network statistics:
     </string>
     <string name="ircs_signal_chanusers_banned">"%1$s blocked %2$s"</string>
     <string name="ircs_signal_channels_modes">"%1$s channel has permissions:\r\n%2$s"</string>
+
+    <string name="ircs_signal_ping">
+"Pong!
+Current latency:     %1$4d ms
+Connection quality:  %2$s"
+    </string>
+    <string name="ircs_signal_ping_2">
+"Pong!
+Current latency:     %1$4.2f s
+Connection quality:  %2$s"
+    </string>
 </resources>

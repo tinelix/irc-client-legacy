@@ -7,13 +7,10 @@ import android.os.Build;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
-import android.util.Log;
 
 import com.seppius.i18n.plurals.PluralResources;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Locale;
 
 import dev.tinelix.irc.android.support.R;
@@ -49,19 +46,22 @@ public class IRCBroadcastSignal extends LazyEntity {
     public static final int IN_PING                         =    7; // or if starts with PING
     public static final int IN_ERROR                        =    8; // or if starts with ERROR
     public static final int IN_USER_MODES                   =    9; // or if starts with MODE
-    public static final int IN_NICK                         =   10; /* or if starts with
+    public static final int IN_CMD_PONG                     =   10; /* or if starts with
+                                                                       :[server] PONG  */
+    public static final int IN_NICK                         =   11; /* or if starts with
                                                                        :[user mask] NICK  */
-    public static final int IN_JOIN                         =   11; /* or if starts with
+    public static final int IN_JOIN                         =   12; /* or if starts with
                                                                        :[user mask] JOIN  */
-    public static final int IN_PRIVMSG                      =   12; /* or if starts with
+    public static final int IN_PRIVMSG                      =   13; /* or if starts with
                                                                        :[user mask] PRIVMSG  */
-    public static final int IN_PART                         =   13; /* or if starts with
+    public static final int IN_PART                         =   14; /* or if starts with
                                                                        :[user mask] PART  */
-    public static final int IN_QUIT                         =   14; /* or if starts with
+    public static final int IN_QUIT                         =   15; /* or if starts with
                                                                        :[user mask] QUIT  */
-    public static final int IN_HOSTCHANGED                 =   396;
+    public static final int IN_HOSTCHANGED                  =  396;
 
     // Command responses
+    public static final int IN_CMD_RULES                    =  232;
     public static final int IN_CMD_LUSER_CLIENTS            =  251;
     public static final int IN_CMD_LUSER_ADMINS             =  252;
     public static final int IN_CMD_LUSER_UNKNOWNS           =  253;
@@ -69,12 +69,13 @@ public class IRCBroadcastSignal extends LazyEntity {
     public static final int IN_CMD_LUSER_ME                 =  255;
     public static final int IN_CMD_LUSER_LOCAL              =  265;
     public static final int IN_CMD_LUSER_GLOBAL             =  266;
-    public static final int IN_CMD_PONG                     =  300;
     public static final int IN_CMD_AWAY                     =  301;
     public static final int IN_CMD_USERHOST                 =  302;
     public static final int IN_CMD_ISON                     =  303;
     public static final int IN_CMD_UNAWAY                   =  305;
     public static final int IN_CMD_NOWAWAY                  =  306;
+    public static final int IN_CMD_RULES_BEGIN              =  308;
+    public static final int IN_CMD_RULES_END                =  309;
     public static final int IN_CMD_WHOIS_USER               =  311;
     public static final int IN_CMD_WHOIS_SERVER             =  312;
     public static final int IN_CMD_WHOIS_OPERATOR           =  313;
@@ -148,27 +149,28 @@ public class IRCBroadcastSignal extends LazyEntity {
 
     // IRCv2/v3 Daemon Supported Commands
     public static final int OUT_CMD_HELP                    = 1001;
-    public static final int OUT_CMD_USER                    = 1002;
-    public static final int OUT_CMD_NICK                    = 1003;
-    public static final int OUT_CMD_PONG                    = 1004;
-    public static final int OUT_CMD_MOTD                    = 1005;
-    public static final int OUT_CMD_RULES                   = 1006;
-    public static final int OUT_CMD_MODE                    = 1007;
-    public static final int OUT_CMD_AWAY                    = 1008;
-    public static final int OUT_CMD_PRIVMSG                 = 1009;
-    public static final int OUT_CMD_PING                    = 1010;
-    public static final int OUT_CMD_WHO                     = 1011;
-    public static final int OUT_CMD_WHOIS                   = 1012;
-    public static final int OUT_CMD_WHOWAS                  = 1013;
-    public static final int OUT_CMD_LIST                    = 1014;
-    public static final int OUT_CMD_JOIN                    = 1015;
-    public static final int OUT_CMD_NAMES                   = 1016;
-    public static final int OUT_CMD_TOPIC                   = 1017;
-    public static final int OUT_CMD_PART                    = 1018;
-    public static final int OUT_CMD_CREDITS                 = 1019;
-    public static final int OUT_CMD_VERSION                 = 1020;
-    public static final int OUT_CMD_LICENSE                 = 1021;
-    public static final int OUT_CMD_QUIT                    = 1022;
+    public static final int OUT_CMD_TIME                    = 1002;
+    public static final int OUT_CMD_USER                    = 1003;
+    public static final int OUT_CMD_NICK                    = 1004;
+    public static final int OUT_CMD_PONG                    = 1005;
+    public static final int OUT_CMD_MOTD                    = 1006;
+    public static final int OUT_CMD_RULES                   = 1007;
+    public static final int OUT_CMD_MODE                    = 1008;
+    public static final int OUT_CMD_AWAY                    = 1009;
+    public static final int OUT_CMD_PRIVMSG                 = 1010;
+    public static final int OUT_CMD_PING                    = 1011;
+    public static final int OUT_CMD_WHO                     = 1012;
+    public static final int OUT_CMD_WHOIS                   = 1013;
+    public static final int OUT_CMD_WHOWAS                  = 1014;
+    public static final int OUT_CMD_LIST                    = 1015;
+    public static final int OUT_CMD_JOIN                    = 1016;
+    public static final int OUT_CMD_NAMES                   = 1017;
+    public static final int OUT_CMD_TOPIC                   = 1018;
+    public static final int OUT_CMD_PART                    = 1019;
+    public static final int OUT_CMD_CREDITS                 = 1020;
+    public static final int OUT_CMD_VERSION                 = 1021;
+    public static final int OUT_CMD_LICENSE                 = 1022;
+    public static final int OUT_CMD_QUIT                    = 1023;
 
     // IRCv2/v3 Raw Commands
     public static final int OUT_RAW_PONG                    = 1050;
@@ -184,6 +186,8 @@ public class IRCBroadcastSignal extends LazyEntity {
     public static final int OUT_SVC_NICKSERV_UNGROUP        = 1108;
     public static final int OUT_SVC_NICKSERV_DROP           = 1109;
     public static final int OUT_SVC_NICKSERV_LOGOUT         = 1110;
+
+
     private boolean mWithTimestamp;
 
     public    String        sender;
@@ -291,9 +295,9 @@ public class IRCBroadcastSignal extends LazyEntity {
             if (rawContent.startsWith("/"))
                 signal = new IRCCommand(rawContent);
             else if (rawContent.startsWith(":")) {
-                String[] words = rawContent.split(" ", 3);
-                if (words.length < 2)
-                    return null;
+                String[] words = rawContent.split(" ", 4);
+
+                if (words.length < 2) return null;
 
                 String sender = words[0].substring(1);
 
@@ -301,6 +305,13 @@ public class IRCBroadcastSignal extends LazyEntity {
                     signal = new ChatMessage(rawContent, isIncoming);
                 } else if (words[1].equals("MODE")) {
                     signal = new IRCModes(rawContent);
+                } else if(words[1].equals("PONG")) {
+                    if(words.length < 4) return null;
+
+                    if(words[3].startsWith(":TLXIRC-CMD"))
+                        signal = new ServerPong(true);
+                    else
+                        return null;
                 } else if (words[1].matches("^\\d+$")) { // is integer?
                     int type = Integer.parseInt(words[1]);
 
@@ -379,6 +390,9 @@ public class IRCBroadcastSignal extends LazyEntity {
 
                     body = parseBody(5, words);
                     break;
+                case IN_CMD_TIME:
+                case IN_CMD_VERSION:
+                case IN_CMD_RULES:
                 case IN_CMD_MOTD:
                     if(words.length < 5) break;
 
@@ -443,6 +457,7 @@ public class IRCBroadcastSignal extends LazyEntity {
             switch (words[1]) {
                 case "PONG":
                     type = IN_CMD_PONG;
+                    body = parseBody(3, words);
                     break;
                 case "NICK":
                     type = IN_NICK;
@@ -583,26 +598,30 @@ public class IRCBroadcastSignal extends LazyEntity {
             case IN_CMD_MOTD:
             case IN_CMD_MOTD_END:
                 return categories[6];
+            case IN_CMD_RULES_BEGIN:
+            case IN_CMD_RULES:
+            case IN_CMD_RULES_END:
+                return categories[7];
             case IN_USER_MODES:
             case IN_CMD_CHANNEL_MODES:
-                return categories[7];
-            case IN_CMD_TOPIC:
                 return categories[8];
+            case IN_CMD_TOPIC:
+                return categories[9];
             case IN_NOTICE:
             case OUT_CMD_PRIVMSG:
             case IN_PRIVMSG:
-                return categories[9];
+                return categories[10];
             case IN_NICK:
             case IN_JOIN:
             case IN_PART:
             case IN_QUIT:
-                return categories[10];
+                return categories[11];
         }
 
         if(isError(signal))
-            return categories[12];
+            return categories[13];
 
-        return categories[11];
+        return categories[12];
     }
 
     @Override
@@ -703,100 +722,14 @@ public class IRCBroadcastSignal extends LazyEntity {
                signal.type == IN_ERR_NOPRIVILEGES;
     }
 
-    public String getLocalizedBody(Context context) {
-
-        Resources res = context.getResources();
-
-        String localizedBody = body;
-
-        if(body == null &&
-           type != IN_JOIN && type != IN_PART && type != IN_QUIT)
-            return null;
-
-        String[] bodyWords = null;
-
-        if(body != null)
-            bodyWords = body.split(" ");
-
-        switch (type) {
-            case IN_NOTICE:
-                if(body.equals("*** Looking up your hostname..."))
-                    localizedBody = res.getString(R.string.ircs_signal_notice_lookup_hostname);
-                else if(body.startsWith("*** Couldn't resolve your hostname;"))
-                    localizedBody = res.getString(R.string.ircs_signal_notice_cant_resolve_hostname);
-                break;
-            case IN_WELCOME:
-                String networkName;
-                String userMask;
-
-                if(bodyWords.length == 7) {
-                   if(body.startsWith("Welcome to the ") && bodyWords[4].equals("IRC") &&
-                      bodyWords[5].equals("Network")) {
-                       networkName = bodyWords[3];
-                       userMask = ServerUser.isValidUserMask(bodyWords[6], true) ?
-                               bodyWords[6] : "N/A";
-
-                       localizedBody = res.getString(R.string.ircs_signal_welcome, networkName, userMask);
-                   }
-                }
-                break;
-            case IN_HOSTCHANGED:
-                if(body != null)
-                    localizedBody = res.getString(R.string.ircs_signal_host_changed, bodyWords[0]);
-                break;
-            case IN_USER_MODES:
-                break;
-            case IN_NICK:
-                localizedBody = res.getString(R.string.ircs_signal_nickname_changed,
-                        sender.split("!")[0], destination
-                );
-                break;
-            case IN_JOIN:
-                localizedBody = res.getString(R.string.ircs_signal_member_join,
-                    sender.split("!")[0], destination
-                );
-                break;
-            case IN_PART:
-                localizedBody = res.getString(R.string.ircs_signal_member_leave,
-                    sender.split("!")[0], destination
-                );
-                break;
-            case IN_QUIT:
-                if(body == null) {
-                    localizedBody = res.getString(
-                            R.string.ircs_signal_member_quit, sender.split("!")[0]
-                    );
-                } else if(body.startsWith("Ping timeout: ") && bodyWords[2].matches("^\\d+$")){
-                    localizedBody = res.getString(
-                            R.string.ircs_signal_member_quit_ping_timeout,
-                            sender.split("!")[0], Integer.parseInt(bodyWords[2])
-                    );
-                } else if(body.startsWith("Quit: ")) {
-                    localizedBody = res.getString(
-                            R.string.ircs_signal_member_quit_with_reason,
-                            sender.split("!")[0], body.substring("Quit: ".length())
-                    );
-                } else {
-                    localizedBody = res.getString(
-                            R.string.ircs_signal_member_quit_with_reason,
-                            sender.split("!")[0], body
-                    );
-                }
-                break;
-            case IN_ERR_NICKNAMEINUSE:
-                localizedBody = res.getString(R.string.ircs_signal_error_nickname_in_use);
-                break;
-        }
-
-        return localizedBody;
-    }
-
     @SuppressWarnings({"ConstantConditions", "ResultOfMethodCallIgnored"})
     public SpannableString getLocalizedSpannedBody(Context context, int highlightColor) {
         Resources res = context.getResources();
 
         String localizedBody = body;
         SpannableString spannedBody;
+        SimpleDateFormat originalDateFormat;
+        SimpleDateFormat localizedDateFormat;
 
         String senderNick = "";
 
@@ -876,7 +809,6 @@ public class IRCBroadcastSignal extends LazyEntity {
                            .replace(" CET ", " GMT+01:00 ");
 
                 String dateFormatted = "?";
-                SimpleDateFormat originalDateFormat;
 
                 if(body.contains(" at "))
                     originalDateFormat = new SimpleDateFormat(
@@ -887,7 +819,7 @@ public class IRCBroadcastSignal extends LazyEntity {
                         "E MMM d HH:mm:ss z yyyy", Locale.US
                     );
 
-                SimpleDateFormat localizedDateFormat = new SimpleDateFormat(
+                localizedDateFormat = new SimpleDateFormat(
                     Locale.getDefault() == Locale.US ? "MMMM d, yyyy" : "d MMMM yyyy",
                     Locale.getDefault()
                 );
@@ -925,6 +857,32 @@ public class IRCBroadcastSignal extends LazyEntity {
                         );
                     }
                 }
+                break;
+            case IN_CMD_TIME:
+                try {
+                    originalDateFormat = new SimpleDateFormat(
+                            "EEEE MMMM dd yyyy -- HH:mm XXX", Locale.ENGLISH
+                    );
+
+                    originalDateFormat.parse(body);
+
+                    localizedDateFormat = new SimpleDateFormat(
+                            Locale.getDefault() == Locale.US ?
+                            "MMMM d, yyyy hh:mm a" :
+                            "d MMMM yyyy HH:mm",
+                            Locale.getDefault()
+                    );
+
+                    dateFormatted = localizedDateFormat.format(
+                            originalDateFormat.getCalendar().getTime().getTime()
+                    );
+
+                    localizedBody = dateFormatted;
+                } catch (Exception e) {
+                    localizedBody = body;
+                }
+
+                spannedBody = new SpannableString(localizedBody);
                 break;
             case IN_CMD_CHANNEL_NAMES:
                 localizedBody = res.getString(R.string.ircs_signal_channel_members_count, destination,
