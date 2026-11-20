@@ -173,7 +173,7 @@ public class UsersCacheDatabase extends CacheDatabase {
 
             String encPasswd = nickname.getEncryptedPassword();
 
-            if(cipher == null || encPasswd.length() < 32) return null;
+            if(cipher == null || encPasswd == null || encPasswd.length() < 32) return null;
 
             return cipher.decrypt(encPasswd);
         } catch (Exception e) {

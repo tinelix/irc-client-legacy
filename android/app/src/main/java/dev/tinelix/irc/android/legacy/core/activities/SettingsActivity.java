@@ -104,8 +104,9 @@ public class SettingsActivity extends BaseActivity
         if(mArguments != null && mArguments.containsKey("fragment") &&
             mArguments.getString("fragment").equals("irc_profile_settings")) {
 
-            ServerProfile profile = ServerProfile.from(mPrefsName, getSharedPreferences(mPrefsName, 0));
-            UsersCacheDatabase.initDatabase(this, profile.name);
+            SharedPreferences prefs = getSharedPreferences(mPrefsName, 0);
+            ServerProfile profile = ServerProfile.from(mPrefsName, prefs);
+            UsersCacheDatabase.initDatabase(this, prefs.getString("profileId", "0"));
 
             if(UsersCacheDatabase.getNicknameList().size() == 0) {
                 Toast.makeText(this, R.string.add_nickname_first, Toast.LENGTH_LONG).show();
