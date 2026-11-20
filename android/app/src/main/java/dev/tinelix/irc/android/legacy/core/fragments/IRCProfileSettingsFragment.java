@@ -584,6 +584,7 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
                                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                        @Override
                                        public void onClick(DialogInterface dialog, int which) {
+                                           dialog.dismiss();
                                            SharedPreferences.Editor editor = mPreferences.edit();
                                            editor.putString("authMethod", "nickserv");
                                            editor.commit();
