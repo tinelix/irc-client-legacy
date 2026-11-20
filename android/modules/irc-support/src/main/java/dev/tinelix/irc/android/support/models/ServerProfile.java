@@ -60,6 +60,9 @@ public class ServerProfile {
     public static class Nickname {
         public String nickname;
         public boolean isPrimary;
+        private String privateKey;
+        private String encPassword;
+        private String plainPassword;
 
         public Nickname(String nickname, boolean isPrimary) {
             this.nickname = nickname;
@@ -69,6 +72,31 @@ public class ServerProfile {
         @Override
         public String toString() {
             return nickname;
+        }
+
+        public String getPrivateKey() {
+            return privateKey;
+        }
+
+        public void setPrivateKey(String key) {
+            this.privateKey = key;
+        }
+
+        public void setEncryptedPassword(String password) {
+            this.encPassword = password;
+        }
+
+        public String getEncryptedPassword() {
+            return encPassword;
+        }
+
+        public void setPlainPassword(String password) {
+            plainPassword = password;
+            encPassword = null;
+        }
+
+        public String getPlainPassword() {
+            return plainPassword;
         }
     }
 }

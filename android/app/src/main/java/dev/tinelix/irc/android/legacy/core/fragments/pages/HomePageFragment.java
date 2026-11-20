@@ -128,14 +128,8 @@ public class HomePageFragment extends BaseFragment {
     @SuppressLint("SdCardPath")
     public void loadProfilesList() {
         String  profilesPath;
-        if(getContext().getFilesDir().getParent() != null && getContext().getFilesDir() != null)
-            profilesPath = getContext().getFilesDir().getParent() + "/shared_prefs";
-        else
-            profilesPath = "/data/data/" + mApp.getPackageName() + "/shared_prefs";
 
-        File    prefsDir = new File(profilesPath);
-        File[]  prefsFiles = prefsDir.listFiles();
-        String  fileExt;
+        if(getActivity() == null) return;
 
         mApp = (IRCApplication) getActivity().getApplication();
 
@@ -143,6 +137,19 @@ public class HomePageFragment extends BaseFragment {
             mProfilesArray = new ArrayList<>();
         else
             mProfilesArray.clear();
+
+
+        try {
+            if (getContext().getFilesDir().getParent() != null && getContext().getFilesDir() != null)
+                profilesPath = getContext().getFilesDir().getParent() + "/shared_prefs";
+            else
+                profilesPath = "/data/data/" + mApp.getPackageName() + "/shared_prefs";
+        } catch (Exception e) {
+            profilesPath = "/data/data/" + mApp.getPackageName() + "/shared_prefs";
+        }
+
+        File    prefsDir = new File(profilesPath);
+        File[]  prefsFiles = prefsDir.listFiles();
 
         try {
             for (File file : prefsFiles) {
@@ -188,6 +195,8 @@ public class HomePageFragment extends BaseFragment {
 
     @Override
     public void createAdapter(Context context) {
+
+        if(getContext() == null) return;
 
         if(mPosition == 0) {
             loadProfilesList();

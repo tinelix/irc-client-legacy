@@ -78,9 +78,11 @@ public class CacheDatabaseTables {
         db.execSQL("DROP TABLE IF EXISTS `nicknames`");
         db.execSQL(
                 "CREATE TABLE `nicknames` (" +
-                    "nick_id    integer      PRIMARY KEY AUTOINCREMENT, " +
-                    "nickname   varchar(100) UNIQUE,                    " +
-                    "is_primary bit                                     " +
+                    "nick_id      integer      PRIMARY KEY AUTOINCREMENT, " +
+                    "nickname     varchar(100) UNIQUE NOT NULL,           " +
+                    "private_key  varchar(800) UNIQUE NOT NULL,           " +
+                    "enc_password varchar(800),                           " +
+                    "is_primary bit                                       " +
                 ")"
         );
     }

@@ -98,7 +98,10 @@ public class NicknamesListAdapter extends RecyclerView.Adapter<NicknamesListAdap
                 @Override
                 public void onClick(View v) {
                     UsersCacheDatabase.deleteNickname(nick);
-                    mNicknames.remove(position);
+                    if(mNicknames.size() == 1)
+                        mNicknames.remove(position - 1);
+                    else
+                        mNicknames.remove(position);
                     notifyItemRemoved(position);
 
                     if(mListener != null)

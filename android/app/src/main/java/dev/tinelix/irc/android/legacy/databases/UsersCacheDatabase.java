@@ -24,10 +24,14 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v7.preference.Preference;
 
 import java.util.ArrayList;
 
+import dev.tinelix.irc.android.legacy.Global;
 import dev.tinelix.irc.android.legacy.databases.base.CacheDatabase;
+import dev.tinelix.irc.android.legacy.utils.AESCipher;
+import dev.tinelix.irc.android.legacy.utils.IRCProfileManager;
 import dev.tinelix.irc.android.support.models.IRCServer;
 import dev.tinelix.irc.android.support.models.ServerProfile;
 
@@ -140,6 +144,44 @@ public class UsersCacheDatabase extends CacheDatabase {
         return result;
     }
 
+    public static void encryptPassword(ServerProfile.Nickname nickname, String plainPassword) {
+        try {
+            AESCipher cipher = AESCipher.createInstance(nickname.getPrivateKey());
+
+            if(cipher == null) return;
+
+            String encPassword = cipher.encrypt(plainPassword);
+
+            ContentValues values = new ContentValues();
+            nickname.setEncryptedPassword(encPassword);
+            values.put("enc_password", encPassword);
+
+            mDatabase.execSQL(
+                    "UPDATE nicknames SET enc_password = ? WHERE nickname = ?",
+                    new String[] {
+                            encPassword, nickname.nickname
+                    }
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String decryptPassword(ServerProfile.Nickname nickname) {
+        try {
+            AESCipher cipher = AESCipher.createInstance(nickname.getPrivateKey());
+
+            String encPasswd = nickname.getEncryptedPassword();
+
+            if(cipher == null || encPasswd.length() < 32) return null;
+
+            return cipher.decrypt(encPasswd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static ArrayList<ServerProfile.Nickname> getNicknameList() {
         ArrayList<ServerProfile.Nickname> nicknames = new ArrayList<>();
         Cursor cursor = null;
@@ -158,6 +200,8 @@ public class UsersCacheDatabase extends CacheDatabase {
                     ServerProfile.Nickname nickname = new ServerProfile.Nickname(
                         values.getAsString("nickname"), values.getAsBoolean("is_primary")
                     );
+                    nickname.setPrivateKey(values.getAsString("private_key"));
+                    nickname.setEncryptedPassword(values.getAsString("enc_password"));
                     nicknames.add(nickname);
                 } while (cursor.moveToNext());
             }
@@ -171,7 +215,7 @@ public class UsersCacheDatabase extends CacheDatabase {
         return nicknames;
     }
 
-    public static void putNickname(ServerProfile.Nickname nickname) {
+    public static void putNickname(String prefsName, ServerProfile.Nickname nickname) {
 
         if (ifExist(nickname.nickname))
             return;
@@ -179,7 +223,7 @@ public class UsersCacheDatabase extends CacheDatabase {
         ContentValues values = new ContentValues();
         values.put("nickname", nickname.nickname);
         values.put("is_primary", nickname.isPrimary);
-
+        values.put("private_key", IRCProfileManager.generatePrivateKey(prefsName, nickname.nickname));
         mDatabase.insert(
                 "nicknames", null, values
         );

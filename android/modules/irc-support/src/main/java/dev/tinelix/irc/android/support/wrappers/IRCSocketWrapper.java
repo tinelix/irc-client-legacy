@@ -258,9 +258,10 @@ public class IRCSocketWrapper {
 
                                 if(words.length >= 2) {
                                     if(words[0].equals("PING") || words[1].equals("PING") ||
-                                       words[1].equals("001"))
+                                       words[1].equals("001")) {
                                         mConnStatus = STATUS_RUNNING;
-                                    else if(words[1].equals("PONG"))
+                                        authorize("nickserv");
+                                    } else if(words[1].equals("PONG"))
                                         mPingEstimated = Math.abs(receivedTime - mPingStartTime);
                                     else if(words[1].equals("NICK") && words.length >= 3)
                                         mCurrentNick = words[2];
@@ -345,6 +346,24 @@ public class IRCSocketWrapper {
             mListener.onDisconnect(this, mProfile);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void authorize(String authMethod) {
+
+        ServerProfile.Nickname nickname = findCurrentNickname();
+
+        if(nickname == null) return;
+
+        switch (authMethod) {
+            case "nickserv":
+                sendCommand(
+                        new IRCCommand(
+                                "/ns id " + nickname.getPlainPassword()
+                        ),
+                        mProfile.getServerParams().inputEncoding
+                );
+                break;
         }
     }
 
@@ -474,6 +493,25 @@ public class IRCSocketWrapper {
 
     public ArrayList<ServerProfile.Nickname> getNicknamesList() {
         return mNicknames;
+    }
+
+    public ServerProfile.Nickname findCurrentNickname() {
+
+        ArrayList<ServerProfile.Nickname> nicknames = getNicknamesList();
+
+        if(nicknames == null || nicknames.size() == 0)
+            return null;
+
+        for(ServerProfile.Nickname nickname : nicknames) {
+            if(nickname.nickname.equals(mCurrentNick))
+                return nickname;
+        }
+
+        return null;
+    }
+
+    public void updateNickname(int index, ServerProfile.Nickname nickname) {
+        mNicknames.set(index, nickname);
     }
 
     public void selectNickname(int index) {

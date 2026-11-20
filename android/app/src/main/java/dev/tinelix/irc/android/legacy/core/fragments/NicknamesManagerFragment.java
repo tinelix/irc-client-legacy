@@ -86,7 +86,6 @@ public class NicknamesManagerFragment extends BaseFragment {
         createItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View view = View.inflate(getContext(), R.layout.dialog_enter_text, null);
                 createTextEditDialog();
             }
         });

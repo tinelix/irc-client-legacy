@@ -54,6 +54,12 @@ public class NicknamesManagerActivity extends BaseActivity {
 
         if(getIntent().getExtras() != null) {
             mArguments = getIntent().getExtras();
+            mProfileName = mArguments.getString("prefsName");
+
+            if(mProfileName == null) {
+                finish();
+                return;
+            }
         } else {
             finish();
             return;

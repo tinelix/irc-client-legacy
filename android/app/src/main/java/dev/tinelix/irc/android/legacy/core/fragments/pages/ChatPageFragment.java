@@ -235,10 +235,13 @@ public class ChatPageFragment extends BaseFragment {
 
                 if(service == null) return;
 
-                ServerPong ping = ((ServerPong) signal);
+                ServerPong pong = ((ServerPong) signal);
 
-                ping.value = service.getWrapper(mProfile).getCurrentPing();
-                ping.prevValue = service.getWrapper(mProfile).getPreviousPing();
+                IRCSocketWrapper wrapper = service.getWrapper(mProfile);
+
+                pong.value = wrapper.getCurrentPing();
+                pong.prevValue = wrapper.getPreviousPing();
+                pong.uptime = wrapper.getConnectionUptime();
             }
 
             signals.set(i, signal);

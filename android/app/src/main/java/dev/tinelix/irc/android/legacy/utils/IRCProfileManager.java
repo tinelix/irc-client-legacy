@@ -29,6 +29,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 
 import java.nio.ByteBuffer;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -273,7 +274,7 @@ public class IRCProfileManager {
 
     public static int getAuthMethodsIndex(String value) {
 
-        if(value.equals("nickserv"))
+        if(value.equals("nickserv") || value.equals("NickServ"))
             return 1;
 
         return 0;
@@ -286,7 +287,7 @@ public class IRCProfileManager {
         ctx.startActivity(intent);
     }
 
-    public static void showCreateNicknameDialog(final Context ctx, String prefsName) {
+    public static void showCreateNicknameDialog(final Context ctx, final String prefsName) {
 
         final SharedPreferences prefs = ctx.getSharedPreferences(prefsName, 0);
 
@@ -301,7 +302,7 @@ public class IRCProfileManager {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         UsersCacheDatabase.putNickname(
-                                new ServerProfile.Nickname(
+                                prefsName, new ServerProfile.Nickname(
                                         editText.getText().toString(), false
                                 )
                         );
@@ -341,6 +342,31 @@ public class IRCProfileManager {
                 return array[2];
             case 90000:
                 return array[3];
+        }
+
+        return null;
+    }
+
+    public static String generatePrivateKey(String prefsName, String nickname) {
+        try {
+            String privateKey;
+
+            SecureRandom random = new SecureRandom();
+            int randInt1 = random.nextInt(196608);
+            int randInt2 = random.nextInt(196608);
+            int randInt3 = random.nextInt(196608);
+            int randInt4 = random.nextInt(196608);
+            int randInt5 = random.nextInt(196608);
+            int randInt6 = random.nextInt(196608);
+
+            privateKey = prefsName + "@" + nickname + "=" +
+                    String.valueOf(randInt1) + ":" + String.valueOf(randInt2) + ":" +
+                    String.valueOf(randInt3) + ":" + String.valueOf(randInt4) + ":" +
+                    String.valueOf(randInt5) + ":" + String.valueOf(randInt6);
+
+            return privateKey;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return null;

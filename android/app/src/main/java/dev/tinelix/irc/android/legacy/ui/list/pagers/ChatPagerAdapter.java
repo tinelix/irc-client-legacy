@@ -161,6 +161,8 @@ public class ChatPagerAdapter extends FragmentStatePagerAdapter {
 
                 if(fragment instanceof ChatPageFragment)
                     ((ChatPageFragment) fragment).putSignalsList(signalsMap.get(destName));
+
+                notifyDataSetChanged();
             }
         }
     }

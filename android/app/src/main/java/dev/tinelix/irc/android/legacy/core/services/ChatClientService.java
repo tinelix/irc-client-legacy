@@ -44,6 +44,7 @@ import dev.tinelix.irc.android.legacy.core.activities.ChatActivity;
 import dev.tinelix.irc.android.legacy.core.activities.MainActivity;
 import dev.tinelix.irc.android.legacy.databases.ServersCacheDatabase;
 import dev.tinelix.irc.android.legacy.databases.UsersCacheDatabase;
+import dev.tinelix.irc.android.legacy.utils.AESCipher;
 import dev.tinelix.irc.android.legacy.utils.NotificationManager;
 import dev.tinelix.irc.android.support.enitites.IRCBroadcastSignal;
 import dev.tinelix.irc.android.support.enitites.IRCCommand;
@@ -331,6 +332,13 @@ public class ChatClientService extends Service implements SocketConnectionListen
 
         if(nicknames.size() > 0) {
             wrapper.selectNickname(0);
+            ServerProfile.Nickname nickname = wrapper.findCurrentNickname();
+
+            if(nickname.getPrivateKey() != null && nickname.getPrivateKey().length() > 0) {
+                nickname.setPlainPassword(UsersCacheDatabase.decryptPassword(nickname));
+                wrapper.updateNickname(0, nickname);
+            }
+
             wrapper.readRawData();
         } else {
             wrapper.disconnect();

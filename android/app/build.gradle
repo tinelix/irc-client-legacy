@@ -74,8 +74,8 @@ android {
         minSdkVersion 7
         //noinspection OldTargetApi
         targetSdkVersion 29
-        versionCode 23
-        versionName '0.5.1-alpha'
+        versionCode 24
+        versionName '0.5.2-alpha'
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.debug
     }

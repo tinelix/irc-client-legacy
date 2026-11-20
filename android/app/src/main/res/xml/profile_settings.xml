@@ -65,19 +65,18 @@
             android:title="@string/pref_ping_interval"
             android:persistent="false" />
     </PreferenceCategory>
-    <!--<PreferenceCategory android:title="@string/authorization_category">
+    <PreferenceCategory android:title="@string/authorization_category">
         <Preference
             android:defaultValue="true"
-            android:enabled="false"
             android:key="auth_method"
             android:persistent="false"
             android:title="@string/pref_login_method" />
         <Preference
             android:enabled="false"
-            android:key="password"
+            android:key="auth_password"
             android:title="@string/pref_password"
             android:persistent="false" />
-    </PreferenceCategory>!-->
+    </PreferenceCategory>
     <Preference
         android:key="quit_message"
         android:singleLine="true"

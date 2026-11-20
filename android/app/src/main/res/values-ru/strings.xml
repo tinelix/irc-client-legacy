@@ -158,7 +158,7 @@
         "Подключено к %1$s (%2$.2f с), %3$s (%4$.2f с) и %5$d серверам"
     </string>
 
-    <!-- Progress dialog statuses !-->
+    <!-- Dialog texts !-->
     <string name="progress_profile_initializing">Инициализация…</string>
     <string name="progress_profile_establishing">Установка соединения…</string>
     <string name="progress_profile_nick_is_busy">Текущий никнейм %s занят. Подбор следующего никнейма…</string>
@@ -166,5 +166,10 @@
     <string name="dialog_profile_nick_is_busy_title">Нет свободных никнеймов</string>
     <string name="dialog_profile_nick_is_busy_description">
         "Все остальные никнеймы, необходимые для входа на указанный сервер, уже заняты. Пожалуйста, освободите одну из них или введите другой никнейм."
+    </string>
+    <string name="dialog_non_secured_nickserv">
+"Выбирая данный метод авторизации без защищенного соединения, вы подвергаете риску перехвата ваших личных данных со стороны третих лиц.
+
+Нажмите \"ОК\" только в том случае, если вы осознаете эти риски. Разработчик приложения ответственности за это не несет."
     </string>
 </resources>

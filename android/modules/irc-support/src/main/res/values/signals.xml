@@ -57,12 +57,15 @@ Network statistics:
 
     <string name="ircs_signal_ping">
 "Pong!
-Current latency:     %1$4d ms
-Connection quality:  %2$s"
+Connection quality:  %1$9s
+Current latency:     %2$6d ms
+Uptime:              %3$9s"
     </string>
     <string name="ircs_signal_ping_2">
 "Pong!
-Current latency:     %1$4.2f s
-Connection quality:  %2$s"
+
+Connection quality:  %1$9s
+Current latency:     %2$5.2f s
+Uptime:              %3$9s"
     </string>
 </resources>

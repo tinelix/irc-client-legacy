@@ -26,6 +26,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.Preference;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -37,6 +38,8 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,8 +50,11 @@ import dev.tinelix.irc.android.legacy.BuildConfig;
 import dev.tinelix.irc.android.legacy.R;
 import dev.tinelix.irc.android.legacy.core.activities.NicknamesManagerActivity;
 import dev.tinelix.irc.android.legacy.databases.ServersCacheDatabase;
+import dev.tinelix.irc.android.legacy.databases.UsersCacheDatabase;
+import dev.tinelix.irc.android.legacy.utils.AESCipher;
 import dev.tinelix.irc.android.legacy.utils.IRCProfileManager;
 import dev.tinelix.irc.android.support.models.IRCServer;
+import dev.tinelix.irc.android.support.models.ServerProfile;
 
 public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
 
@@ -77,6 +83,9 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
         ServersCacheDatabase.initDatabase(
                 getContext(), mPreferences.getString("profileId", "0")
         );
+        UsersCacheDatabase.initDatabase(
+                getContext(), mPreferences.getString("profileId", "0")
+        );
 
         setupPreferences();
     }
@@ -100,7 +109,7 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
                                                .replace("https://", "")
                 )
         );
-
+        final CheckBoxPreference useTlsConnectionPref = (CheckBoxPreference) findPreference("tls_only");
 
         mIRCServer = ServersCacheDatabase.getServer(serverAddress);
 
@@ -111,7 +120,9 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
             public boolean onPreferenceClick(final Preference preference) {
                 View view = View.inflate(getContext(), R.layout.dialog_enter_text, null);
                 String value = mPreferences.getString("profileName", "");
-                createTextEditDialog(preference, view, "profileName", value, false);
+                createTextEditDialog(
+                        preference, view, "profileName", value, false, true
+                );
                 return true;
             }
         });
@@ -123,7 +134,9 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
             public boolean onPreferenceClick(final Preference preference) {
                 View view = View.inflate(getContext(), R.layout.dialog_enter_text, null);
                 String value = mPreferences.getString("realName", "");
-                createTextEditDialog(preference, view, "realName", value, false);
+                createTextEditDialog(
+                        preference, view, "realName", value, false, true
+                );
                 return true;
             }
         });
@@ -135,7 +148,9 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
             public boolean onPreferenceClick(final Preference preference) {
                 View view = View.inflate(getContext(), R.layout.dialog_enter_text, null);
                 String value = mPreferences.getString("hostName", "");
-                createTextEditDialog(preference, view, "hostName", value, false);
+                createTextEditDialog(
+                        preference, view, "hostName", value, false, false
+                );
                 return true;
             }
         });
@@ -153,46 +168,37 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
             }
         });
 
+        final Preference authPasswordPref = findPreference("auth_password");
+
         final Preference authMethodPref = findPreference("auth_method");
 
         if(authMethodPref != null) {
             final LinkedHashMap<String, String> authMethodsMap = IRCProfileManager.getAvailableAuthMethods(getContext());
 
-            if (authMethodsMap.containsKey(authMethod))
+            if (authMethodsMap.containsKey(authMethod)) {
                 authMethodPref.setSummary(authMethodsMap.get(authMethod));
+                if(!authMethod.equals("none"))
+                    authPasswordPref.setEnabled(true);
+            }
 
             authMethodPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(final Preference preference) {
+                    openAuthMethodsListDialog(preference, authPasswordPref, useTlsConnectionPref, authMethodsMap);
+                    return true;
+                }
+            });
+        }
 
-                    String value = mPreferences.getString("authMethod", "");
-                    int defPosition = IRCProfileManager.getAuthMethodsIndex(value);
-                    final String[] currentValue = {(String) authMethodsMap.keySet().toArray()[defPosition]};
+        if(authPasswordPref != null) {
+            authPasswordPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    View view = View.inflate(getContext(), R.layout.dialog_enter_text, null);
 
-                    new HoloAlertDialog.Builder(getContext())
-                            .setTitle(R.string.pref_login_method)
-                            .setSingleChoiceItems(R.array.auth_method, defPosition,
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            currentValue[0] = (String) authMethodsMap.keySet().toArray()[which];
-                                        }
-                                    }
-                            )
-                            .setPositiveButton(R.string.ok_button,
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                            preference.setSummary(authMethodsMap.get(currentValue[0]));
-                                            SharedPreferences.Editor editor = mPreferences.edit();
-                                            editor.putString("authMethod", currentValue[0]);
-                                            editor.commit();
-                                        }
-                                    }
-                            )
-                            .setNegativeButton(R.string.cancel_button, null)
-                            .show();
+                    createTextEditDialog(
+                            preference, view, "authCipherPasswd", "", false, true
+                    );
                     return true;
                 }
             });
@@ -478,7 +484,6 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
             }
         });
 
-        final CheckBoxPreference useTlsConnectionPref = (CheckBoxPreference) findPreference("tls_only");
         useTlsConnectionPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
@@ -518,11 +523,78 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
                 );
                 createTextEditDialog(
                         preference, view, "quitMessage", value,
-                        true
-                );
+                        true,
+                        true);
                 return true;
             }
         });
+    }
+
+    private void openAuthMethodsListDialog(
+            final Preference authMethodsPref,
+            final Preference authPasswordPref,
+            final CheckBoxPreference useTlsPref,
+            final LinkedHashMap<String, String> map
+     ) {
+        String value = mPreferences.getString("authMethod", "");
+        int defPosition = IRCProfileManager.getAuthMethodsIndex(value);
+        final String[] currentValue = {(String) map.keySet().toArray()[defPosition]};
+
+        new HoloAlertDialog.Builder(getContext())
+                .setTitle(R.string.pref_login_method)
+                .setSingleChoiceItems(R.array.auth_method, defPosition,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                currentValue[0] = (String) map.keySet().toArray()[which];
+                            }
+                        }
+                )
+                .setPositiveButton(R.string.ok_button,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                if(currentValue[0].equals("nickserv") && !useTlsPref.isChecked())
+                                    createNickServWarningDialog(authMethodsPref, authPasswordPref, map, currentValue);
+                                else {
+                                    SharedPreferences.Editor editor = mPreferences.edit();
+                                    editor.putString("authMethod", currentValue[0]);
+                                    editor.commit();
+                                    authMethodsPref.setSummary(map.get(currentValue[0]));
+                                    authPasswordPref.setEnabled(!currentValue[0].equals("none"));
+                                }
+                            }
+                        }
+                )
+                .setNegativeButton(R.string.cancel_button, null)
+                .show();
+    }
+
+    private void createNickServWarningDialog(
+            final Preference authMethodsPref,
+            final Preference authPasswordPref,
+            final LinkedHashMap<String, String> map,
+            final String[] values
+    ) {
+        HoloAlertDialog dialog =
+                new HoloAlertDialog.Builder(getContext())
+                                   .setTitle("NickServ")
+                                   .setMessageText(R.string.dialog_non_secured_nickserv)
+                                   .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                       @Override
+                                       public void onClick(DialogInterface dialog, int which) {
+                                           SharedPreferences.Editor editor = mPreferences.edit();
+                                           editor.putString("authMethod", "nickserv");
+                                           editor.commit();
+                                           authMethodsPref.setSummary(map.get(values[0]));
+                                           authPasswordPref.setEnabled(true);
+                                       }
+                                   })
+                                   .setNegativeButton(android.R.string.cancel, null)
+                                   .create();
+
+        dialog.show();
     }
 
     private void updateServerInfoDb() {
@@ -541,9 +613,10 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
     }
 
     private void createTextEditDialog(
-            final Preference preference, View view, final String key, String value,
-            boolean multiLine
-    ) {
+            final Preference preference, View view,
+            final String key, String value,
+            boolean multiLine, final boolean passwordType) {
+
         final EditText editText = view.findViewById(R.id.edittext);
 
         int titleId = 0;
@@ -561,6 +634,9 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
             case "authMethod":
                 titleId = R.string.pref_login_method;
                 break;
+            case "authCipherPasswd":
+                titleId = R.string.pref_password;
+                break;
             case "serverAddress":
                 titleId = R.string.pref_server_address;
                 break;
@@ -577,15 +653,33 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         SharedPreferences.Editor editor = mPreferences.edit();
-                        editor.putString(key, editText.getText().toString());
-                        editor.commit();
-                        preference.setSummary(editText.getText().toString());
+
+                        if(!passwordType) {
+                            editor.putString(key, editText.getText().toString());
+                            editor.commit();
+                        } else {
+                            ArrayList<ServerProfile.Nickname> nicknames =
+                                    UsersCacheDatabase.getNicknameList();
+
+                            for(int i = 0; i < nicknames.size(); i++) {
+                                UsersCacheDatabase.encryptPassword(
+                                        nicknames.get(i), editText.getText().toString()
+                                );
+                            }
+                        }
+
+                        if(!passwordType)
+                            preference.setSummary(editText.getText().toString());
                     }
                 })
                 .setNegativeButton(R.string.cancel_button, null)
                 .show();
 
-        if(multiLine) {
+        if(passwordType)
+            editText.setInputType(InputType.TYPE_CLASS_TEXT |
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD |
+                    InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        else if(multiLine) {
             editText.setSingleLine(false);
             editText.setMinLines(4);
             editText.setMaxLines(4);
@@ -611,6 +705,7 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
     @Override
     public void onDestroy() {
         ServersCacheDatabase.freeDatabase();
+        UsersCacheDatabase.freeDatabase();
         super.onDestroy();
     }
 }

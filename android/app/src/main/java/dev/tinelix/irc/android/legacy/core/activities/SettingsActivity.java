@@ -30,8 +30,10 @@ import android.widget.Toast;
 import dev.tinelix.irc.android.legacy.R;
 import dev.tinelix.irc.android.legacy.core.activities.base.BaseActivity;
 import dev.tinelix.irc.android.legacy.core.fragments.IRCProfileSettingsFragment;
+import dev.tinelix.irc.android.legacy.databases.ServersCacheDatabase;
 import dev.tinelix.irc.android.legacy.databases.UsersCacheDatabase;
 import dev.tinelix.irc.android.legacy.utils.IRCProfileManager;
+import dev.tinelix.irc.android.support.models.ServerProfile;
 
 public class SettingsActivity extends BaseActivity
 {
@@ -62,6 +64,8 @@ public class SettingsActivity extends BaseActivity
         Fragment fragment = null;
         String tag = mArguments.getString("fragment");
         mPrefsName = mArguments.getString("prefsName");
+
+        if(mPrefsName == null) return;
 
         switch (tag) {
             case "irc_profile_settings":
@@ -99,13 +103,16 @@ public class SettingsActivity extends BaseActivity
     public void onBackPressed() {
         if(mArguments != null && mArguments.containsKey("fragment") &&
             mArguments.getString("fragment").equals("irc_profile_settings")) {
-            SharedPreferences prefs = getSharedPreferences(mPrefsName, 0);
-            UsersCacheDatabase.initDatabase(this, prefs.getString("profileId", "0"));
+
+            ServerProfile profile = ServerProfile.from(mPrefsName, getSharedPreferences(mPrefsName, 0));
+            UsersCacheDatabase.initDatabase(this, profile.name);
 
             if(UsersCacheDatabase.getNicknameList().size() == 0) {
                 Toast.makeText(this, R.string.add_nickname_first, Toast.LENGTH_LONG).show();
-                UsersCacheDatabase.freeDatabase();
                 return;
+            } else {
+                ServersCacheDatabase.freeDatabase();
+                UsersCacheDatabase.freeDatabase();
             }
         }
         super.onBackPressed();
