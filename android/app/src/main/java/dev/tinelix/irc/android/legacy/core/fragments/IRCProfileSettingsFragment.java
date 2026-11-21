@@ -121,7 +121,7 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
                 View view = View.inflate(getContext(), R.layout.dialog_enter_text, null);
                 String value = mPreferences.getString("profileName", "");
                 createTextEditDialog(
-                        preference, view, "profileName", value, false, true
+                        preference, view, "profileName", value, false, false
                 );
                 return true;
             }
@@ -135,7 +135,7 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
                 View view = View.inflate(getContext(), R.layout.dialog_enter_text, null);
                 String value = mPreferences.getString("realName", "");
                 createTextEditDialog(
-                        preference, view, "realName", value, false, true
+                        preference, view, "realName", value, false, false
                 );
                 return true;
             }
@@ -681,6 +681,7 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
                     InputType.TYPE_TEXT_VARIATION_PASSWORD |
                     InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         else if(multiLine) {
+            editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
             editText.setSingleLine(false);
             editText.setMinLines(4);
             editText.setMaxLines(4);
