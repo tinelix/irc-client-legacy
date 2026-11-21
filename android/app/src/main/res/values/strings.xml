@@ -169,6 +169,6 @@
     <string name="dialog_non_secured_nickserv">
 "By choosing this authorization method without a secure connection, you risk having your personal data intercepted by third parties.
 
-Click "OK" only if you are aware of these risks. The application developer assumes no responsibility for this."
+Click OK only if you are aware of these risks. The application developer assumes no responsibility for this."
     </string>
 </resources>
