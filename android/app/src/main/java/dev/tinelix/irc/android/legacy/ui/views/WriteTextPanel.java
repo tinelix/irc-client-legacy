@@ -168,7 +168,7 @@ public class WriteTextPanel extends LinearLayout {
                                 if(isNickServ) break;
 
                                 if(line.startsWith("/"))
-                                    signal = new IRCCommand("line");
+                                    signal = new IRCCommand(line);
                                 else
                                     signal = new ChatMessage(line, ((ServerChannel) mDestination).name);
                                 break;
