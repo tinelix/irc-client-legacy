@@ -127,6 +127,7 @@ public class WriteTextPanel extends LinearLayout {
             public void run() {
                 for(String line : lines) {
                     IRCBroadcastSignal signal = null;
+
                     if(line.startsWith("/join")) {
                         signal = new IRCCommand(line);
                     } else if (mDestination == null) {
@@ -148,6 +149,12 @@ public class WriteTextPanel extends LinearLayout {
                     } else if (mDestination instanceof ServerUser) {
                         signal = new ChatMessage(line, ((ServerUser) mDestination).userMask);
                     } else {
+
+                        boolean isNickServ =
+                                line.startsWith("/msg nickserv") ||
+                                line.startsWith("/ns") ||
+                                line.startsWith("/nickserv");
+
                         switch (line) {
                             case "/part":
                                 signal = new IRCCommand(
@@ -157,10 +164,13 @@ public class WriteTextPanel extends LinearLayout {
                             case "/quit":
                                 signal = new IRCCommand(line + " " + mProfile.quitMessage);
                                 break;
-                            case "/ns":
-                                break;
                             default:
-                                signal = new ChatMessage(line, ((ServerChannel) mDestination).name);
+                                if(isNickServ) break;
+
+                                if(line.startsWith("/"))
+                                    signal = new IRCCommand("line");
+                                else
+                                    signal = new ChatMessage(line, ((ServerChannel) mDestination).name);
                                 break;
                         }
                     }
