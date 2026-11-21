@@ -524,7 +524,7 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
                 createTextEditDialog(
                         preference, view, "quitMessage", value,
                         true,
-                        true);
+                        false);
                 return true;
             }
         });
