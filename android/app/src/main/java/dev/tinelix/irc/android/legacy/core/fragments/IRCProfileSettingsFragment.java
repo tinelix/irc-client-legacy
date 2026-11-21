@@ -685,8 +685,10 @@ public class IRCProfileSettingsFragment extends HoloCompatPreferenceFragment {
             editText.setMinLines(4);
             editText.setMaxLines(4);
             editText.setGravity(Gravity.TOP);
-        } else
+        } else {
+            editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
             editText.setSingleLine(true);
+        }
 
         editText.setHint(titleId);
         editText.setText(value);
